@@ -1,0 +1,9 @@
+.footer-item {
+  display: flex;
+  flex: 1;
+  text-align: center;
+  flex-direction: column;
+}
+.footer-active {
+  color: red;
+}

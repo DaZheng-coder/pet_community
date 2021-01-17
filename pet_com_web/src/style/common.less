@@ -1,0 +1,186 @@
+@theme-color: red;
+@gray-color: gray;
+@text-color: black;
+@span-color: rgb(240,240,240);
+@bg-color: white;
+
+@distance05: 0.1rem;
+@distance1: 0.2rem;
+@distance2: 0.5rem;
+@distance3: 1rem;
+
+*{
+  font-size: 0.15rem;
+  color: @text-color;
+}
+
+.footer-active {
+  color: @theme-color;
+}
+
+.router-view {
+  padding-bottom: 1rem;
+}
+
+/** 
+ * padding
+ **/
+.padding05 {
+  padding: @distance05;
+}
+.padding1 {
+  padding: @distance1;
+}
+
+.padding2 {
+  padding: @distance2;
+}
+
+.padding1-b {
+  padding-bottom: @distance1;
+}
+
+.page-pd {
+  padding: @distance2 @distance1 0;
+}
+
+/**
+ * flex
+ *  **/
+.flex {
+  display: flex;
+}
+
+.flex1 {
+  flex: 1;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+/** 
+ * 字体相关
+ * **/
+.font1 {
+  font-size: 0.15rem;
+}
+
+.font2 {
+  font-size: 0.18rem;
+}
+
+.font25 {
+  font-size: 0.25rem;
+}
+
+.font3 {
+  font-size: 0.28rem;
+}
+
+.font4 {
+  font-size: 0.35rem;
+}
+
+.font-bolder {
+  font-weight: bolder;
+}
+
+.font-theme {
+  color: @theme-color;
+}
+
+.font-gray {
+  color: @gray-color;
+}
+
+/** 
+ * 标签样式
+ * **/
+.default-span {
+  background-color: @span-color;
+  text-align: center;
+  border-radius: 0.25rem;
+  color: @theme-color;
+}
+
+/** 
+ * display
+ * **/
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+/**
+ * width
+ * */
+.width1 {
+  width: 1rem;
+}
+
+/** 
+ * margin
+ * **/
+.margin1-tb {
+  margin-top: @distance1;
+  margin-bottom: @distance1;
+}
+
+.margin1-lr {
+  margin-left: @distance1;
+  margin-right: @distance1;
+}
+
+.margin1-r {
+  margin-right: @distance1;
+}
+
+.margin05-b {
+  margin-bottom: @distance05;
+}
+
+.margin05-r {
+  margin-right: @distance05;
+}
+
+.margin1-b {
+  margin-bottom: @distance1;
+}
+
+.margin1-t {
+  margin-top: @distance1;
+}
+
+
+/** 
+ * float
+ * **/
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+// 居中对齐基准线
+.line-center {
+  vertical-align: middle;
+}
+
+//背景颜色
+.bg {
+  background-color: white;
+}

@@ -7,4 +7,19 @@
   bottom: 0;
   width: 100%;
   display: flex;
+  box-shadow: 0 -0.026667rem 0.053rem rgba(0, 0, 0, 0.1);
+}
+.footer-container .user-handle {
+  flex: 1;
+  text-align: center;
+}
+.footer-container .user-handle .user-handle-btn {
+  position: absolute;
+  padding: 3%;
+  border-radius: 50%;
+  background-color: #ff2a3f;
+  transform: translate(-50%, -25%);
+  color: #fff;
+  font-weight: bolder;
+  box-shadow: 0 0 0.1rem #888;
 }

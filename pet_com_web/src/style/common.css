@@ -1,0 +1,139 @@
+* {
+  font-size: 0.15rem;
+  color: black;
+}
+.footer-active {
+  color: red;
+}
+.router-view {
+  padding-bottom: 1rem;
+}
+/** 
+ * padding
+ **/
+.padding05 {
+  padding: 0.1rem;
+}
+.padding1 {
+  padding: 0.2rem;
+}
+.padding2 {
+  padding: 0.5rem;
+}
+.padding1-b {
+  padding-bottom: 0.2rem;
+}
+.page-pd {
+  padding: 0.5rem 0.2rem 0;
+}
+/**
+ * flex
+ *  **/
+.flex {
+  display: flex;
+}
+.flex1 {
+  flex: 1;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+/** 
+ * 字体相关
+ * **/
+.font1 {
+  font-size: 0.15rem;
+}
+.font2 {
+  font-size: 0.18rem;
+}
+.font25 {
+  font-size: 0.25rem;
+}
+.font3 {
+  font-size: 0.28rem;
+}
+.font4 {
+  font-size: 0.35rem;
+}
+.font-bolder {
+  font-weight: bolder;
+}
+.font-theme {
+  color: red;
+}
+.font-gray {
+  color: gray;
+}
+/** 
+ * 标签样式
+ * **/
+.default-span {
+  background-color: #f0f0f0;
+  text-align: center;
+  border-radius: 0.25rem;
+  color: red;
+}
+/** 
+ * display
+ * **/
+.block {
+  display: block;
+}
+.inline-block {
+  display: inline-block;
+}
+/**
+ * width
+ * */
+.width1 {
+  width: 1rem;
+}
+/** 
+ * margin
+ * **/
+.margin1-tb {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.margin1-lr {
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+}
+.margin1-r {
+  margin-right: 0.2rem;
+}
+.margin05-b {
+  margin-bottom: 0.1rem;
+}
+.margin05-r {
+  margin-right: 0.1rem;
+}
+.margin1-b {
+  margin-bottom: 0.2rem;
+}
+.margin1-t {
+  margin-top: 0.2rem;
+}
+/** 
+ * float
+ * **/
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+.line-center {
+  vertical-align: middle;
+}
+.bg {
+  background-color: white;
+}

@@ -2,11 +2,14 @@ import Footer from './components/Footer/'
 import Router from './router/Router'
 import './assets/iconfont/iconfont.css'
 import './style/base.less'
+import './style/common.less'
 
 function App() {
   return (
     <div className="App">
-      <Router />
+      <div className="router-view">
+        <Router />
+      </div>
       <Footer />
     </div>
   )

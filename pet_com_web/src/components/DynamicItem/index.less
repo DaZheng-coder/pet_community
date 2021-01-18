@@ -1,0 +1,49 @@
+@import '@/style/common.less';
+
+.dynamic-container {
+  .dynamic-container-padding {
+    padding: @distance2 0 @distance1;
+  }
+  .dynamic-container-handle {
+    .dynamic-container-handle-focus {
+      vertical-align: middle;
+      padding: 0.03rem 0.2rem;
+      border: 1px solid @theme-color;
+      border-radius: @distance1;
+      color: @theme-color;
+    }
+  }
+  .dynamic-container-content {
+    .dynamic-container-content-text {
+      padding: @distance1 0;
+    }
+    .dynamic-container-content-imgs {
+      display: flex;
+      flex-wrap: wrap;
+      .dynamic-container-content-imgs-item {
+        display: inline-block;
+        margin-right: @distance05;
+        margin-bottom: @distance05;
+        // width: 2.2668rem;
+        height: 2.28rem;
+        flex: 0 0 32.333%;
+        // flex-shrink: 0;
+        background-color: green;
+        border-radius: @distance1;
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
+      }
+    }
+    .dynamic-container-content-handle {
+      .dynamic-container-content-handle-tags {
+        .dynamic-container-content-handle-tag {
+          padding: 0.05rem 0.2rem;
+          background-color: #eee;
+          border-radius: 1rem;
+          color: blue;
+        }
+      }
+    }
+  }
+}

@@ -7,6 +7,7 @@
 @distance05: 0.1rem;
 @distance1: 0.2rem;
 @distance2: 0.5rem;
+@distance25: 0.75rem;
 @distance3: 1rem;
 
 *{
@@ -28,6 +29,11 @@
 .padding05 {
   padding: @distance05;
 }
+
+.padding05-tb {
+  padding-top: @distance05;
+  padding-bottom: @distance05
+}
 .padding1 {
   padding: @distance1;
 }
@@ -38,6 +44,36 @@
 
 .padding1-b {
   padding-bottom: @distance1;
+}
+
+.padding1-t {
+  padding-top: @distance1;
+}
+
+.padding1-tb {
+  padding-top: @distance1;
+  padding-bottom: @distance1;
+}
+
+.padding1-lr {
+  padding-left: @distance1;
+  padding-right: @distance1;
+}
+
+.padding2-t {
+  padding-top: @distance2;
+}
+
+.padding2-b {
+  padding-bottom: @distance2;
+}
+
+.padding25-t {
+  padding-top: @distance25;
+}
+
+.padding25-b {
+  padding-bottom: @distance25;
 }
 
 .page-pd {
@@ -75,7 +111,7 @@
 }
 
 .font2 {
-  font-size: 0.18rem;
+  font-size: 0.2rem;
 }
 
 .font25 {
@@ -88,6 +124,10 @@
 
 .font4 {
   font-size: 0.35rem;
+}
+
+.font-bold {
+  font-weight: bold;
 }
 
 .font-bolder {
@@ -126,6 +166,14 @@
 /**
  * width
  * */
+.width04 {
+  width: 0.4rem;
+}
+
+.width05 {
+  width: 0.5rem
+}
+
 .width1 {
   width: 1rem;
 }
@@ -163,6 +211,10 @@
   margin-top: @distance1;
 }
 
+.margin2-t {
+  margin-top: @distance2;
+}
+
 
 /** 
  * float
@@ -183,4 +235,13 @@
 //背景颜色
 .bg {
   background-color: white;
+}
+
+// radius
+.radius2 {
+  border-radius: @distance2;
+}
+
+.radius3 {
+  border-radius: @distance3;
 }

@@ -102,6 +102,9 @@
 .font-gray {
   color: gray;
 }
+.font-white {
+  color: #fff;
+}
 /** 
  * 标签样式
  * **/
@@ -142,6 +145,9 @@
 .margin1-lr {
   margin-left: 0.2rem;
   margin-right: 0.2rem;
+}
+.margin1-l {
+  margin-left: 0.2rem;
 }
 .margin1-r {
   margin-right: 0.2rem;

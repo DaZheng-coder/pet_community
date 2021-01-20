@@ -1,0 +1,23 @@
+@import '@/style/common.less';
+
+.goodsitem-container {
+  width: calc((100% - @distance1) / 2);
+  border-radius: @distance05;
+  padding: @distance05;
+  .goodsitem-container-img {
+    height: 2.8rem;
+    background-color: #ccc;
+    border-radius: @distance05;
+  }
+  .goodsitem-container-title,.goodsitem-container-price {
+    margin: @distance1 0;
+  }
+
+  .goodsitem-container-price {
+    display: flex;
+    justify-content: space-between;
+    i {
+      margin: 0 @distance1;
+    }
+  }
+}

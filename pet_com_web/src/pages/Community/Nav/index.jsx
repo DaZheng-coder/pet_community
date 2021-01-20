@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Search from '@/components/Search/'
 
-export default class Header extends Component {
+export default class Nav extends Component {
   render() {
     return (
       <header className="bg padding05 flex">

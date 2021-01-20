@@ -1,0 +1,41 @@
+@import '@/style/common.less';
+.shop-swiper {
+  background-color: #ccc;
+  height: 1.8rem;
+  border-radius: @distance05;
+  box-shadow: 0 0 0.1rem rgba(0,0,0,.5);
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+}
+
+.shop-handle-items {
+  align-content: flex-start;
+  flex-flow: row wrap;
+  margin: 0.5rem 0;
+  .shop-handle-item {
+    flex: 0 0 20%;
+    margin-bottom: 0.3rem;
+  }
+}
+
+.shop-tab-swiper-container {
+  overflow: hidden;
+  padding:0.2rem 0;
+  .swiper-slide {
+    text-align: center;
+    &.active {
+      font-weight:bold;
+      color:red;
+    }
+  }
+}
+
+.goods-tab-swiper-container {
+  padding-top: @distance1;
+  overflow: hidden;
+  .swiper-slide {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}

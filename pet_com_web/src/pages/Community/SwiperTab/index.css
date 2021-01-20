@@ -11,3 +11,6 @@
 .swiper-tab-container .swiper-wrapper {
   height: 0.7rem;
 }
+.swiper-tab-container .swiper-wrapper .swiper-slide {
+  text-align: center;
+}

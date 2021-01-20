@@ -5,7 +5,7 @@ export default class HandleItem extends Component {
   render() {
     const {iconClass} = this.props
     return (
-      <div>
+      <div className="flex flex-center flex-column">
         <div className="handle-item flex-center">
           <i className={`iconfont ${iconClass}`} />
         </div>

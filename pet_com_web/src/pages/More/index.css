@@ -1,0 +1,19 @@
+.more-container-items {
+  justify-content: space-around;
+}
+.more-container-items .more-container-item {
+  position: relative;
+}
+.more-container-items .more-container-item .more-container-item-handle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  color: white;
+}
+.more-container-items .more-container-item .add {
+  background-color: #6565fd;
+}
+.more-container-items .more-container-item .sub {
+  background-color: #d6d5d5;
+}

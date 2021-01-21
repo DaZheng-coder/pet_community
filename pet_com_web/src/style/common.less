@@ -103,6 +103,17 @@
   justify-content: space-evenly;
 }
 
+.flex-wrap-father {
+  display: flex;
+  align-content: flex-start;
+  flex-flow:row wrap;
+}
+
+.flex-wrap-children {
+  flex: 0 0 25%;
+  margin-bottom: @distance1;
+}
+
 /** 
  * 字体相关
  * **/
@@ -183,6 +194,15 @@
 }
 
 /** 
+ * width100 height100
+ * */
+
+ .wh100 {
+   width: 100%;
+   height: 100%;
+ }
+
+/** 
  * margin
  * **/
 .margin1-tb {
@@ -245,11 +265,22 @@
   background-color: white;
 }
 
+.bg-gray {
+  background-color: @gray-color;
+}
+
 // radius
+.radius05 {
+  border-radius: @distance05;
+}
 .radius2 {
   border-radius: @distance2;
 }
 
 .radius3 {
   border-radius: @distance3;
+}
+
+.hidden {
+  overflow: hidden;
 }

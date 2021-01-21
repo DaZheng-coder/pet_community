@@ -7,17 +7,20 @@ import 'swiper/swiper-bundle.css'
 import './index.less'
 export default class Shop extends Component {
   componentDidMount() {
-    const imgSwiper = new Swiper('.swiper-container', {
+    // const imgSwiper = 
+    new Swiper('.swiper-container', {
       pagination: {
         el: '.swiper-pagination'
       }
     })
-    const tabSwiper = new Swiper('.shop-tab-swiper-container', {
+    // const tabSwiper = 
+    new Swiper('.shop-tab-swiper-container', {
       slidesPerView: 5,
       freeMode: true
     })
 
-    const goodsSwiper = new Swiper('.goods-tab-swiper-container')
+    // const goodsSwiper = 
+    new Swiper('.goods-tab-swiper-container')
   }
 
   render() {

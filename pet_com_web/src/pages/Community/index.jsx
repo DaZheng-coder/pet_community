@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Swiper from "swiper"
+// import Swiper from "swiper"
 import 'swiper/swiper-bundle.css'
 import Nav from './Nav'
 import SwiperImg from './SwiperImg/'

@@ -9,7 +9,7 @@ export default class More extends Component {
     using: [
       {id: 1, type:'tips'},
       {id: 2, type:'weightRecord'},
-      {id: 3, type:'wrongRecord'},
+      {id: 3, type:'wrongRecord'}
     ],
     notUsed: [
       {id: 4, type:'petMedicalRecord'},
@@ -65,7 +65,10 @@ export default class More extends Component {
   }
 
   editingMode = () => {
-    let currentMode = this.state.editingMode
+    const {editingMode} = this.state
+    // 如果完成编辑则发送请求修改
+    editingMode && this.sendItemChange()
+    let currentMode = editingMode
     this.setState({editingMode: !currentMode})
   }
 

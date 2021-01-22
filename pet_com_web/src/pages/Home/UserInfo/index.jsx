@@ -8,13 +8,19 @@ import './index.less'
 class UserInfo extends Component {
   state = {
     // 当前宠物id
-    id:1
+    id:1,
+    using: [
+      {id: 1, type:'tips'},
+      {id: 2, type:'weightRecord'},
+      {id: 3, type:'wrongRecord'}
+    ]
   }
 
   changePet = () => {this.props.history.push(`/petInfo/${this.state.id}`)}
 
   render() {
     const {url, name, type, sex, day} = this.props
+    const {using} = this.state
     return (
       <div className="userinfo-container">
         <div className="flex margin1-b">
@@ -37,9 +43,11 @@ class UserInfo extends Component {
           </div>
         </div>
         <div className="flex handle-list">
-          <HandleItem type="tips"/>
-          <HandleItem type="weightRecord"/>
-          <HandleItem type="wrongRecord"/>
+          {
+            using.map(item => {
+              return <HandleItem key={item.id} type={item.type}/>
+            })
+          }
           <HandleItem type="more"/>
         </div>
         <Question />

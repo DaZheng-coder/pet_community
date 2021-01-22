@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 // import Swiper from "swiper"
 import 'swiper/swiper-bundle.css'
 import Nav from './Nav'
+import LinkageBar from '@/components/LinkageBar'
 import SwiperImg from './SwiperImg/'
 import SwiperTab from './SwiperTab/'
 import Router from './Router/'
@@ -12,8 +13,9 @@ export default class Community extends Component {
       <div className="community-container">
         <Nav />
         <SwiperImg />
-        <SwiperTab />
-        <Router />
+        {/* <SwiperTab />
+        <Router /> */}
+        <LinkageBar/>
       </div>
     )
   }

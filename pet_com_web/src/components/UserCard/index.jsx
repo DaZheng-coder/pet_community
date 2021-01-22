@@ -5,7 +5,7 @@ import './index.less'
 export default class UserCard extends Component {
   render() {
     return (
-      <div className=" usercard-container flex flex-column flex-center">
+      <div className={`usercard-container flex flex-column flex-center${this.props.className || ''}`}>
         <div className="margin05-b">
           <Avatar/>
         </div>

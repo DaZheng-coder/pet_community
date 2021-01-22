@@ -18,14 +18,14 @@ export default class Recommend extends Component {
   }
   render() {
     return (
-      <div className="recommend-container">
+      <div className="recommend-container bg">
         <div className="swiper-wrapper recommend-container-userList">
-          <div className="swiper-slide"><UserCard /></div>
-          <div className="swiper-slide"><UserCard /></div>
-          <div className="swiper-slide"><UserCard /></div>
-          <div className="swiper-slide"><UserCard /></div>
-          <div className="swiper-slide"><UserCard /></div>
-          <div className="swiper-slide"><UserCard /></div>
+          <div className="swiper-slide bg"><UserCard /></div>
+          <div className="swiper-slide bg"><UserCard /></div>
+          <div className="swiper-slide bg"><UserCard /></div>
+          <div className="swiper-slide bg"><UserCard /></div>
+          <div className="swiper-slide bg"><UserCard /></div>
+          <div className="swiper-slide bg"><UserCard /></div>
         </div>
         <div className="bg recommend-container-dynamic padding1-lr">
           <DynamicItem />

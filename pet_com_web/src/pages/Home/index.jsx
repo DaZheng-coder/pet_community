@@ -10,20 +10,63 @@ export default class Home extends Component {
       name: '火焰犬',
       type: '火系',
       day: 5
-    }
+    },
+    articleList: [
+      {
+        id: 1,
+        title: '如何处理狗狗的眼部感染',
+        brief: '简介',
+        user: {
+          id: 11,
+          username: '铲屎官官方',
+          avatarUrl: 'https://iconfont.alicdn.com/t/2affe7cb-c6fa-468d-a210-9d26ddb5e241.png'
+        },
+        img: 'https://iconfont.alicdn.com/t/31a43374-e29e-4ead-aa09-3cda3f70ca3d.png',
+        views: 98,
+        date: '2020-2-2'
+      },
+      {
+        id: 2,
+        title: '如何处理狗狗的眼部感染',
+        brief: '简介',
+        user: {
+          id: 11,
+          username: '铲屎官官方',
+          avatarUrl: 'https://iconfont.alicdn.com/t/2affe7cb-c6fa-468d-a210-9d26ddb5e241.png'
+        },
+        img: 'https://iconfont.alicdn.com/t/31a43374-e29e-4ead-aa09-3cda3f70ca3d.png',
+        views: 98,
+        date: '2020-2-2'
+      },
+      {
+        id: 3,
+        title: '如何处理狗狗的眼部感染',
+        brief: '简介',
+        user: {
+          id: 11,
+          username: '铲屎官官方',
+          avatarUrl: 'https://iconfont.alicdn.com/t/2affe7cb-c6fa-468d-a210-9d26ddb5e241.png'
+        },
+        img: 'https://iconfont.alicdn.com/t/31a43374-e29e-4ead-aa09-3cda3f70ca3d.png',
+        views: 98,
+        date: '2020-2-2'
+      }
+    ]
   }
 
   render() {
-    const {pet} = this.state
+    const {pet,articleList} = this.state
     return (
       <div className="home-container page-pd bg">
         <UserInfo {...pet}/>
         <h2 className="font4 font-bolder home-title">文章推荐</h2>
-        <ArticleItem/>
-        <ArticleItem/>
-        <ArticleItem/>
-        <ArticleItem/>
-        <ArticleItem/>
+        {
+          articleList.map(article => {
+            return (
+              <ArticleItem key={article.id} {...article}/>
+            )
+          })
+        }
         <footer className="footer"></footer>
       </div>
     )

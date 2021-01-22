@@ -1,3 +1,30 @@
-.question {
-  padding: 0.2rem;
+.question-container {
+  border-top: 1px solid #f0f0f0;
+}
+.question-container .question-container-left,
+.question-container .question-container-right {
+  padding: 0.2rem 0;
+  flex-wrap: no-wrap;
+  white-space: nowrap;
+}
+.question-container .question-container-center {
+  display: flex;
+  align-items: center;
+}
+.question-container .question-container-center label {
+  position: relative;
+  display: block;
+}
+.question-container .question-container-center label::before {
+  content: '测试1';
+}
+.question-container .question-container-center label::after {
+  content: '测试2';
+}
+.question-container .question-container-center label::before,
+.question-container .question-container-center label label::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }

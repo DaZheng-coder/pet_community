@@ -5,16 +5,17 @@ import './index.less'
 
 export default class DynamicItem extends Component {
   render() {
+    const {id,user,pubdate,content} = this.props
     return (
       <div className=" dynamic-container">
         <div className="dynamic-container-padding">
           <div className="flex">
             <div className="margin1-r">
-              <Avatar/>
+              <Avatar url={user.avatarUrl}/>
             </div>
             <div className="flex flex1 flex-column">
-              <span className="font3 font-bolder">宇哥哥的碧海蓝天</span>
-              <span className="font-gray">2020-10-28 19:35:42</span>
+              <span className="font3 font-bolder">{user.username}</span>
+              <span className="font-gray">{pubdate}</span>
             </div>
             <div className="dynamic-container-handle">
               <span className="dynamic-container-handle-focus">+ 关注</span>
@@ -22,14 +23,15 @@ export default class DynamicItem extends Component {
           </div>
           <div className="dynamic-container-content">
             <div>
-              <div className="dynamic-container-content-text font-bold">最爱小松鼠玩具~</div>
+              <div className="dynamic-container-content-text font-bold">{content.text}</div>
               <div className="dynamic-container-content-imgs">
-                {/* 图片 */}
-                <div className="dynamic-container-content-imgs-item"></div>
-                <div className="dynamic-container-content-imgs-item"></div>
-                <div className="dynamic-container-content-imgs-item"></div>
-                <div className="dynamic-container-content-imgs-item"></div>
-                <div className="dynamic-container-content-imgs-item"></div>
+                {
+                  content.imgs && content.imgs.map((img,index) => 
+                    <div key={index} className="dynamic-container-content-imgs-item">
+                      <img className="wh100" src={img} alt="动态附图"/>
+                    </div>
+                  )
+                }
               </div>
             </div>
             <div className="dynamic-container-content-handle flex margin2-t">

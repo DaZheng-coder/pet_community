@@ -13,8 +13,12 @@ export default class SwiperImg extends Component {
   }
 
   componentDidMount(){
-    new Swiper('.swiper-container', {
+     new Swiper('.swiper-container', {
       loop: true,
+      autoplay: {
+        delay: 1000,
+        disableOnInteraction: false
+      },
       scrollbar: {
         el: '.swiper-scroller'
       }
@@ -35,7 +39,6 @@ export default class SwiperImg extends Component {
             })
           }
         </div>
-        <div className="swiper-scrollbar"></div>
       </div>
     )
   }

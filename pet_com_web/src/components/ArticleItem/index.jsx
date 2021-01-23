@@ -13,10 +13,10 @@ export default class ArticleItem extends Component {
           <div className="flex1 flex flex-column">
             <div className="flex margin05-b">
               <div className="margin05-r">
-                <Avatar size="mini" url={user.avatarUrl}/>
+                <Avatar size="mini" url={user && user.avatarUrl}/>
               </div>
               <div className="flex flex-column">
-                <span className="font-gray">{user.username}</span>
+                <span className="font-gray">{user && user.username}</span>
               </div>
             </div>
             <div className="flex1">

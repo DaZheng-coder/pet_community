@@ -4,7 +4,7 @@ import Search from '@/components/Search/'
 export default class Nav extends Component {
   render() {
     return (
-      <header className="bg padding05 flex">
+      <header className="bg padding05 flex fixed">
         <div className="flex1 margin1-lr">
           <Search backgroundColor="#eee"/>
         </div>

@@ -3,15 +3,33 @@ import { withRouter } from 'react-router-dom'
 import './index.less'
 
 class NavBar extends Component {
+  state = {
+    height: 0
+  }
+
+  componentDidMount() {
+    const height = this.navbar.clientHeight
+    this.setState({height})
+    // 如果父元素想获取该组件的高度，就发送给他
+    this.props.getHeight && this.props.getHeight(height)
+  }
+
   render() {
     return (
-      <div style={{backgroundColor: this.props.backgroundColor || '#FFF'}} className="navbar-container padding1 flex">
-        <i className=" flex1 iconfont icon-icon-63 margin1-r line-center" onClick={() => this.props.history.goBack()}></i>
-        <span className="font3 font-bold flex2 line-center">{this.props.title}</span>
-        <div className="flex1 navbar-container-right">
-          {this.props.children || ''}
+      <div>
+        <div ref={dom => this.navbar = dom} style={{backgroundColor: this.props.bgColor || '#FFF'}} className={`navbar-container padding1 flex ${this.props.noFixed || 'fixed'}`}>
+          <div>
+            {(typeof this.props.leftSlot === 'boolean' ) || this.props.leftSlot || <i className="iconfont icon-icon-63 line-center" onClick={() => this.props.history.goBack()} />}
+          </div>
+          <div className="flex1 text-center margin1-lr">
+            {this.props.centerSlot || <span className="font3 font-bold">{this.props.title}</span>}
+          </div>
+          <div className="navbar-container-right">
+            {this.props.rightSlot || ''}
+          </div>
         </div>
       </div>
+      
     )
   }
 }

@@ -114,6 +114,9 @@
 .font-white {
   color: #fff;
 }
+.text-center {
+  text-align: center;
+}
 /** 
  * 标签样式
  * **/
@@ -213,6 +216,9 @@
 .hidden {
   overflow: hidden;
 }
+.mask {
+  opacity: 0;
+}
 .fixed {
   position: fixed;
   z-index: 99;
@@ -222,5 +228,5 @@
 }
 .sticky {
   position: sticky;
-  top: 0;
+  z-index: 999;
 }

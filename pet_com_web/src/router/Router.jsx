@@ -1,5 +1,5 @@
 import React, { Component, lazy, Suspense } from 'react'
-import {Route} from 'react-router-dom'
+import {Redirect, Route} from 'react-router-dom'
 // 路由加载中组件
 import Loading from '../components/Loading/'
 

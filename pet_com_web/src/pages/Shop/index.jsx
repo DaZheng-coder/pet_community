@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Nav from './Nav'
-import HandleItem from '@/components/HandleItem'
+import Item from '@/components/HandleItem/Item'
 import GoodsItem from '@/components/GoodsItem'
 import Swiper from "swiper"
 import 'swiper/swiper-bundle.css'
@@ -37,17 +37,17 @@ export default class Shop extends Component {
             <div className="swiper-pagination"></div>
           </div>
           <div className="shop-handle-items flex">
-            <div className="shop-handle-item"><HandleItem text="狗狗主粮"/></div>
-            <div className="shop-handle-item"><HandleItem text="狗狗主粮"/></div>
-            <div className="shop-handle-item"><HandleItem text="狗狗主粮"/></div>
-            <div className="shop-handle-item"><HandleItem text="狗狗主粮"/></div>
-            <div className="shop-handle-item"><HandleItem text="狗狗主粮"/></div>
+            <div className="shop-handle-item"><Item text="狗狗主粮"/></div>
+            <div className="shop-handle-item"><Item text="狗狗主粮"/></div>
+            <div className="shop-handle-item"><Item text="狗狗主粮"/></div>
+            <div className="shop-handle-item"><Item text="狗狗主粮"/></div>
+            <div className="shop-handle-item"><Item text="狗狗主粮"/></div>
 
-            <div className="shop-handle-item"><HandleItem text="狗狗主粮"/></div>
-            <div className="shop-handle-item"><HandleItem text="狗狗主粮"/></div>
-            <div className="shop-handle-item"><HandleItem text="狗狗主粮"/></div>
-            <div className="shop-handle-item"><HandleItem text="狗狗主粮"/></div>
-            <div className="shop-handle-item"><HandleItem text="狗狗主粮"/></div>
+            <div className="shop-handle-item"><Item text="狗狗主粮"/></div>
+            <div className="shop-handle-item"><Item text="狗狗主粮"/></div>
+            <div className="shop-handle-item"><Item text="狗狗主粮"/></div>
+            <div className="shop-handle-item"><Item text="狗狗主粮"/></div>
+            <div className="shop-handle-item"><Item text="狗狗主粮"/></div>
           </div>
         </div>
         <div className="padding1-lr">

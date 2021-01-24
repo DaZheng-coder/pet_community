@@ -34,13 +34,6 @@ export default class LinkageBar extends Component {
     })
     this.setState({tabSwiper})
     this.setState({contentSwiper})
-    // 监听滚动事件
-    window.addEventListener('scroll', this.handleScroll)
-  }
-
-  componentWillUnmount() {
-    // 取消事件监听
-    window.removeEventListener('scroll', this.handleScroll)
   }
 
   // 内容swiper滑动至另一个时的回调函数
@@ -58,15 +51,6 @@ export default class LinkageBar extends Component {
     
   }
 
-  handleScroll = () => {
-    const height = this.contentSwiper.offsetTop- document.documentElement.scrollTop
-    if (height <= -90) {
-      this.tabSwiper.classList.add('community-nav-fixed')
-    } else {
-      this.tabSwiper.classList.remove('community-nav-fixed')
-    }
-  }
-
   render() {
     /**
      * 传入参数props contentList中必须为返回值为dom结构的函数
@@ -77,7 +61,7 @@ export default class LinkageBar extends Component {
 
     return (
       <div className="linkagebar-container">
-        <div ref={c => this.tabSwiper = c } className="tab-swiper-container bg hidden">
+        <div ref={c => this.tabSwiper = c } style={{top: this.props.height + 'px'}} className="tab-swiper-container bg hidden sticky">
           <ul className="swiper-wrapper" onClick={this.onSlideTo}>
             {
               tabItems && 
@@ -87,7 +71,7 @@ export default class LinkageBar extends Component {
             }
           </ul>
         </div>
-        <div className="tab-mask padding1-tb">测试</div>
+        {/* <div className="mask" style={{height: this.props.height + 'px'}}/> */}
         <div ref={c => this.contentSwiper = c} className="content-swiper-container bg hidden">
           <div className="swiper-wrapper">
             {

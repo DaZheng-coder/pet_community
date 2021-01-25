@@ -16,20 +16,17 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div>
-        <div ref={dom => this.navbar = dom} style={{backgroundColor: this.props.bgColor || '#FFF'}} className={`navbar-container padding1 flex ${this.props.noFixed || 'fixed'}`}>
-          <div>
-            {(typeof this.props.leftSlot === 'boolean' ) || this.props.leftSlot || <i className="iconfont icon-icon-63 line-center" onClick={() => this.props.history.goBack()} />}
-          </div>
-          <div className="flex1 text-center margin1-lr">
-            {this.props.centerSlot || <span className="font3 font-bold">{this.props.title}</span>}
-          </div>
-          <div className="navbar-container-right">
-            {this.props.rightSlot || ''}
-          </div>
+      <div ref={dom => this.navbar = dom} style={{backgroundColor: this.props.bgColor || '#FFF', top: 0}} className={`navbar-container padding1 flex ${this.props.noSticky || 'sticky'}`}>
+        <div>
+          {(typeof this.props.leftSlot === 'boolean' ) || this.props.leftSlot || <i className="iconfont icon-icon-63 line-center" onClick={() => this.props.history.goBack()} />}
+        </div>
+        <div className="flex1 text-center margin1-lr">
+          {this.props.centerSlot || <span className="font3 font-bold">{this.props.title}</span>}
+        </div>
+        <div className="navbar-container-right">
+          {this.props.rightSlot || ''}
         </div>
       </div>
-      
     )
   }
 }

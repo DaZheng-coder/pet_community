@@ -106,6 +106,91 @@ export default class Content extends Component {
             ]
           }
         },
+        {
+          id: 2,
+          user: {
+            username: '小黑',
+            avatarUrl: 'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4275424924,2201401076&fm=111&gp=0.jpg'
+          },
+          pubdate: '2021-01-23 19:25:44',
+          content: {
+            text: '啦啦啦我是卖报小当家',
+            imgs: [
+              'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=4027323491,4175029026&fm=111&gp=0.jpg',
+              'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=347107276,1959396700&fm=111&gp=0.jpg',
+              'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2167365359,7586904&fm=111&gp=0.jpg',
+              'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=820522811,1360565466&fm=111&gp=0.jpg'
+            ]
+          }
+        },
+        {
+          id: 3,
+          user: {
+            username: '小黑',
+            avatarUrl: 'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4275424924,2201401076&fm=111&gp=0.jpg'
+          },
+          pubdate: '2021-01-23 19:25:44',
+          content: {
+            text: '啦啦啦我是卖报小当家',
+            imgs: [
+              'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=4027323491,4175029026&fm=111&gp=0.jpg',
+              'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=347107276,1959396700&fm=111&gp=0.jpg',
+              'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2167365359,7586904&fm=111&gp=0.jpg',
+              'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=820522811,1360565466&fm=111&gp=0.jpg'
+            ]
+          }
+        },
+        {
+          id: 4,
+          user: {
+            username: '小黑',
+            avatarUrl: 'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4275424924,2201401076&fm=111&gp=0.jpg'
+          },
+          pubdate: '2021-01-23 19:25:44',
+          content: {
+            text: '啦啦啦我是卖报小当家',
+            imgs: [
+              'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=4027323491,4175029026&fm=111&gp=0.jpg',
+              'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=347107276,1959396700&fm=111&gp=0.jpg',
+              'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2167365359,7586904&fm=111&gp=0.jpg',
+              'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=820522811,1360565466&fm=111&gp=0.jpg'
+            ]
+          }
+        },
+        {
+          id: 5,
+          user: {
+            username: '小黑',
+            avatarUrl: 'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4275424924,2201401076&fm=111&gp=0.jpg'
+          },
+          pubdate: '2021-01-23 19:25:44',
+          content: {
+            text: '啦啦啦我是卖报小当家',
+            imgs: [
+              'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=4027323491,4175029026&fm=111&gp=0.jpg',
+              'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=347107276,1959396700&fm=111&gp=0.jpg',
+              'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2167365359,7586904&fm=111&gp=0.jpg',
+              'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=820522811,1360565466&fm=111&gp=0.jpg'
+            ]
+          }
+        },
+        {
+          id: 6,
+          user: {
+            username: '小黑',
+            avatarUrl: 'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4275424924,2201401076&fm=111&gp=0.jpg'
+          },
+          pubdate: '2021-01-23 19:25:44',
+          content: {
+            text: '啦啦啦我是卖报小当家',
+            imgs: [
+              'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=4027323491,4175029026&fm=111&gp=0.jpg',
+              'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=347107276,1959396700&fm=111&gp=0.jpg',
+              'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2167365359,7586904&fm=111&gp=0.jpg',
+              'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=820522811,1360565466&fm=111&gp=0.jpg'
+            ]
+          }
+        },
       ]
     }
   }

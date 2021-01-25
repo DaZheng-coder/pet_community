@@ -4,7 +4,7 @@ import './index.less'
 export default class GoodsItem extends Component {
   render() {
     return (
-      <div className="bg goodsitem-container margin1-b">
+      <div className={`bg goodsitem-container margin1-b ${this.props.className ||''}`}>
         <div className="goodsitem-container-img"></div>
         <div className="goodsitem-container-title font3 font-bolder">
           tiki cat积极烧烤系列无谷物

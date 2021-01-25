@@ -35,7 +35,6 @@ export default class Community extends Component {
 
   // 获取导航栏高度
   getHeight = (height) =>{
-    console.log('获取到的导航栏高度', height)
     this.setState({height})
   }
 

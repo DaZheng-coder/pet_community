@@ -16,7 +16,7 @@ class HandleItem extends Component {
           )
         case 'weightRecord':
           return (
-            <Item text="体重记录" iconClass="icon-xianxingtubiao">
+            <Item text="体重记录">
               <img className="wh100" src="https://iconfont.alicdn.com/s/0d4244d7-92bb-40e0-b627-c6940b92d437_origin.svg" alt="体重记录"/>
             </Item>
           )

@@ -13,3 +13,15 @@ export function once(fn, context) {
     return result
   }
 }
+
+/**
+ * 是否是ios系统
+ */
+export function isIOS() {
+  var ua = navigator.userAgent.toLowerCase()
+  if(ua.match(/iPhone\sOS/i) == "iphone os") {
+    return true
+  } else {
+    return false
+  }
+}

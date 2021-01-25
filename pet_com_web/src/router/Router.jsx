@@ -10,6 +10,7 @@ const User = lazy(() => import('../pages/User'))
 
 const PetInfo = lazy(() => import('../pages/PetInfo'))
 const More = lazy(() => import('../pages/More'))
+const UserSetting = lazy(() => import('../pages/UserSetting'))
 
 export default class Router extends Component {
   render() {
@@ -23,6 +24,7 @@ export default class Router extends Component {
 
           <Route path="/petInfo/:id" component={PetInfo}/>
           <Route path="/more" component={More} />
+          <Route path='/userSetting' component={UserSetting} />
         </Suspense>
       </div>
     )

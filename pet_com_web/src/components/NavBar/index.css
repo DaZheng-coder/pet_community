@@ -1,9 +1,6 @@
 .navbar-container {
   align-items: center;
 }
-.navbar-container .navbar-container-title {
-  text-align: center;
-}
 .navbar-container .navbar-container-right {
   text-align: right;
 }

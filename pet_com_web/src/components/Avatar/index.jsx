@@ -9,9 +9,10 @@ class Avatar extends Component {
   }
 
   handleClick = (e) => {
-    console.log('点击了')
+    e.stopPropagation()
     if (this.props.user) {
       // 如果是本机用户，修改头像
+      this.input.click()
       this.input.click()
       const file = this.input
       if (isIOS() && file) {

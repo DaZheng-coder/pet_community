@@ -1,7 +1,8 @@
 @theme-color: red;
-@gray-color: gray;
+@gray-color: rgb(235, 235, 235);
 @text-color: black;
 @span-color: rgb(240,240,240);
+@blue-color: blue;
 @bg-color: white;
 
 @distance05: 0.1rem;
@@ -13,6 +14,34 @@
 *{
   font-size: 0.15rem;
   color: @text-color;
+}
+
+/**
+ * 颜色相关
+ * */
+.primary {
+  background-color: rgb(7,193,96);
+  color: #fff
+}
+.info {
+  background-color: rgb(25,137,250);
+  color: #fff;
+}
+.default {
+  background-color: #fff;
+  color: #000;
+}
+.danger {
+  background-color: rgb(238,10,36);
+  color: #fff;
+}
+.warning {
+  background-color: rgb(255, 151, 106);
+  color: #fff;
+}
+
+.transparent {
+  background-color: transparent;
 }
 
 .footer-active {
@@ -158,6 +187,10 @@
 
 .font-gray {
   color: @gray-color;
+}
+
+.font-blue {
+  color: @blue-color;
 }
 
 .font-white {

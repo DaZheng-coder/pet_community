@@ -2,6 +2,32 @@
   font-size: 0.15rem;
   color: black;
 }
+/**
+ * 颜色相关
+ * */
+.primary {
+  background-color: #07c160;
+  color: #fff;
+}
+.info {
+  background-color: #1989fa;
+  color: #fff;
+}
+.default {
+  background-color: #fff;
+  color: #000;
+}
+.danger {
+  background-color: #ee0a24;
+  color: #fff;
+}
+.warning {
+  background-color: #ff976a;
+  color: #fff;
+}
+.transparent {
+  background-color: transparent;
+}
 .footer-active {
   color: red;
 }
@@ -115,7 +141,10 @@
   color: red;
 }
 .font-gray {
-  color: gray;
+  color: #ebebeb;
+}
+.font-blue {
+  color: blue;
 }
 .font-white {
   color: #fff;
@@ -211,7 +240,7 @@
   background-color: white;
 }
 .bg-gray {
-  background-color: gray;
+  background-color: #ebebeb;
 }
 .radius05 {
   border-radius: 0.1rem;

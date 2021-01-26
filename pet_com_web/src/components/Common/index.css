@@ -1,0 +1,15 @@
+.common-header {
+  justify-content: space-between;
+  align-items: center;
+}
+.common-content {
+  min-height: 0.8rem;
+}
+.common-handle {
+  margin-top: 0.5rem;
+  flex-direction: row-reverse;
+}
+.second-common {
+  display: flex;
+  align-items: center;
+}

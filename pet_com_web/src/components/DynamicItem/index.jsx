@@ -1,14 +1,29 @@
 import React, { Component } from 'react'
 import Avatar from '@/components/Avatar/'
 import DividLine from '@/components/DividLine/'
+import Popup from '@/components/Popup'
+import Button from '@/components/Button'
 import './index.less'
 import { withRouter } from 'react-router-dom'
 
 class DynamicItem extends Component {
+
+  state = {
+    isPopup: false
+  }
+
+  // 是否显示popup
+  isShowPopup = (e) => {
+    e.stopPropagation()
+    const {isPopup} = this.state
+    this.setState({isPopup: !isPopup})
+  }
+
   render() {
+    const {isPopup} = this.state
     const {id,user,pubdate,content} = this.props
     return (
-      <div onClick={() => this.props.history.push(`/dynamicDetail/${id}`)} className=" dynamic-container">
+      <div onClick={this.props.isDetail ? null : () => this.props.history.push(`/dynamicDetail/${id}`)} className=" dynamic-container">
         <div className="dynamic-container-padding">
           <div className={`flex ${this.props.notShowUser && 'none'}`}>
             <div className="margin1-r">
@@ -35,12 +50,13 @@ class DynamicItem extends Component {
                 }
               </div>
             </div>
+            <div>{this.props.children}</div>
             <div className="dynamic-container-content-handle flex margin2-t">
               <div className="dynamic-container-content-handle-tags flex1">
                 <span className="dynamic-container-content-handle-tag"># 我的养宠日记</span>
               </div>
               <div>
-                <span className="margin1-r">
+                <span onClick={this.isShowPopup} className="margin1-r">
                   <i className="iconfont icon-icon-73 margin05-r" />
                   <span className="width04 inline-block">5</span>
                 </span>
@@ -53,6 +69,12 @@ class DynamicItem extends Component {
           </div>
         </div>
         <DividLine />
+        <Popup isPopup={isPopup} popout={this.isShowPopup}>
+          <div className="padding1 transparent">
+            <Button className="bg-gray radius-mini font25">举报</Button>
+            <Button onClick={this.isShowPopup} className="margin1-t radius-mini font25 font-bold">取消</Button>
+          </div>
+        </Popup>
       </div>
     )
   }

@@ -163,6 +163,9 @@
 /** 
  * margin
  * **/
+.margin1 {
+  margin: 0.2rem;
+}
 .margin1-tb {
   margin-top: 0.2rem;
   margin-bottom: 0.2rem;
@@ -238,4 +241,7 @@
 }
 .h100vh {
   height: 100vh;
+}
+.none {
+  display: none;
 }

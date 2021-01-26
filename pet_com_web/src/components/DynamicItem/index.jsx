@@ -2,19 +2,20 @@ import React, { Component } from 'react'
 import Avatar from '@/components/Avatar/'
 import DividLine from '@/components/DividLine/'
 import './index.less'
+import { withRouter } from 'react-router-dom'
 
-export default class DynamicItem extends Component {
+class DynamicItem extends Component {
   render() {
     const {id,user,pubdate,content} = this.props
     return (
-      <div className=" dynamic-container">
+      <div onClick={() => this.props.history.push(`/dynamicDetail/${id}`)} className=" dynamic-container">
         <div className="dynamic-container-padding">
-          <div className="flex">
+          <div className={`flex ${this.props.notShowUser && 'none'}`}>
             <div className="margin1-r">
-              <Avatar url={user.avatarUrl}/>
+              <Avatar url={user && user.avatarUrl}/>
             </div>
             <div className="flex flex1 flex-column">
-              <span className="font3 font-bolder">{user.username}</span>
+              <span className="font3 font-bolder">{user && user.username}</span>
               <span className="font-gray">{pubdate}</span>
             </div>
             <div className="dynamic-container-handle">
@@ -23,10 +24,10 @@ export default class DynamicItem extends Component {
           </div>
           <div className="dynamic-container-content">
             <div>
-              <div className="dynamic-container-content-text font-bold">{content.text}</div>
+              <div className="dynamic-container-content-text font-bold">{content && content.text}</div>
               <div className="dynamic-container-content-imgs">
                 {
-                  content.imgs && content.imgs.map((img,index) => 
+                  content && content.imgs && content.imgs.map((img,index) => 
                     <div key={index} className="dynamic-container-content-imgs-item">
                       <img className="wh100" src={img} alt="动态附图"/>
                     </div>
@@ -56,3 +57,5 @@ export default class DynamicItem extends Component {
     )
   }
 }
+
+export default withRouter(DynamicItem)

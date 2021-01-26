@@ -3,6 +3,7 @@
     "lib-flexible": "^0.3.2",
     "nanoid": "^3.1.20",
     "postcss-px2rem-exclude": "^0.0.6",
+    "react-router-cache-route": "^1.11.0",
     "react-router-dom": "^5.2.0"
   }
 }

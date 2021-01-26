@@ -37,7 +37,7 @@ class Avatar extends Component {
     const {url} = this.state
     return (
       <div 
-        className={`avatar flex-center ${size || 'normal'}`}
+        className={`avatar flex-center ${size || 'normal'} ${this.props.className}`}
         onClick={this.handleClick}
         onChange={this.handleChange}
       >

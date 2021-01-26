@@ -13,6 +13,12 @@ class User extends Component {
       avatarUrl: 'https://iconfont.alicdn.com/t/0db0cc17-1fdd-4863-a334-6d4e37c65497.png',
     }
   }
+
+  // 退出账号
+  handleBtnClick = () => {
+    console.log('退出账号')
+  }
+
   render() {
     const {user} = this.state
     return (
@@ -65,7 +71,7 @@ class User extends Component {
             <HandleBar iconClass="icon-icon-130" title="注销账号"/>
           </div>
         </div>
-        <Button />
+        <Button click={this.handleBtnClick} className="margin1 user-setting-btn" title="退出账号"/>
       </div>
     )
   }

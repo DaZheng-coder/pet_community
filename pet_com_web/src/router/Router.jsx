@@ -1,5 +1,6 @@
 import React, { Component, lazy, Suspense } from 'react'
 import {Redirect, Route} from 'react-router-dom'
+import CacheRoute, { CacheSwitch } from 'react-router-cache-route'
 // 路由加载中组件
 import Loading from '../components/Loading/'
 
@@ -11,20 +12,22 @@ const User = lazy(() => import('../pages/User'))
 const PetInfo = lazy(() => import('../pages/PetInfo'))
 const More = lazy(() => import('../pages/More'))
 const UserSetting = lazy(() => import('../pages/UserSetting'))
+const DynamicDetail = lazy(() => import('../pages/DynamicDetail'))
 
 export default class Router extends Component {
   render() {
     return (
       <div>
         <Suspense fallback={<Loading/>}>
-          <Route path='/home' component={Home}/>
-          <Route path='/community' component={Community}/>
+          <CacheRoute path='/home' component={Home}/>
+          <CacheRoute path='/community' component={Community}/>
           <Route path='/shop' component={Shop}/>
           <Route path='/user' component={User}/>
 
           <Route path="/petInfo/:id" component={PetInfo}/>
           <Route path="/more" component={More} />
           <Route path='/userSetting' component={UserSetting} />
+          <Route path='/dynamicDetail/:id' component={DynamicDetail} />
         </Suspense>
       </div>
     )

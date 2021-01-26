@@ -13,6 +13,7 @@ const PetInfo = lazy(() => import('../pages/PetInfo'))
 const More = lazy(() => import('../pages/More'))
 const UserSetting = lazy(() => import('../pages/UserSetting'))
 const DynamicDetail = lazy(() => import('../pages/DynamicDetail'))
+const GoodsDetail = lazy(() => import('../pages/GoodsDetail'))
 
 export default class Router extends Component {
   render() {
@@ -28,6 +29,7 @@ export default class Router extends Component {
           <Route path="/more" component={More} />
           <Route path='/userSetting' component={UserSetting} />
           <Route path='/dynamicDetail/:id' component={DynamicDetail} />
+          <Route path="/goodsDetail/:id" component={GoodsDetail} />
         </Suspense>
       </div>
     )

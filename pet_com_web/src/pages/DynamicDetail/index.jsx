@@ -19,9 +19,15 @@ export default class DynamicDetail extends Component {
     }
   }
 
+  // 从子组件中获取子组件的popup方法
+  getIsShowPopup = (func) => {
+    this.isShowPopup = func
+  }
+
   // 处理导航栏更多按钮点击事件
-  handleMoreClick = () => {
+  handleMoreClick = (e) => {
     console.log('点击了更多')
+    this.isShowPopup(e)
   }
   render() {
     const {user,dynamicDetail} = this.state
@@ -45,7 +51,7 @@ export default class DynamicDetail extends Component {
         </div>
         <div className="padding1 font-gray">共 3 条评论</div>
         <div className="padding1-lr bg">
-          <Common />
+          <Common getIsShowPopup={this.getIsShowPopup}/>
         </div>
       </div>
     )

@@ -96,7 +96,7 @@ export default class Shop extends Component {
         />
         <div className="page-pd">
           <SwiperImg imgsUrl={posterList} className="shop-container-imgs"/>
-          <div className="shop-handle-items flex">
+          <div className="margin1-t shop-handle-items flex">
             {
               handleItem.map((item,index) => <div key={index} className="shop-handle-item"><Item text={item.title} url={item.icon}/></div>)
             }

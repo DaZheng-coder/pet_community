@@ -2,17 +2,14 @@ import React, { Component } from 'react'
 import Avatar from '@/components/Avatar/'
 import DividLine from '@/components/DividLine/'
 import Popup from '@/components/Popup'
-import Button from '@/components/Button'
 import './index.less'
 import { withRouter } from 'react-router-dom'
 
 class DynamicItem extends Component {
-
   state = {
     isPopup: false
   }
 
-  // 是否显示popup
   isShowPopup = (e) => {
     e.stopPropagation()
     const {isPopup} = this.state
@@ -20,8 +17,8 @@ class DynamicItem extends Component {
   }
 
   render() {
-    const {isPopup} = this.state
     const {id,user,pubdate,content} = this.props
+    const {isPopup} = this.state
     return (
       <div onClick={this.props.isDetail ? null : () => this.props.history.push(`/dynamicDetail/${id}`)} className=" dynamic-container">
         <div className="dynamic-container-padding">
@@ -58,7 +55,7 @@ class DynamicItem extends Component {
               <div>
                 <span onClick={this.isShowPopup} className="margin1-r">
                   <i className="iconfont icon-icon-73 margin05-r" />
-                  <span className="width04 inline-block">5</span>
+                  <span className="width04 inline-block">6</span>
                 </span>
                 <span className="margin1-r">
                   <i className="iconfont icon-icon-42 margin05-r"/>
@@ -68,13 +65,10 @@ class DynamicItem extends Component {
             </div>
           </div>
         </div>
-        <DividLine />
         <Popup isPopup={isPopup} popout={this.isShowPopup}>
-          <div className="padding1 transparent">
-            <Button className="bg-gray radius-mini font25">举报</Button>
-            <Button onClick={this.isShowPopup} className="margin1-t radius-mini font25 font-bold">取消</Button>
-          </div>
+          显示二级评论区
         </Popup>
+        <DividLine />
       </div>
     )
   }

@@ -1,0 +1,22 @@
+.timer-container {
+  display: flex;
+}
+.timer-container .tc-sub,
+.timer-container .tc-add,
+.timer-container .tc-number {
+  font-size: 0.3rem;
+  border: 1px solid #ccc;
+  text-align: center;
+  height: 0.4rem;
+  line-height: 0.4rem;
+}
+.timer-container .tc-number {
+  width: 0.7rem;
+  border-left: none;
+  border-right: none;
+}
+.timer-container .tc-sub,
+.timer-container .tc-add {
+  width: 0.4rem;
+  color: #727272;
+}

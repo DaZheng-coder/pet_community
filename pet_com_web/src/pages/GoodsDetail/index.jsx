@@ -1,19 +1,32 @@
 import React, { Component } from 'react'
 import SwiperImg from '@/components/SwiperImg'
 import Nav from './Nav'
+import Popup from '@/components/Popup'
 import HandleBar from '@/components/HandleBar'
 import GoodsCommon from './GoodsCommon'
-
+import CommodityBar from '@/components/CommodityBar'
+import Timer from '@/components/CommodityBar/Timer'
+import BuyButton from './BuyButton'
+import Footer from './Footer'
 import 'swiper/swiper-bundle.css'
 import './index.less'
+import { withRouter } from 'react-router-dom'
 
-export default class GoodsDetail extends Component {
+class GoodsDetail extends Component {
   state = {
+    commodity_id: 1,
+    isPopup: false,
     imgsUrl: [
       'https://iconfont.alicdn.com/t/0c69570a-c540-4515-bf04-fa2c5461275a.png',
       'https://iconfont.alicdn.com/t/f4159424-c5cf-4bda-860a-b54b34cb4614.png',
       'https://iconfont.alicdn.com/t/d923bb17-0d09-4198-8ce9-9b793639b3dc.png'
     ]
+  }
+
+  changeIsPopup= (e) => {
+    e.stopPropagation()
+    const {isPopup} = this.state
+    this.setState({isPopup: !isPopup})
   }
 
   handleScroll = (func) => {
@@ -26,7 +39,8 @@ export default class GoodsDetail extends Component {
   }
   
   render() {
-    const {imgsUrl} = this.state
+    console.log('进入商品详细信息页面')
+    const {imgsUrl, isPopup, commodity_id} = this.state
     return (
       <div className="goods-detail-container">
         <Nav handleScroll={this.handleScroll}/>
@@ -37,6 +51,7 @@ export default class GoodsDetail extends Component {
         </div>
         <div className="margin1-t">
           <HandleBar
+            click={this.changeIsPopup}
             className="padding1"
             leftSlot={
               <span className="font-deep-gray">选择</span>
@@ -75,8 +90,23 @@ export default class GoodsDetail extends Component {
                 <img className="wh100" src="https://iconfont.alicdn.com/t/72a90ceb-8aa1-400a-932e-4fa7f0f0daf1.png" alt="商品详情信息" />
               </div>
           </div>
+          <Footer />
         </div>
+        <Popup isPopup={isPopup} popout={this.changeIsPopup} >
+          <div className="goods-detail-popup padding1 bg">
+            <CommodityBar />
+            <div className="margin1-tb flex flex-between">
+              <span>购买数量</span>
+              <Timer />
+            </div>
+            <div className="gd-buyButton">
+              <BuyButton />
+            </div>
+          </div>
+        </Popup>
       </div>
     )
   }
 }
+
+export default withRouter(GoodsDetail)

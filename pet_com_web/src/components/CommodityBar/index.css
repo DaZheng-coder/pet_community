@@ -1,0 +1,10 @@
+.commodity-bar-container .commodity-bar-container-img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.commodity-bar-container .commodity-bar-container-info {
+  justify-content: space-between;
+}
+.commodity-bar-container .commodity-bar-container-info .commodity-bar-container-info-price {
+  justify-content: space-between;
+}

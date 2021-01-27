@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import './index.less'
 
-export default class Nav extends Component {
+class Nav extends Component {
   state = {
     isShow: false
   }
@@ -10,19 +11,23 @@ export default class Nav extends Component {
     this.setState({isShow})
   }
 
+  sendHandleScroll = () => {
+    return () => this.props.handleScroll((isShow) => this.changeIsShow(isShow))
+  }
+
   componentDidMount() {
-    window.addEventListener('scroll', () => this.props.handleScroll((isShow) => this.changeIsShow(isShow)))
+    window.addEventListener('scroll', this.sendHandleScroll)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll')
+    window.removeEventListener('scroll', this.sendHandleScroll)
   }
 
   render() {
     const {isShow} = this.state
     return (
       <div className={`nav-container flex fixed ${isShow && 'show'}`}>
-        <div className="flex1 nav-container-text">
+        <div onClick={this.props.history.goBack} className="flex1 nav-container-text">
           <i className={`confont icon-icon-63 ${!isShow && 'nav-container-i-bg'}`} />
         </div>
         <div className={`nav-container-center flex2 ${isShow ? '' : 'mask'}`}>
@@ -35,3 +40,5 @@ export default class Nav extends Component {
     )
   }
 }
+
+export default withRouter(Nav)

@@ -40,7 +40,7 @@ export default class UserSetting extends Component {
           click={this.handleUsernameClick}
         />
         <img className="wh100 padding1 bg" src="https://iconfont.alicdn.com/t/f56e524b-3d06-45ca-9578-0aad90737191.png" alt="个人设置背景"/>
-        <Button className="user-setting-btn" click={this.handlePwdClick} title="更换密码"/>
+        <Button type="danger" className="user-setting-btn" click={this.handlePwdClick} title="更换密码"/>
       </div>
     )
   }

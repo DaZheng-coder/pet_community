@@ -26,7 +26,6 @@ export default class DynamicDetail extends Component {
 
   // 处理导航栏更多按钮点击事件
   handleMoreClick = (e) => {
-    console.log('点击了更多')
     this.isShowPopup(e)
   }
   render() {

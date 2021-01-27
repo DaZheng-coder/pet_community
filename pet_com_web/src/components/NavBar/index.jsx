@@ -15,8 +15,9 @@ class NavBar extends Component {
   }
 
   render() {
+    console.log('this.props.style', this.props.style)
     return (
-      <div ref={dom => this.navbar = dom} style={{backgroundColor: this.props.bgColor || '#FFF', top: 0}} className={`navbar-container padding1 flex ${this.props.noSticky || 'sticky'}`}>
+      <div ref={dom => this.navbar = dom} style={this.props.style || {backgroundColor: this.props.bgColor || '#FFF', top: 0}} className={`navbar-container padding1 flex ${this.props.className} ${this.props.noSticky || 'sticky'}`}>
         <div>
           {(typeof this.props.leftSlot === 'boolean' ) || this.props.leftSlot || <i className="iconfont icon-icon-63 line-center" onClick={() => this.props.history.goBack()} />}
         </div>

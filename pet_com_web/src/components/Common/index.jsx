@@ -29,7 +29,7 @@ export default class Common extends Component {
     return (
       <Fragment>
         <div>
-          <DynamicItem notShowUser>
+          <DynamicItem isDetail notShowUser>
             <div className="flex">
               <div className="margin1-r"><Avatar size="mini"/></div>
               <div className="flex flex1 flex-column">

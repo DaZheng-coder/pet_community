@@ -1,0 +1,28 @@
+@import '@/style/common.less';
+
+.nav-container {
+  color: #fff;
+  &.show {
+    background-color: @theme-color;
+  }
+  .nav-container-text {
+    padding: @distance1;
+    i {
+      padding: 0.1rem;
+      color: #fff;
+    }
+  }
+  .nav-container-i-bg {
+    background: rgba(0,0,0,.2);
+    border-radius: 50%;
+  }
+  .nav-container-center {
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    a {
+      padding: @distance1;
+      color: #FFF;
+    }
+  }
+}

@@ -71,7 +71,7 @@ class User extends Component {
             <HandleBar iconClass="icon-icon-130" title="注销账号"/>
           </div>
         </div>
-        <Button click={this.handleBtnClick} className="margin1 user-setting-btn" title="退出账号"/>
+        <Button type="danger" click={this.handleBtnClick} className="margin1 user-setting-btn" title="退出账号"/>
       </div>
     )
   }

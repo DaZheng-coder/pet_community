@@ -1,6 +1,7 @@
 * {
   font-size: 0.15rem;
   color: black;
+  scroll-behavior: smooth;
 }
 /**
  * 颜色相关
@@ -143,6 +144,9 @@
 .font-gray {
   color: #ebebeb;
 }
+.font-deep-gray {
+  color: #9c9c9c;
+}
 .font-blue {
   color: blue;
 }
@@ -238,6 +242,9 @@
 }
 .bg {
   background-color: white;
+}
+.bg-theme {
+  background-color: red;
 }
 .bg-gray {
   background-color: #ebebeb;

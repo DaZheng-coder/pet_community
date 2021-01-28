@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import BuyButton from '../BuyButton'
 import './index.less'
 
-export default class Footer extends Component {
+class Footer extends Component {
   render() {
     return (
       <div className="gd-footer bg flex flex-between">
@@ -10,7 +11,10 @@ export default class Footer extends Component {
           <i className="iconfont icon-icon-31" />
           <span>联系客服</span>
         </div>
-        <div className="flex flex1 flex-column flex-center">
+        <div onClick={(e) => {
+          e.stopPropagation()
+          this.props.history.push('/cart')
+          }} className="flex flex1 flex-column flex-center">
           <i className="iconfont icon-icon-20" />
           <span>购物车</span>
         </div>
@@ -21,3 +25,5 @@ export default class Footer extends Component {
     )
   }
 }
+
+export default  withRouter(Footer)

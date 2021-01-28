@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import './index.less'
 
-export default class BuyButton extends Component {
+class BuyButton extends Component {
   state = {
     commodity_id: 1
   }
@@ -16,3 +17,5 @@ export default class BuyButton extends Component {
     )
   }
 }
+
+export default withRouter(BuyButton)

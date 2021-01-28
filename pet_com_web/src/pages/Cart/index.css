@@ -1,0 +1,7 @@
+.cart-commodity-bar {
+  border-top: 1px solid #ccc;
+  align-items: center;
+}
+.cart-commodity-bar:first-child {
+  border-top: none;
+}

@@ -3,22 +3,23 @@ import './index.less'
 
 export default class Timer extends Component {
   state = {
-    number: 0
+    number: this.props.number || 1
   }
 
   sub = (e) => {
     e.stopPropagation()
     let {number} = this.state
-    if(number == 0) {
+    if(number == 1) {
       return 
     } else {
-      this.setState({number: --number})
+      this.setState({number: --number}, () => this.props.setNewNum(number))
     }
   }
 
   add = (e) => {
     e.stopPropagation()
-    this.setState({number: ++this.state.number})
+    let {number} = this.state
+    this.setState({number: ++number}, () => this.props.setNewNum(number))
   }
 
   render() {

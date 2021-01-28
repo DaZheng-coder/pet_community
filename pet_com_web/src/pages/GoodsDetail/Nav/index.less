@@ -2,9 +2,7 @@
 
 .nav-container {
   color: #fff;
-  &.show {
-    background-color: @theme-color;
-  }
+  background-color: @theme-color;
   .nav-container-text {
     padding: @distance1;
     i {
@@ -12,17 +10,25 @@
       color: #fff;
     }
   }
-  .nav-container-i-bg {
-    background: rgba(0,0,0,.2);
-    border-radius: 50%;
-  }
   .nav-container-center {
     text-align: center;
     display: flex;
     justify-content: space-evenly;
-    a {
+    span {
       padding: @distance1;
       color: #FFF;
     }
   }
+}
+
+.nav-container-else-i {
+  border-radius: 50%;
+  z-index: 99;
+  position: fixed;
+  margin: calc(@distance1 - 0.1rem) 0.20rem;
+  padding: 0.1rem 0.1rem;
+  left: 0;
+  top: 0;
+  color: #fff;
+  background: rgba(0,0,0,.2);
 }

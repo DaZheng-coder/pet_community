@@ -17,10 +17,10 @@ export default class FillOrder extends Component {
               <span className="font-deep-gray">请选择收货地址</span>
             }
           />
-          <div className="padding1 bg margin1-t">
+          <div className="padding1-tb bg margin1-t">
+              <CommodityBar inCart slot={<span className="font4 font-deep-gray">x1</span>}/>
               <CommodityBar inCart slot={<span className="font4 font-deep-gray">x1</span>}/>
           </div>
-
           <div className="margin1-t">
             <HandleBar
               leftSlot={

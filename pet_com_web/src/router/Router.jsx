@@ -15,6 +15,7 @@ const UserSetting = lazy(() => import('../pages/UserSetting'))
 const DynamicDetail = lazy(() => import('../pages/DynamicDetail'))
 const GoodsDetail = lazy(() => import('../pages/GoodsDetail'))
 const FillOrder = lazy(() => import('../pages/FillOrder'))
+const Cart = lazy(() => import('../pages/Cart'))
 
 export default class Router extends Component {
   render() {
@@ -33,6 +34,7 @@ export default class Router extends Component {
           <Route path="/goodsDetail/:id" component={GoodsDetail} />
           <Route path="/commodity/:id" component={GoodsDetail} />
           <Route path="/fillOrder/:id" component={FillOrder} />
+          <Route path='/cart' component={Cart} />
         </Suspense>
       </div>
     )

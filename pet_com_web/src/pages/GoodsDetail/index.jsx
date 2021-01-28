@@ -31,9 +31,12 @@ class GoodsDetail extends Component {
 
   handleScroll = (func) => {
     const top = this.topDom.getBoundingClientRect().top
+    console.log('top', top)
     if(top >= 0) {
+      console.log('隐藏')
       func(false)
     } else {
+      console.log('显示')
       func(true)
     }
   }
@@ -93,9 +96,9 @@ class GoodsDetail extends Component {
           <Footer />
         </div>
         <Popup isPopup={isPopup} popout={this.changeIsPopup} >
-          <div className="goods-detail-popup padding1 bg">
-            <CommodityBar />
-            <div className="margin1-tb flex flex-between">
+          <div className="goods-detail-popup bg">
+            <CommodityBar/>
+            <div className="margin1-tb flex flex-between padding1">
               <span>购买数量</span>
               <Timer />
             </div>

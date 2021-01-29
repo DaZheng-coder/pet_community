@@ -5,6 +5,9 @@ import Main from './views/Main.vue'
 import CategoryEdit from './views/CategoryEdit.vue'
 import CategoryList from './views/CategoryList.vue'
 
+import CommodityEdit from './views/CommodityEdit.vue'
+import CommodityList from './views/CommodityList.vue'
+
 import ItemEdit from './views/ItemEdit.vue'
 import ItemList from './views/ItemList.vue'
 
@@ -34,6 +37,10 @@ const router = new Router({
         { path: '/categories/create', component: CategoryEdit },
         { path: '/categories/edit/:id', component: CategoryEdit, props: true },
         { path: '/categories/list', component: CategoryList },
+
+        { path: '/commodities/create', component: CommodityEdit },
+        { path: '/commodities/edit/:id', component: CommodityEdit, props: true },
+        { path: '/commodities/list', component: CommodityList },
 
         { path: '/items/create', component: ItemEdit },
         { path: '/items/edit/:id', component: ItemEdit, props: true },

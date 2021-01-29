@@ -5,12 +5,30 @@ module.exports = app => {
   const Category = mongoose.model('Category')
   const Article = mongoose.model('Article')
   const Hero = mongoose.model('Hero')
+  const Commodity = mongoose.model('Commodity')
 
+  /**
+    商品相关路由
+  */
+  // 获取商品分类
   router.get('/categories/commodity', async (req, res) => {
     const parent = await Category.findOne({name: '商品分类'})
     const cats = await Category.find().where({parent}).lean()
     res.send(cats)
   })
+
+  // 获取全部商品
+  router.get('/commodities/:category', async (req, res) => {
+    const params = req.params.category !== '1' ? {category: req.params.category} : null 
+    const data = await Commodity.find(params, {cover:1, name:1, price:1, discountPrice: 1, sales: 1}).lean()
+    res.send(data)
+  })
+
+  // // 根据类别获取商品列表
+  // router.get('/commodities/:category', async (req, res) => {
+  //   const data = await Commodity.find({category: req.params.category}).lean()
+  //   res.send(data)
+  // })
 
   // 导入新闻数据
   router.get('/news/init', async (req, res) => {

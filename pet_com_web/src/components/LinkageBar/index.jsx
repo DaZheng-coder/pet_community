@@ -39,7 +39,7 @@ export default class LinkageBar extends Component {
   // 内容swiper滑动至另一个时的回调函数
   transitionStart = (swiper) => {
     // 获取目标索引
-    const targetIdx = swiper.activeIndexp
+    const targetIdx = swiper.activeIndex
     this.setState({activeIndex: targetIdx})
   }
 
@@ -71,7 +71,7 @@ export default class LinkageBar extends Component {
           </ul>
         </div>
         {/* <div className="mask" style={{height: this.props.height + 'px'}}/> */}
-        <div className="content-swiper-container bg hidden">
+        <div className="content-swiper-container hidden">
           <div className="swiper-wrapper">
             {
               contentList && 

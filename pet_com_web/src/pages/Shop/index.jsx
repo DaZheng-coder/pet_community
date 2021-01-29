@@ -6,10 +6,11 @@ import SwiperImg from '@/components/SwiperImg'
 import LinkageBar from '@/components/LinkageBar'
 import GoodsItem from '@/components/GoodsItem'
 
-import {apiCategories} from '@/api/api'
+import {apiCategories, apiCommodities} from '@/api/api'
 
 import './index.less'
-export default class Shop extends Component {
+import { withRouter } from 'react-router-dom'
+class Shop extends Component {
   state = {
     height: 0,
     posterList: [
@@ -60,24 +61,24 @@ export default class Shop extends Component {
       }
     ],
     tabItems: ['全犬粮', '全猫粮', '主食猫粮', '零食猫粮', '猫砂厕所'],
-    contentList: [
-      <ShopContent/>,
-      <ShopContent/>,
-      <ShopContent/>,
-      <ShopContent/>,
-      <ShopContent/>
-    ]
+    contentList: []
   }
 
   componentDidMount() {
     console.log('商城页面已挂载')
     apiCategories().then(res => {
       console.log('获取分类数据成功', res.data)
+      
       const newTabItems = ['全部', ...(res.data.map(item => item.name))]
       // 传入分类信息
-      const newContentList = newTabItems.map(item => <ShopContent category={item} />)
+      console.log('res.data',res.data)
+      const newContentList = res.data.map(item => <ShopContent {...item} />)
+      console.log('newContentList', newContentList)
+      const all = {_id: 1, name: '全部'}
       this.setState({tabItems:newTabItems})
-      this.setState({contentList: newContentList})
+      this.setState({contentList: [<ShopContent {...all}/> ,...newContentList]})
+      const {contentList} = this.state
+      console.log('newContentList', contentList)
     })
   }
 
@@ -88,10 +89,10 @@ export default class Shop extends Component {
   render() {
     const {posterList, handleItem, tabItems, contentList, height} = this.state
     return (
-      <div className="bg">
+      <div>
         <NavBar 
           leftSlot={
-            <div className="text-center flex-column">
+            <div onClick={() => this.props.history.push('/cart')} className="text-center flex-column">
               <i className="font-white iconfont icon-icon-20" />
               <span className="font-white">购物车</span>
             </div>
@@ -106,7 +107,7 @@ export default class Shop extends Component {
           bgColor="red"
           getHeight={this.getHeight}
         />
-        <div className="page-pd">
+        <div className="page-pd bg">
           <SwiperImg imgsUrl={posterList} className="shop-container-imgs"/>
           <div className="margin1-t shop-handle-items flex">
             {
@@ -114,22 +115,42 @@ export default class Shop extends Component {
             }
           </div>
         </div>
-        <LinkageBar slidesPerView={5} tabItems={tabItems} contentList={contentList} height={height}/>
+        {contentList.length > 0 && <LinkageBar slidesPerView={5} tabItems={tabItems} contentList={contentList} height={height}/>}
       </div>
     )
   }
 }
 class ShopContent extends Component {
+  state = {
+    commodities: []
+  }
+
+  componentDidMount() {
+    console.log('ShopContent props', this.props.name)
+    this.getCommodities()
+  }
+
+  // 获取商品数据
+  getCommodities () {
+    const {_id, name} = this.props
+    const selector = name === '全部' ? '1' : _id
+    apiCommodities(selector).then(res => {
+      this.setState({commodities: res.data})
+      console.log('获得请求的商品数据', name, '数据:', res.data)
+    })
+  }
+
   render() {
+    const {commodities} = this.state
     return (
-      <div className="padding1-lr shop-content-container">
-        <GoodsItem />
-        <GoodsItem />
-        <GoodsItem />
-        <GoodsItem />
-        <GoodsItem />
+      <div className="padding1 shop-content-container">
+        {
+          commodities.length > 0 && commodities.map(commodity => <GoodsItem key={commodity._id} {...commodity}/>) 
+        }
       </div>
     )
   }
 }
+
+export default withRouter(Shop)
 

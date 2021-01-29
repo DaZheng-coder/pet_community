@@ -5,6 +5,9 @@ import Search from '@/components/Search'
 import SwiperImg from '@/components/SwiperImg'
 import LinkageBar from '@/components/LinkageBar'
 import GoodsItem from '@/components/GoodsItem'
+
+import {apiCategories} from '@/api/api'
+
 import './index.less'
 export default class Shop extends Component {
   state = {
@@ -56,17 +59,26 @@ export default class Shop extends Component {
         icon: 'https://iconfont.alicdn.com/t/2a902e59-cdc0-4317-8711-f4ad2119c087.png'
       }
     ],
-    linkageBarProps: {
-      tabItems: ['全犬粮', '全猫粮', '主食猫粮', '零食猫粮', '猫砂厕所'],
-      slidesPerView: 5,
-      contentList: [
-        <ShopContent/>,
-        <ShopContent/>,
-        <ShopContent/>,
-        <ShopContent/>,
-        <ShopContent/>
-      ]
-    }
+    tabItems: ['全犬粮', '全猫粮', '主食猫粮', '零食猫粮', '猫砂厕所'],
+    contentList: [
+      <ShopContent/>,
+      <ShopContent/>,
+      <ShopContent/>,
+      <ShopContent/>,
+      <ShopContent/>
+    ]
+  }
+
+  componentDidMount() {
+    console.log('商城页面已挂载')
+    apiCategories().then(res => {
+      console.log('获取分类数据成功', res.data)
+      const newTabItems = ['全部', ...(res.data.map(item => item.name))]
+      // 传入分类信息
+      const newContentList = newTabItems.map(item => <ShopContent category={item} />)
+      this.setState({tabItems:newTabItems})
+      this.setState({contentList: newContentList})
+    })
   }
 
   getHeight = (height) => {
@@ -74,7 +86,7 @@ export default class Shop extends Component {
   }
 
   render() {
-    const {posterList, handleItem, linkageBarProps, height} = this.state
+    const {posterList, handleItem, tabItems, contentList, height} = this.state
     return (
       <div className="bg">
         <NavBar 
@@ -102,7 +114,7 @@ export default class Shop extends Component {
             }
           </div>
         </div>
-        <LinkageBar {...linkageBarProps} height={height}/>
+        <LinkageBar slidesPerView={5} tabItems={tabItems} contentList={contentList} height={height}/>
       </div>
     )
   }

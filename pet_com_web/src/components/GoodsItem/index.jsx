@@ -3,19 +3,13 @@ import { withRouter } from 'react-router-dom'
 import './index.less'
 
 class GoodsItem extends Component {
-  state = {
-    id: 1
-  }
-
   gotoGoodsDetail = (e) => {
-    const {id} = this.state
     e.stopPropagation()
-    console.log('跳转到商城页面')
-    this.props.history.push(`/goodsDetail/${id}`)
+    this.props.history.push(`/goodsDetail/${this.props._id}`)
   }
 
   render() {
-    const {_id, cover, detailImgs, name, price, discountPrice,sales,swiperImgs} = this.props
+    const {cover, name, price, discountPrice,sales} = this.props
     return (
       <div onClick={this.gotoGoodsDetail} className={`bg goodsitem-container margin1-b ${this.props.className ||''}`}>
         <div className="goodsitem-container-img hidden">

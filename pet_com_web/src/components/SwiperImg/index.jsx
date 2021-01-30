@@ -20,7 +20,7 @@ export default class SwiperImg extends Component {
       <div className={`swiper-container-img swiper-container ${this.props.className || ''}`}>
         <div className="swiper-wrapper">
           {
-            imgsUrl.map((poster,index) => {
+            imgsUrl && imgsUrl.map((poster,index) => {
               return (
                 <div key={index} className="swiper-slide">
                   <img className="swiper-container-img-item wh100" src={poster} alt="轮播海报"/>

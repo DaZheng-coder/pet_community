@@ -24,6 +24,12 @@ module.exports = app => {
     res.send(data)
   })
 
+  // 根据_id获取商品信息
+  router.get('/commodity/:_id' , async (req,res) => {
+    const data = await Commodity.findById(req.params._id).lean()
+    res.send(data)
+  })
+
   // // 根据类别获取商品列表
   // router.get('/commodities/:category', async (req, res) => {
   //   const data = await Commodity.find({category: req.params.category}).lean()

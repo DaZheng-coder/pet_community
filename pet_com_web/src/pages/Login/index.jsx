@@ -3,10 +3,12 @@ import './index.less'
 import NavBar from '@/components/NavBar'
 import InputItem from '@/components/InputItem'
 import Button from '@/components/Button'
+import Toast from '@/components/Toast'
 import { withRouter } from 'react-router-dom'
 import {apiLogin} from '@/api/api'
 import {connect} from 'react-redux'
 import {set_user} from '@/redux/action/user'
+import {localStorageSet} from '@/utils'
 
 class Login extends Component {
   state = {
@@ -26,7 +28,10 @@ class Login extends Component {
     }
     apiLogin(user).then(res => {
       console.log('登录成功', res)
-      this.props.set_user(res.data)
+      this.props.set_user(res.data.user)
+      localStorageSet("userToken", res.data.token)
+      Toast.success('登录成功', 2000)
+      this.props.history.replace('/home')
     })
   }
 

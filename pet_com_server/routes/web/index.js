@@ -1,5 +1,7 @@
 const assert = require('http-assert')
 const jwt = require('jsonwebtoken')
+// 登录校验中间件
+const authMiddleware = require('../../middleware/auth') 
 
 module.exports = app => {
   const router = require('express').Router()
@@ -53,11 +55,13 @@ module.exports = app => {
     assert(user, 422, '用户不存在')
     const isValid = require('bcrypt').compareSync(password, user.password)
     assert(isValid, 422, '密码错误')
-    const token = jwt.sign({ id: user._id }, app.get('secret'))
+    const token = jwt.sign({ _id: user._id }, app.get('secret'))
     const {_id} = user
     res.send({
-      _id,
-      username,
+      user: {
+        _id,
+        username
+      },
       token
     })
   })
@@ -202,5 +206,15 @@ module.exports = app => {
     res.send(data)
   })
 
-  app.use('/web/api', router)
+  app.use('/web/api/login', authMiddleware(), router)
+
+  // 错误处理函数
+  app.use(async (err, req, res, next) => {
+    // console.log(err)
+    res.status(err.statusCode || 500).send({
+      message: err.message
+    })
+  })
+
+  app.use('/web/api', authMiddleware(), router)
 }

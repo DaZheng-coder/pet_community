@@ -4,8 +4,9 @@ import Button from '@/components/Button'
 import InputItem from '@/components/InputItem'
 import {apiRegister} from '@/api/api'
 import './index.less'
+import { withRouter } from 'react-router-dom'
 
-export default class Register extends Component {
+class Register extends Component {
 
   handleRegister = (e) => {
     e.stopPropagation()
@@ -16,6 +17,7 @@ export default class Register extends Component {
     console.log('用户信息', user)
     apiRegister(user).then(res => {
       console.log('成功注册新用户', res)
+      this.props.history.push('/login')
     })
   }
 
@@ -36,3 +38,5 @@ export default class Register extends Component {
     )
   }
 }
+
+export default withRouter(Register)

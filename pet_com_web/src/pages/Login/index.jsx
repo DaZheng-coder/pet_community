@@ -5,6 +5,8 @@ import InputItem from '@/components/InputItem'
 import Button from '@/components/Button'
 import { withRouter } from 'react-router-dom'
 import {apiLogin} from '@/api/api'
+import {connect} from 'react-redux'
+import {set_user} from '@/redux/action/user'
 
 class Login extends Component {
   state = {
@@ -24,6 +26,7 @@ class Login extends Component {
     }
     apiLogin(user).then(res => {
       console.log('登录成功', res)
+      this.props.set_user(res.data)
     })
   }
 
@@ -44,4 +47,7 @@ class Login extends Component {
   }
 }
 
-export default withRouter(Login)
+export default connect(
+  state => ({user: state.user}),
+  {set_user}
+)(withRouter(Login))

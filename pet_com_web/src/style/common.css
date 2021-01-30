@@ -3,6 +3,10 @@
   color: black;
   scroll-behavior: smooth;
 }
+h3 {
+  font-size: 0.5rem;
+  font-weight: bolder;
+}
 /**
  * 颜色相关
  * */

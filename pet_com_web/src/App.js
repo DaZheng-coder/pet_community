@@ -7,7 +7,7 @@ import './style/common.less'
 function App() {
   return (
     <div className="App">
-      <div className="router-view">
+      <div>
         <Router />
       </div>
       <Footer />

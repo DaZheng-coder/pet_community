@@ -23,10 +23,10 @@ service.interceptors.request.use(config => {
   //   token: token,
   // })
   //设置请求头
-  config.headers = {
-    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
-  }
-  config.data = QS.stringify(config.data)
+  // config.headers = {
+  //   'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+  // }
+  // config.data = QS.stringify(config.data)
   return config
 }, error => { 
     return error;

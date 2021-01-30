@@ -4,6 +4,9 @@ import CacheRoute, { CacheSwitch } from 'react-router-cache-route'
 // 路由加载中组件
 import Loading from '../components/Loading/'
 
+const Login = lazy(() => import('../pages/Login'))
+const Register = lazy(() => import('../pages/Register'))
+
 const Home = lazy(() => import('../pages/Home'))
 const Community = lazy(() => import('../pages/Community'))
 const Shop = lazy(() => import('../pages/Shop'))
@@ -22,6 +25,9 @@ export default class Router extends Component {
     return (
       <div>
         <Suspense fallback={<Loading/>}>
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+
           <CacheRoute path='/home' component={Home}/>
           <CacheRoute path='/community' component={Community}/>
           <Route path='/shop' component={Shop}/>

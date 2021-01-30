@@ -7,3 +7,8 @@ export const apiCategories = () => service.get('/categories/commodity')
 export const apiCommodities = (category) => service.get(`/commodities/${category}`)
 // 根据id获取商品信息
 export const apiCommodity = (_id) => service.get(`/commodity/${_id}`)
+
+// 注册用户
+export const apiRegister = (body) => service.post('/register', body)
+// 登录
+export const apiLogin = (body) => service.post('/login', body)

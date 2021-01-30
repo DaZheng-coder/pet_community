@@ -1,11 +1,16 @@
+const assert = require('http-assert')
+const jwt = require('jsonwebtoken')
+
 module.exports = app => {
   const router = require('express').Router()
   const mongoose = require('mongoose')
   // const Article = require('../../models/Article')
-  const Category = mongoose.model('Category')
   const Article = mongoose.model('Article')
   const Hero = mongoose.model('Hero')
+
+  const Category = mongoose.model('Category')
   const Commodity = mongoose.model('Commodity')
+  const User = mongoose.model('User')
 
   /**
     商品相关路由
@@ -30,11 +35,29 @@ module.exports = app => {
     res.send(data)
   })
 
-  // // 根据类别获取商品列表
-  // router.get('/commodities/:category', async (req, res) => {
-  //   const data = await Commodity.find({category: req.params.category}).lean()
-  //   res.send(data)
-  // })
+  /**
+   * 用户相关路由
+   */
+  // 新建用户
+  router.post('/register', async (req, res) => {
+    // 先寻找用户
+    const user = await User.findOne({username: req.body.username})
+    assert(!user, 422, '用户名已存在')
+    const model = await User.create(req.body)
+    res.send(model)
+  })
+  // 登录
+  app.post('/web/api/login', async (req, res) => {
+    const {username, password} = req.body
+    const user = await User.findOne({username}).select('+password')
+    assert(user, 422, '用户不存在')
+    const isValid = require('bcrypt').compareSync(password, user.password)
+    assert(isValid, 422, '密码错误')
+    const token = jwt.sign({ id: user._id }, app.get('secret'))
+    res.send({ token })
+  })
+
+
 
   // 导入新闻数据
   router.get('/news/init', async (req, res) => {

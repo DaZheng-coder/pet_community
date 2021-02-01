@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import FooterNavLink from './FooterNavLink/'
 import {withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
 import './index.less'
 
 class Footer extends Component {
@@ -16,6 +17,7 @@ class Footer extends Component {
 
   render() {
     const {footerNavArr} = this.state
+    const {user} = this.props
     return (
       <Fragment>
         {
@@ -29,7 +31,7 @@ class Footer extends Component {
                   <i className='user-handle-btn iconfont icon-icon-56'></i>
                 </div>
                 <FooterNavLink to='/shop' text='商城' iconClass='icon-icon-20'/>
-                <FooterNavLink to='/user' text='我的' iconClass='icon-icon-14'/>
+                <FooterNavLink to={user._id ? '/user' : '/login'} text={user._id ? '我的' : '登录'} iconClass='icon-icon-14'/>
               </section>
             </Fragment>
           ) 
@@ -39,4 +41,4 @@ class Footer extends Component {
   }
 }
 
-export default withRouter(Footer)
+export default connect(state => ({user: state.user}))(withRouter(Footer))

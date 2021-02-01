@@ -42,7 +42,10 @@ class Avatar extends Component {
         onClick={this.handleClick}
         onChange={this.handleChange}
       >
-        <img ref={dom=> this.img = dom} className="wh100" src={url} alt=""/>
+        {
+          url ? <img ref={dom=> this.img = dom} className="wh100" src={url} alt=""/> :
+            <div className="no-avatar wh100"></div>
+        }
         <input ref={dom => this.input = dom} type="file" id="file" accept="image/*" capture="camera" multiple/>
       </div>
     )

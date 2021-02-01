@@ -1,28 +1,39 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import HandleBar from "@/components/HandleBar"
 import NavBar from '@/components/NavBar'
 import Avatar from '@/components/Avatar'
 import Button from '@/components/Button'
 import './index.less'
 import { withRouter } from 'react-router-dom'
+import {connect} from 'react-redux'
+import Toast from '@/components/Toast'
+import {localStorageGet} from '@/utils'
+import {delete_user} from '@/redux/action/user'
 class User extends Component {
   state = {
-    user: {
-      _id: '0001',
-      username: '用户1号小王',
-      avatarUrl: 'https://iconfont.alicdn.com/t/0db0cc17-1fdd-4863-a334-6d4e37c65497.png',
-    }
+    user: null
+  }
+
+  componentDidMount() {
+    const user = localStorageGet('user') || this.props.user
+    if (user._id) {  
+      this.setState({user: user})
+    } 
   }
 
   // 退出账号
   handleBtnClick = () => {
-    console.log('退出账号')
+    this.props.delete_user()
+    this.setState({user: null})
+    this.props.history.replace('/home')
+    Toast.success('退出成功', 1000)
   }
 
   render() {
     const {user} = this.state
+    console.log('user', user)
     return (
-      <div>
+      <div className="router-view">
         <NavBar leftSlot={false} rightSlot={
           <div className="flex">
             <i className="margin1-lr iconfont icon-icon-13" />
@@ -31,10 +42,17 @@ class User extends Component {
         }/>
         <div className="user-container bg padding1-lr">
           <div className="flex padding1-tb">
-            <div className="margin1-r"><Avatar user={true} url={user.avatarUrl}/></div>
+            <div className="margin1-r"><Avatar user={true} url={user && user.avatarUrl}/></div>
             <div className="flex flex-column">
-              <span className="font3 font-bolder">{user.username}</span>
-              <span className="font1 font-gray">用户id：{user._id}</span>
+              {
+                user ? <Fragment>
+                  <span className="font3 font-bolder">{user.username}</span>
+                  <span className="font1 font-gray">用户id：{user._id}</span>
+                </Fragment> : <Fragment>
+                  <span className="font3">用户未登录，点击登录</span>
+                </Fragment>
+              }
+              
             </div>
           </div>
           <div className="padding1-tb">
@@ -71,10 +89,13 @@ class User extends Component {
             <HandleBar iconClass="icon-icon-130" title="注销账号"/>
           </div>
         </div>
-        <Button type="danger" click={this.handleBtnClick} className="margin1 user-setting-btn" title="退出账号"/>
+        <Button type="danger" onClick={this.handleBtnClick} className="margin1 user-setting-btn" title="退出账号"/>
       </div>
     )
   }
 }
 
-export default withRouter(User)
+export default connect(
+  state => ({user: state.user}),
+  {delete_user}
+)(withRouter(User))

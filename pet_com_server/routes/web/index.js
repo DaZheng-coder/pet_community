@@ -41,7 +41,7 @@ module.exports = app => {
    * 用户相关路由
    */
   // 新建用户
-  router.post('/register', async (req, res) => {
+  app.post('/web/api/register', async (req, res) => {
     // 先寻找用户
     const user = await User.findOne({username: req.body.username})
     assert(!user, 422, '用户名已存在')
@@ -63,6 +63,13 @@ module.exports = app => {
         username
       },
       token
+    })
+  })
+  // 查看是否已有此用户名
+  app.get('/web/api/isExistUsername', async (req, res) => {
+    const user = await User.findOne({username:req.body.username})
+    res.send({
+      isExist: user
     })
   })
 

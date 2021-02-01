@@ -15,6 +15,7 @@ export default function userReducer(preState=initState, action) {
       return data
     case DELETE_USER:
       localStorage.removeItem('user')
+      localStorage.removeItem('userToken')
       return initState
     default:
       return preState

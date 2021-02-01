@@ -12,3 +12,5 @@ export const apiCommodity = (_id) => service.get(`/commodity/${_id}`)
 export const apiRegister = (body) => service.post('/register', body)
 // 登录
 export const apiLogin = (body) => service.post('/login', body)
+// 查看是否有用户名
+export const apiIsExistUsername = (body) => service.get('/isExistUsername', body)

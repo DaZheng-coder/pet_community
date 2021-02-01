@@ -15,3 +15,14 @@
 .login-input-item input {
   flex: 1;
 }
+.login-input-item .login-input-item-wrong {
+  position: relative;
+}
+.login-input-item .login-input-item-wrong .login-input-item-wrong-message {
+  width: 120%;
+  position: absolute;
+  top: 0.4rem;
+  left: 0;
+  color: red;
+  font-size: 0.25rem;
+}

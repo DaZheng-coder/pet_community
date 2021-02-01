@@ -1,0 +1,16 @@
+.swiper-content-container {
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.swiper-content-container .swiper-content-container-holder .load-reload,
+.swiper-content-container .swiper-content-container-holder .load-more {
+  height: 1rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-content-container .swiper-content-container-holder .load-reload.transition,
+.swiper-content-container .swiper-content-container-holder .load-more.transition {
+  transition: all 0.3s;
+}

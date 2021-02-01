@@ -23,3 +23,7 @@
   font-weight: bolder;
   box-shadow: 0 0 0.1rem #888;
 }
+.footer-mask {
+  height: 1rem;
+  visibility: hidden;
+}

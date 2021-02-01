@@ -1,0 +1,44 @@
+.demo2 {
+  width: 4px;
+  height: 6px;
+  background: #68b2ce;
+  float: left;
+  margin: 0 3px;
+  animation: demo2 linear 1s infinite;
+  -webkit-animation: demo2 linear 1s infinite;
+}
+.demo2:nth-child(1) {
+  animation-delay: 0s;
+}
+.demo2:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.demo2:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.demo2:nth-child(4) {
+  animation-delay: 0.45s;
+}
+.demo2:nth-child(5) {
+  animation-delay: 0.6s;
+}
+@keyframes demo2 {
+  0%,
+  60%,
+  100% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scaleY(3);
+  }
+}
+@-webkit-keyframes demo2 {
+  0%,
+  60%,
+  100% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scaleY(3);
+  }
+}

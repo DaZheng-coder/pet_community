@@ -13,6 +13,7 @@ module.exports = app => {
   const Category = mongoose.model('Category')
   const Commodity = mongoose.model('Commodity')
   const User = mongoose.model('User')
+  const Cart = mongoose.model('Cart')
 
   /**
     商品相关路由
@@ -71,6 +72,73 @@ module.exports = app => {
     res.send({
       isExist: user
     })
+  })
+
+  /**
+    购物车相关路由
+  */
+  // 获取购物车列表
+  router.get('/cart/list/:_id', async (req,res) => {
+    const cartList = await Cart.findOne({
+      user_id: req.params._id
+    }).lean()
+    if(!cartList) {
+      // 如果该用户还没有购物车列表，则创建购物车列表
+      cartList = await Cart.create({user_id: req.params._id})
+    } 
+    res.send(cartList)
+  })
+  // 将商品加入购物车,传入的id是用户id，
+  router.post('/cart/list/add/:_id', async (req, res) => {
+    // 拿出用户_id和商品_id
+    const {_id: user_id} = req.params
+    const {_id: commodity_id} = req.body
+    console.log('看看身体', req.body)
+    let isExist = false
+
+    // 获取购物车列表
+    let cartList = await Cart.findOne({user_id}).lean()
+    
+    if (!cartList) {
+      // 如果该用户还未创建购物车列表
+      cartList = await Cart.create({user_id})
+    } 
+    // 判断商品是否已在购物车列表中，如果有，则数量增加，如果没有，则查询商品并加入列表中
+    cartList.items.length > 0 && cartList.items.forEach(item => {
+      if(item._id == commodity_id) {
+        // 商品已在列表中
+        isExist = true
+        console.log('商品在列表里', req.body.count)
+        item.count = parseInt(item.count) + req.body.count || 1
+        console.log('商品++++', item.count)
+      }
+    })
+    console.log('循环完啦', cartList)
+    if(!isExist) {
+      // 商品不在列表中，获取商品信息，并更新购物车列表
+      const commodityArr = await Commodity.find({_id: commodity_id}, {name: 1, price: 1, cover: 1}).lean()
+      const commodity = commodityArr[0]
+      console.log('commodity', commodity)
+      commodity.count = req.body.count || 1
+      commodity.checked = false
+      console.log('加载新的后的commodity', commodity)
+      cartList.items.push(commodity)
+      console.log('放入新的属性后的cartList', cartList.items)
+      // console.log('更新后的商品', model)
+    }
+    const model = await Cart.findOneAndUpdate({user_id}, cartList)
+    res.send(cartList)
+  })
+  // 更新购物车列表
+  router.put('/cart/list/update/:_id', async (req, res) => {
+    console.log('请求过来的数据', req.params._id, req.body)
+    // 获取旧的购物车列表
+    // const oldCart = Cart.findOne({user_id: req.params._id})
+    // const newCart = Object.assign(oldCart, {items: req.body})
+    // console.log('更新前的列表', newCart)
+    const model = await Cart.findOneAndUpdate({user_id: req.params._id}, req.body)
+    console.log('更新后', model)
+    res.send(model)
   })
 
 

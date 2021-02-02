@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 import SwiperImg from '@/components/SwiperImg'
 import Nav from './Nav'
 import Popup from '@/components/Popup'
@@ -17,14 +18,22 @@ import {apiCommodity} from '@/api/api'
 class GoodsDetail extends Component {
   state = {
     goodsInfo: null,
-    isPopup: false
+    isPopup: false,
+    // 商品数量
+    count: 1
   }
 
   componentDidMount() {
+    // 获取商品详细信息
     apiCommodity(this.props.match.params._id).then(res => {
       this.setState({goodsInfo: res.data})
       console.log('进入商品详细信息页面goodsInfo', this.state.goodsInfo)
     })
+  }
+
+  // 设置新的商品数量
+  setNewNum = (value) => {
+    this.setState({count: value})
   }
 
   changeIsPopup= (e) => {
@@ -39,14 +48,13 @@ class GoodsDetail extends Component {
   }
   
   render() {
-    const {isPopup} = this.state
-    const {goodsInfo} = this.state
+    const {isPopup, count, goodsInfo} = this.state
     return (
       <div className="goods-detail-container">
         <Nav handleScroll={this.handleScroll}/>
         <div ref={c => this.topDom = c} id="goods" className="goods-detail-container-imgs"><SwiperImg imgsUrl={goodsInfo && goodsInfo.swiperImgs}/></div>
         <div className="bg padding1">
-          <span className="font4 font-bolder font-theme">￥ {goodsInfo && goodsInfo.price}</span>
+          <span className="font4 font-bolder font-theme">￥ {goodsInfo && parseFloat(goodsInfo.price).toFixed(2)}</span>
           <div className="padding1-tb font-bold font3">{goodsInfo && goodsInfo.name}</div>
         </div>
         <div className="margin1-t">
@@ -57,7 +65,7 @@ class GoodsDetail extends Component {
               <span className="font-deep-gray">选择</span>
             }
             centerSlot={
-              <span className="font25">数量：1件</span>
+              <span className="font25">数量：{count}件</span>
             }
           />
           <HandleBar
@@ -92,17 +100,17 @@ class GoodsDetail extends Component {
                 }
               </div>
           </div>
-          <Footer />
+          <Footer {...goodsInfo} count={count}/>
         </div>
         <Popup isPopup={isPopup} popout={this.changeIsPopup} >
           <div className="goods-detail-popup bg">
-            <CommodityBar/>
+            <CommodityBar {...goodsInfo}/>
             <div className="margin1-tb flex flex-between padding1">
               <span>购买数量</span>
-              <Timer />
+              <Timer number={count} setNewNum={this.setNewNum}/>
             </div>
             <div className="gd-buyButton">
-              <BuyButton />
+              <BuyButton {...goodsInfo} count={count}/>
             </div>
           </div>
         </Popup>
@@ -111,4 +119,4 @@ class GoodsDetail extends Component {
   }
 }
 
-export default withRouter(GoodsDetail)
+export default connect(state => ({user: state.user}))(withRouter(GoodsDetail)) 

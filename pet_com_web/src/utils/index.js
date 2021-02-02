@@ -33,7 +33,7 @@ export function isIOS() {
 export const localStorageSet = (name, data) => {
   const obj = {
     data,
-    expire: new Date().getTime() + 1000 * 60 * 30
+    expire: new Date().getTime() + 1000 * 60 * 60 * 60
   }
   localStorage.setItem(name, JSON.stringify(obj))
 }

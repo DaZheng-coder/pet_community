@@ -1,5 +1,6 @@
 import Footer from './components/Footer/'
 import Router from './router/Router'
+import {localStorageGet,localStorageSet} from '@/utils'
 import './assets/iconfont/iconfont.css'
 import './style/base.less'
 import './style/common.less'

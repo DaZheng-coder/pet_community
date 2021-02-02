@@ -4,27 +4,28 @@ import './index.less'
 
 export default class CommodityBar extends Component {
   state = {
-    number: this.props.number
+    count: this.props.count
   }
 
-  setNewNum = (number) => {
-    const {id} = this.props
-    this.setState({number}, () => this.props.setNewNum(number, id))
+  setNewNum = (count) => {
+    const {_id} = this.props
+    this.setState({count}, () => this.props.setNewNum(count, _id))
   }
 
   render() {
-    const {inCart, id, name, price} = this.props
-    const {number} = this.state
-    // const {number,price} = this.state
-    console.log('commodity', id, name, price, number)
+    console.log('commodityBar~~~~~~~~~', this.props)
+    const {inCart, _id, name, cover, price} = this.props
+    const {count} = this.state
+    // const {count,price} = this.state
+    console.log('commodity', this.props,_id, name, price, count)
     return (
       <div className={`padding1 commodity-bar-container flex bg ${this.props.className}`}>
-        <img className="margin1-r commodity-bar-container-img" src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2731574161,3391986480&fm=26&gp=0.jpg" alt="商品图片" />
+        <img className="margin1-r commodity-bar-container-img" src={cover} alt="商品图片" />
         <div className="commodity-bar-container-info flex flex1 flex-column">
           <span className="font3">{name}</span>
           <div className="commodity-bar-container-info-price flex">
-            <span className="font4 font-theme">￥{(parseFloat(price) * number).toFixed(2)}</span>
-            {this.props.slot || (inCart && <Timer number={number} setNewNum={this.setNewNum}/>)}
+            <span className="font4 font-theme">￥{inCart ? (parseFloat(price) * count).toFixed(2) : parseFloat(price).toFixed(2)}</span>
+            {this.props.slot || (inCart && <Timer number={count} setNewNum={this.setNewNum}/>)}
           </div>
           {inCart ? '' : <span className="font-deep-gray">已选规格</span>}
         </div>

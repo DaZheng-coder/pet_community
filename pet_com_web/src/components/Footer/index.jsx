@@ -16,6 +16,7 @@ class Footer extends Component {
   }
 
   render() {
+    console.log('足部的user',this.props.user)
     const {footerNavArr} = this.state
     const {user} = this.props
     return (

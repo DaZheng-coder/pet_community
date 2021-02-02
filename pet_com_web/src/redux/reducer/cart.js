@@ -1,17 +1,8 @@
-import {SET_USER, DELETE_USER} from '../constant'
-import {localStorageSet, localStorageGet} from '@/utils'
+import {apiCartList} from '@/api/api'
 
 // 初始化状态
-const initState = () => {
-  const user = localStorageGet('user')
-  if (user) {
-    return user
-  } else {
-    return {
-      username: null,
-      _id: null
-    }
-  }
+const initState = async () => {
+  const list = await apiCartList()
 }
 
 export default function userReducer(preState=initState(), action) {

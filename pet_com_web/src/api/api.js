@@ -14,3 +14,10 @@ export const apiRegister = (body) => service.post('/register', body)
 export const apiLogin = (body) => service.post('/login', body)
 // 查看是否有用户名
 export const apiIsExistUsername = (body) => service.get('/isExistUsername', body)
+
+// 获取购物车列表，传入的id是用户id
+export const apiCartList = (_id) => service.get(`/cart/list/${_id}`)
+// 更新购物车列表
+export const apiUpdateCartList = (_id,body) => service.put(`/cart/list/update/${_id}`, body)
+// 将商品添加到购物车列表，id为用户id，body传入商品_id
+export const apiCartAddCommodity = (_id, body) => service.post(`/cart/list/add/${_id}`, body)

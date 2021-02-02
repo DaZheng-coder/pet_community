@@ -5,6 +5,7 @@ import Search from '@/components/Search'
 import SwiperImg from '@/components/SwiperImg'
 import LinkageBar from '@/components/LinkageBar'
 import GoodsItem from '@/components/GoodsItem'
+import CartIcon from '@/components/CartIcon'
 
 import {apiCategories, apiCommodities} from '@/api/api'
 
@@ -92,10 +93,7 @@ class Shop extends Component {
       <div>
         <NavBar 
           leftSlot={
-            <div onClick={() => this.props.history.push('/cart')} className="text-center flex-column">
-              <i className="font-white iconfont icon-icon-20" />
-              <span className="font-white">购物车</span>
-            </div>
+            <CartIcon color="white"/>
           } 
           centerSlot={<Search />} 
           rightSlot={
@@ -143,7 +141,7 @@ class ShopContent extends Component {
   render() {
     const {commodities} = this.state
     return (
-      <div className="padding1 shop-content-container">
+      <div className="shop-content-container router-view">
         {
           commodities.length > 0 && commodities.map(commodity => <GoodsItem key={commodity._id} {...commodity}/>) 
         }

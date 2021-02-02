@@ -4,10 +4,37 @@ import HandleBar from '@/components/HandleBar'
 import CommodityBar from '@/components/CommodityBar'
 import Button from '@/components/Button'
 import Bar from './Bar'
+import {localStorageGet} from '@/utils'
 import './index.less'
 
 export default class FillOrder extends Component {
+  state = {
+    orderList: []
+  }
+  
+  componentDidMount () {
+    // 获取订单信息
+    const orderList = localStorageGet('orderList')
+    console.log('获取到cart',orderList)
+    // 设置订单更新界面
+    this.setState({orderList})
+  }
+
+  // 计算总价格
+  computedTotalPrice () {
+    const {orderList} = this.state
+    const totalPrice = orderList.map(item => parseFloat(item.price) * item.count ).reduce((total, cur) => total + cur).toFixed(2)
+    return totalPrice
+  }
+
+  componentWillUnmount() {
+    // 删除订单信息
+    localStorage.removeItem('cart')
+  }
+
   render() {
+    const {orderList} = this.state
+    const totalPrice = orderList.length > 0 ? this.computedTotalPrice() : '0.00'
     return (
       <div>
         <NavBar bgColor="red" color="#fff" title="填写订单" />
@@ -18,8 +45,11 @@ export default class FillOrder extends Component {
             }
           />
           <div className="padding1-tb bg margin1-t">
-              <CommodityBar inCart slot={<span className="font4 font-deep-gray">x1</span>}/>
-              <CommodityBar inCart slot={<span className="font4 font-deep-gray">x1</span>}/>
+            {
+              orderList && orderList.map((commodity,index) => 
+                  <CommodityBar key={index} {...commodity} inCart slot={<span className="font4 font-deep-gray">x{commodity.count}</span>}/>
+              )
+            }
           </div>
           <div className="margin1-t">
             <HandleBar
@@ -30,21 +60,23 @@ export default class FillOrder extends Component {
                 </div>
               }
             />
-            <Bar title="商品价格" text="￥ 709.00" />
+            {
+              orderList.length === 1 && <Bar title="商品价格" text={`￥ ${parseInt(orderList[0].price).toFixed(2)}`} />
+            }
             <Bar title="运费" text="￥ 0.00" />
             <HandleBar 
               leftSlot={<span>优惠券</span>}
               rightSlot={<span className="font25 font-bold font-theme">暂无</span>}
             />
             <div className="fo-price padding1 bg">
-              <span className="font4 font-theme font-bold"> ￥709.00</span>
+              <span className="font4 font-theme font-bold"> ￥{totalPrice}</span>
               <span className="font-deep-gray font4 font-bold">合计</span>
             </div>
           </div>
         </div>
         <footer className="fo-footer bg flex padding1">
           <span>总额：</span>
-          <span className="font5 font-bolder font-theme flex1">￥709.00</span>
+          <span className="font5 font-bolder font-theme flex1">￥{totalPrice}</span>
           <Button className="fo-footer-btn" type="danger">提交订单</Button>
         </footer>
       </div>

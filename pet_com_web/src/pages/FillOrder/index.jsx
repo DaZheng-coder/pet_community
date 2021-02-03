@@ -5,19 +5,36 @@ import CommodityBar from '@/components/CommodityBar'
 import Button from '@/components/Button'
 import Bar from './Bar'
 import {localStorageGet} from '@/utils'
+import PubSub from 'pubsub-js'
 import './index.less'
 
 export default class FillOrder extends Component {
   state = {
-    orderList: []
+    orderList: [],
+    address: null
   }
   
   componentDidMount () {
     // 获取订单信息
     const orderList = localStorageGet('orderList')
-    console.log('获取到cart',orderList)
     // 设置订单更新界面
     this.setState({orderList})
+
+    const setAddress = this.setAddress
+    // 订阅地址消息
+    PubSub.subscribe('selectAddress', function (msg,data) {
+      console.log('获取到地址', data)
+      setAddress(data)
+    })
+  }
+
+  componentWillUnmount() {
+    // 取消消息订阅
+    // PubSub.unsubscribe('selectAddress')
+  }
+
+  setAddress = (data) => {
+    this.setState({address: data})
   }
 
   // 计算总价格
@@ -33,7 +50,7 @@ export default class FillOrder extends Component {
   }
 
   render() {
-    const {orderList} = this.state
+    const {orderList, address} = this.state
     const totalPrice = orderList.length > 0 ? this.computedTotalPrice() : '0.00'
     return (
       <div>
@@ -42,7 +59,11 @@ export default class FillOrder extends Component {
           <HandleBar className="fo-handleBar"
             click={() => this.props.history.push('/addressList')}
             leftSlot={
-              <span className="font-deep-gray">请选择收货地址</span>
+              address ? <div>
+                <span className="font3">{address.address}</span>
+                <div className="font-deep-gray">{address.note}</div>
+              </div>:
+              <span className="font3">请选择收货地址</span>
             }
           />
           <div className="padding1-tb bg margin1-t">

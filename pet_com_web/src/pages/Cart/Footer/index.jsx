@@ -31,7 +31,7 @@ class Footer extends Component {
   // 确认是否有选择
   isSomeChecked = () => {
     const {cart} = this.props
-    if (cart) {
+    if (cart.items) {
       const orderList = cart.items.filter(item => item.checked === true)
       console.log('真假', orderList, orderList.length > 0)
       return orderList.length > 0

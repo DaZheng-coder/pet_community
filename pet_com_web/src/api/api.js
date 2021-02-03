@@ -21,3 +21,10 @@ export const apiCartList = (_id) => service.get(`/cart/list/${_id}`)
 export const apiUpdateCartList = (_id,body) => service.put(`/cart/list/update/${_id}`, body)
 // 将商品添加到购物车列表，id为用户id，body传入商品_id
 export const apiCartAddCommodity = (_id, body) => service.post(`/cart/list/add/${_id}`, body)
+
+// 获取地址列表 id为用户id
+export const apiAddressList = (_id) => service.get(`/address/list/${_id}`)
+// 添加地址
+export const apiAddAddress = (body) => service.post('/address/create', body)
+// 删除地址，传入的是地址的id
+export const apiDeleteAddress = (_id) => service.delete(`address/delete/${_id}`)

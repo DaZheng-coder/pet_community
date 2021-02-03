@@ -41,7 +41,7 @@ export default class Router extends Component {
           <Route path='/dynamicDetail/:id' component={DynamicDetail} />
           <Route path="/goodsDetail/:_id" component={GoodsDetail} />
           <Route path="/commodity/:id" component={GoodsDetail} />
-          <Route path="/fillOrder" component={FillOrder} />
+          <CacheRoute path="/fillOrder" component={FillOrder} />
           <Route path='/cart' component={Cart} />
           <Route path='/articleDetail/:id' component={ArticleDetail} />
           <Route path='/addressList' component={AddressList} />

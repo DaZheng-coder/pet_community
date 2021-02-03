@@ -1,30 +1,36 @@
 @rem1: 0.3rem;
 
-.rd {
-  display: flex;
-  width: calc(100vw + 1.5rem); 
-  .rd-left {
+.rd-container {
+  overflow: scroll;
+  .rd {
     display: flex;
-    flex: 1;
-    align-items: center;
-    padding: @rem1;
-    .rd-input {
-      margin-right: @rem1;
-    }
-    .rd-content {
+    width: calc(100vw + 1.5rem); 
+    .rd-left {
+      display: flex;
       flex: 1;
-      font-size: 0.28rem;
+      align-items: center;
+      padding: @rem1;
+      .rd-input {
+        margin-right: @rem1;
+        &.vhidden {
+          width: 0;
+        }
+      }
+      .rd-content {
+        flex: 1;
+        font-size: 0.28rem;
+      }
     }
-  }
-  .rd-right {
-    background-color: red;
-    width: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    i {
-      color: white;
-      font-weight: bolder;
+    .rd-right {
+      background-color: red;
+      width: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      i {
+        color: white;
+        font-weight: bolder;
+      }
     }
-  }
+  }  
 }

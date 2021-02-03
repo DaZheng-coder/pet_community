@@ -14,6 +14,7 @@ module.exports = app => {
   const Commodity = mongoose.model('Commodity')
   const User = mongoose.model('User')
   const Cart = mongoose.model('Cart')
+  const Address = mongoose.model('Address')
 
   /**
     商品相关路由
@@ -141,6 +142,27 @@ module.exports = app => {
     res.send(model)
   })
 
+
+  /**
+    地址相关路由
+  */
+  // 获取地址列表
+  router.get('/address/list/:_id', async (req, res) => {
+    const data = await Address.find({user_id:req.params._id})
+    res.send(data)
+  })
+  // 添加地址
+  router.post('/address/create', async (req, res) => {
+    const data = await Address.create(req.body)
+    res.send(data)
+  })
+  // 删除地址,id为地址的id
+  router.delete('/address/delete/:_id', async (req,res) => {
+    await Address.findByIdAndDelete(req.params._id),
+    res.send({
+      success: true
+    })
+  })
 
 
   // 导入新闻数据

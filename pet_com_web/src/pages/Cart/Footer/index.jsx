@@ -11,29 +11,36 @@ class Footer extends Component {
 
   handleDelete = (e) => {
     e.stopPropagation()
-    const checked = e.target.checked
     this.props.updateCommodityList(false, '', '', 'filter')
   }
 
   handleOnChange = (e) => {
     e.stopPropagation()
     const checked = e.target.checked
-    console.log('点击了全选---------', checked)
     this.props.updateCommodityList(false, 'checked', checked)
   }
 
   // 处理点击去结算按钮发生的事件
-  handleSettlement = (e) => {
-    e.stopPropagation()
+  handleSettlement = () => {
     const {cart} = this.props
     const orderList = cart.items.filter(item => item.checked == true)
-    console.log('准备发送给订单的内容', orderList)
     localStorageSet('orderList', orderList)
     this.props.history.push('/fillOrder')
   }
 
+  // 确认是否有选择
+  isSomeChecked = () => {
+    const {cart} = this.props
+    if (cart) {
+      const orderList = cart.items.filter(item => item.checked === true)
+      console.log('真假', orderList, orderList.length > 0)
+      return orderList.length > 0
+    } else {
+      return false
+    }
+  }
+
   render() {
-    const {commodity_id} = this.state
     const {totalPriceChecked: [totalPrice, isCheckedAll], mode} = this.props
     return (
       <div className="cart-footer bg padding05 flex">
@@ -54,7 +61,7 @@ class Footer extends Component {
           </span>
         {
           mode ? <Button onClick={this.handleDelete} className="cart-footer-btn" type="danger">删除</Button> :
-            <Button onClick={this.handleSettlement} className="cart-footer-btn" type="danger">去结算</Button>
+            <Button onClick={this.handleSettlement} className="cart-footer-btn" type={this.isSomeChecked() ? 'danger' : 'useless'}>去结算</Button>
         }
       </div>
     )

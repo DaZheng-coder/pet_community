@@ -1,0 +1,28 @@
+.rd {
+  display: flex;
+  width: calc(100vw + 1.5rem);
+}
+.rd .rd-left {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  padding: 0.3rem;
+}
+.rd .rd-left .rd-input {
+  margin-right: 0.3rem;
+}
+.rd .rd-left .rd-content {
+  flex: 1;
+  font-size: 0.28rem;
+}
+.rd .rd-right {
+  background-color: red;
+  width: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rd .rd-right i {
+  color: white;
+  font-weight: bolder;
+}

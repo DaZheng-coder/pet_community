@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import SwiperContent from '@/components/SwiperContent'
 import Swiper from "swiper"
 import 'swiper/swiper-bundle.css'
 import './index.less'
@@ -73,14 +74,16 @@ export default class LinkageBar extends Component {
         {/* <div className="mask" style={{height: this.props.height + 'px'}}/> */}
         <div className="content-swiper-container hidden">
           <div className="swiper-wrapper">
-            {
-              contentList && 
-                contentList.map((content,index) => 
-                  <div className="swiper-slide" style={{overflow:'scroll'}} key={index} index={index} onScroll={this.handleSlideScroll}>
-                    {content}
-                  </div>
-                )
-            }
+            {/* <SwiperContent> */}
+              {
+                contentList && 
+                  contentList.map((content,index) => 
+                    <div className="swiper-slide" style={{overflow:'scroll'}} key={index} index={index} onScroll={this.handleSlideScroll}>
+                      {content}
+                    </div>
+                  )
+              }
+            {/* </SwiperContent> */}
           </div>
         </div>
       </div>

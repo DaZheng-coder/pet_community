@@ -1,0 +1,9 @@
+.ai-container {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding: 0.35rem 0;
+}
+.ai-container span {
+  font-size: 0.28rem;
+}

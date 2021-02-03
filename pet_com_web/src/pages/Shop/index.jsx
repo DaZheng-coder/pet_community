@@ -96,12 +96,6 @@ class Shop extends Component {
             <CartIcon color="white"/>
           } 
           centerSlot={<Search />} 
-          rightSlot={
-            <div className="text-center flex-column">
-              <i className="iconfont icon-icon-11 font-white" />
-              <span className="font-white">订单</span>
-            </div>
-          }
           bgColor="red"
           getHeight={this.getHeight}
         />

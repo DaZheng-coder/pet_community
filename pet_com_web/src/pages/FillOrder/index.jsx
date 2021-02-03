@@ -40,6 +40,7 @@ export default class FillOrder extends Component {
         <NavBar bgColor="red" color="#fff" title="填写订单" />
         <div>
           <HandleBar className="fo-handleBar"
+            click={() => this.props.history.push('/addressList')}
             leftSlot={
               <span className="font-deep-gray">请选择收货地址</span>
             }

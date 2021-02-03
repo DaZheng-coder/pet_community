@@ -30,6 +30,10 @@ h3 {
   background-color: #ff976a;
   color: #fff;
 }
+.useless {
+  background-color: #ccc;
+  color: #fff;
+}
 .transparent {
   background-color: transparent;
 }

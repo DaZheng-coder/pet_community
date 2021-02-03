@@ -20,13 +20,17 @@ export default class More extends Component {
     ]
   }
 
+  changeEditMode = (e) => {
+    e.stopPropagation()
+    const {editingMode} = this.state
+    this.setState({editingMode: !editingMode})
+  }
+
   render() {
     const {using, notUsed, editingMode} = this.state
     return (
       <div>
-        <NavBar title="更多">
-          {editingMode && <span className="font3 font-theme" onClick={this.editingMode}>完成</span>}
-        </NavBar>
+        <NavBar title="更多" rightSlot={editingMode && <span className="font3 font-theme" onClick={this.changeEditMode}>完成</span>}></NavBar>
         <div className="more-container-items margin1-t bg padding1-lrpadding1-tb">
           <div className="font3 padding1-tb flex-center">我的应用</div>
           <div className="flex-wrap-father">
@@ -41,7 +45,7 @@ export default class More extends Component {
                 )
               })
             }
-            {editingMode || <HandleItem type="edit" click={this.editingMode}/>}
+            {editingMode || <HandleItem type="edit" click={this.changeEditMode}/>}
           </div>
         </div>
         <div className="more-container-items margin1-t bg padding1-lrpadding1-tb">

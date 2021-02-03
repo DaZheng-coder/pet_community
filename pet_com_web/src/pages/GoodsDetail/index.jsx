@@ -96,7 +96,7 @@ class GoodsDetail extends Component {
               <div className="font4">详情</div>
               <div className="padding1-tb">
                 {
-                  goodsInfo && goodsInfo.detailImgs.map((img,index) => <img key={index} className="wh100" src={img} alt="商品详情信息" />)
+                  goodsInfo && <span className="font3">{goodsInfo.detail}</span>
                 }
               </div>
           </div>

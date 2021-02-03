@@ -33,19 +33,19 @@ export default class Router extends Component {
 
           <CacheRoute path='/home' component={Home}/>
           <CacheRoute path='/community' component={Community}/>
-          <Route path='/shop' component={Shop}/>
-          <Route path='/user' component={User}/>
+          <CacheRoute path='/shop' component={Shop}/>
+          <CacheRoute path='/user' component={User}/>
 
           <Route path="/petInfo/:id" component={PetInfo}/>
           <Route path="/more" component={More} />
           <Route path='/userSetting' component={UserSetting} />
-          <Route path='/dynamicDetail/:id' component={DynamicDetail} />
-          <Route path="/goodsDetail/:_id" component={GoodsDetail} />
-          <Route path="/commodity/:id" component={GoodsDetail} />
+          <CacheRoute path='/dynamicDetail/:id' component={DynamicDetail} />
+          <CacheRoute path="/goodsDetail/:_id" component={GoodsDetail} />
+          <CacheRoute path="/commodity/:id" component={GoodsDetail} />
           <CacheRoute path="/fillOrder" component={FillOrder} />
           <Route path='/cart' component={Cart} />
-          <Route path='/articleDetail/:id' component={ArticleDetail} />
-          <Route path='/addressList' component={AddressList} />
+          <CacheRoute path='/articleDetail/:id' component={ArticleDetail} />
+          <CacheRoute path='/addressList' component={AddressList} />
           <Route path='/buySuccess' component={BuySuccess}/>
         </Suspense>
       </div>

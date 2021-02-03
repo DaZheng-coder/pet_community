@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import {localStorageGet} from '@/utils'
+import {apiUpdateCartList} from '@/api/api'
 import Button from '@/components/Button'
 import './index.less'
 
@@ -12,6 +13,11 @@ export default class BuySuccess extends Component {
     // 获取订单信息
     const order = localStorageGet('order')
     this.setState({order})
+    // 更新购物车
+    const newCart = localStorageGet('newCart')
+    console.log('新的购物车猎豹~~~~', newCart)
+    apiUpdateCartList(order.user_id, newCart).then(res => console.log('跟新成功', res))
+
   }
 
   componentWillUnmount() {

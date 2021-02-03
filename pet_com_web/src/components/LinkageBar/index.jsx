@@ -79,7 +79,9 @@ export default class LinkageBar extends Component {
                 contentList && 
                   contentList.map((content,index) => 
                     <div className="swiper-slide" style={{overflow:'scroll'}} key={index} index={index} onScroll={this.handleSlideScroll}>
-                      {content}
+                      <SwiperContent>
+                        {content}
+                      </SwiperContent>
                     </div>
                   )
               }

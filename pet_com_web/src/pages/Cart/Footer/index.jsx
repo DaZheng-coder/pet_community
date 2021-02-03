@@ -5,9 +5,6 @@ import {localStorageSet} from '@/utils'
 import { withRouter } from 'react-router-dom'
 
 class Footer extends Component {
-  state = {
-    commodity_id: 1
-  }
 
   handleDelete = (e) => {
     e.stopPropagation()
@@ -24,7 +21,10 @@ class Footer extends Component {
   handleSettlement = () => {
     const {cart} = this.props
     const orderList = cart.items.filter(item => item.checked == true)
+    const newOrderList = cart.items.filter(item => item.checked !== true)
+    const newCart = Object.assign(cart, {items: newOrderList})
     localStorageSet('orderList', orderList)
+    localStorageSet('newCart', newCart)
     this.props.history.push('/fillOrder')
   }
 

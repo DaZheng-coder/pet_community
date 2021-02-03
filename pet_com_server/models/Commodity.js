@@ -16,7 +16,7 @@ const schema = new mongoose.Schema({
   // 商品轮播图
   swiperImgs: [],
   // 详情图片
-  detailImgs: [],
+  detail: {},
 }, {
   timestamps: true
 })

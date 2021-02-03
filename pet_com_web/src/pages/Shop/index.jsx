@@ -66,20 +66,20 @@ class Shop extends Component {
   }
 
   componentDidMount() {
-    console.log('商城页面已挂载')
+    // console.log('商城页面已挂载')
     apiCategories().then(res => {
-      console.log('获取分类数据成功', res.data)
+      // console.log('获取分类数据成功', res.data)
       
       const newTabItems = ['全部', ...(res.data.map(item => item.name))]
       // 传入分类信息
-      console.log('res.data',res.data)
+      // console.log('res.data',res.data)
       const newContentList = res.data.map(item => <ShopContent {...item} />)
-      console.log('newContentList', newContentList)
+      // console.log('newContentList', newContentList)
       const all = {_id: 1, name: '全部'}
       this.setState({tabItems:newTabItems})
       this.setState({contentList: [<ShopContent {...all}/> ,...newContentList]})
       const {contentList} = this.state
-      console.log('newContentList', contentList)
+      // console.log('newContentList', contentList)
     })
   }
 
@@ -118,7 +118,7 @@ class ShopContent extends Component {
   }
 
   componentDidMount() {
-    console.log('ShopContent props', this.props.name)
+    // console.log('ShopContent props', this.props.name)
     this.getCommodities()
   }
 
@@ -126,9 +126,10 @@ class ShopContent extends Component {
   getCommodities () {
     const {_id, name} = this.props
     const selector = name === '全部' ? '1' : _id
-    apiCommodities(selector).then(res => {
+    const page = 0
+    apiCommodities(selector, page).then(res => {
       this.setState({commodities: res.data})
-      console.log('获得请求的商品数据', name, '数据:', res.data)
+      // console.log('获得请求的商品数据', name, '数据:', res.data)
     })
   }
 

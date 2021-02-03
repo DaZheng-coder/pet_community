@@ -1,24 +1,28 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 import NavBar from '@/components/NavBar'
 import HandleBar from '@/components/HandleBar'
 import CommodityBar from '@/components/CommodityBar'
 import Button from '@/components/Button'
 import Bar from './Bar'
-import {localStorageGet} from '@/utils'
+import {localStorageSet,localStorageGet} from '@/utils'
+import {apiAddOrder} from '@/api/api'
 import PubSub from 'pubsub-js'
 import './index.less'
+import { withRouter } from 'react-router-dom'
 
-export default class FillOrder extends Component {
+class FillOrder extends Component {
   state = {
     orderList: [],
-    address: null
+    address: null,
+    totalPrice: 0
   }
   
   componentDidMount () {
     // 获取订单信息
     const orderList = localStorageGet('orderList')
     // 设置订单更新界面
-    this.setState({orderList})
+    this.setState({orderList}, this.computedTotalPrice)
 
     const setAddress = this.setAddress
     // 订阅地址消息
@@ -29,8 +33,25 @@ export default class FillOrder extends Component {
   }
 
   componentWillUnmount() {
-    // 取消消息订阅
-    // PubSub.unsubscribe('selectAddress')
+    // 删除订单信息
+    localStorage.removeItem('cart')
+  }
+
+  // 处理点击了提交订单事件
+  handleBuyOrder = (e) => {
+    e.stopPropagation()
+    const order = {
+      user_id: this.props.user._id,
+      username: this.props.user.username,
+      totalPrice: this.state.totalPrice,
+      commodities: this.state.orderList,
+      address: this.state.address.address,
+      note: this.state.address.note
+    }
+    apiAddOrder(order).then(res => {
+      localStorageSet('order', res.data)
+      this.props.history.replace('/buySuccess')
+    })
   }
 
   setAddress = (data) => {
@@ -41,17 +62,11 @@ export default class FillOrder extends Component {
   computedTotalPrice () {
     const {orderList} = this.state
     const totalPrice = orderList.map(item => parseFloat(item.price) * item.count ).reduce((total, cur) => total + cur).toFixed(2)
-    return totalPrice
-  }
-
-  componentWillUnmount() {
-    // 删除订单信息
-    localStorage.removeItem('cart')
+    this.setState({totalPrice})
   }
 
   render() {
-    const {orderList, address} = this.state
-    const totalPrice = orderList.length > 0 ? this.computedTotalPrice() : '0.00'
+    const {orderList, address, totalPrice} = this.state
     return (
       <div>
         <NavBar bgColor="red" color="#fff" title="填写订单" />
@@ -99,9 +114,11 @@ export default class FillOrder extends Component {
         <footer className="fo-footer bg flex padding1">
           <span>总额：</span>
           <span className="font5 font-bolder font-theme flex1">￥{totalPrice}</span>
-          <Button className="fo-footer-btn" type="danger">提交订单</Button>
+          <Button onClick={this.handleBuyOrder} className="fo-footer-btn" type={address ? 'danger' : 'useless'}>提交订单</Button>
         </footer>
       </div>
     )
   }
 }
+
+export default connect(state => ({user: state.user}))(withRouter(FillOrder))

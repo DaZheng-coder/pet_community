@@ -15,6 +15,7 @@ module.exports = app => {
   const User = mongoose.model('User')
   const Cart = mongoose.model('Cart')
   const Address = mongoose.model('Address')
+  const Order = mongoose.model('Order')
 
   /**
     商品相关路由
@@ -162,6 +163,20 @@ module.exports = app => {
     res.send({
       success: true
     })
+  })
+
+  /**
+    订单相关路由
+  */
+  // 获取订单列表，id为用户id
+  router.get('/order/list/:_id', async (req,res) => {
+    const data = await Order.find({user_id: req.params._id}).lean()
+    res.send(data)
+  })
+  // 添加订单
+  router.post('/order/create', async (req, res) => {
+    const data = await Order.create(req.body)
+    res.send(data)
   })
 
 

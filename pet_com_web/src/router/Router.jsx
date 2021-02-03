@@ -21,6 +21,7 @@ const FillOrder = lazy(() => import('../pages/FillOrder'))
 const Cart = lazy(() => import('../pages/Cart'))
 const ArticleDetail = lazy(() => import('../pages/ArticleDetail'))
 const AddressList = lazy(() => import('../pages/AddressList'))
+const BuySuccess = lazy(() => import('../pages/BuySuccess'))
 
 export default class Router extends Component {
   render() {
@@ -45,6 +46,7 @@ export default class Router extends Component {
           <Route path='/cart' component={Cart} />
           <Route path='/articleDetail/:id' component={ArticleDetail} />
           <Route path='/addressList' component={AddressList} />
+          <Route path='/buySuccess' component={BuySuccess}/>
         </Suspense>
       </div>
     )

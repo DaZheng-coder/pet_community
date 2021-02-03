@@ -113,6 +113,10 @@ h3 {
 .flex-between {
   justify-content: space-between;
 }
+.space-between {
+  justify-content: space-between;
+  align-items: center;
+}
 .flex-wrap-father {
   display: flex;
   align-content: flex-start;
@@ -238,6 +242,10 @@ h3 {
 }
 .margin2-t {
   margin-top: 0.5rem;
+}
+.margin2-lr {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 /** 
  * float

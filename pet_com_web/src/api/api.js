@@ -28,3 +28,8 @@ export const apiAddressList = (_id) => service.get(`/address/list/${_id}`)
 export const apiAddAddress = (body) => service.post('/address/create', body)
 // 删除地址，传入的是地址的id
 export const apiDeleteAddress = (_id) => service.delete(`address/delete/${_id}`)
+
+// 获取订单列表，id为用户id
+export const apiOrderList = (_id) => service.get(`/order/list/${_id}`)
+// 创建添加订单
+export const apiAddOrder = (body) => service.post('/order/create', body)

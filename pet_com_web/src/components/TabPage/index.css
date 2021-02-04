@@ -1,0 +1,42 @@
+.tp-ctr .tp-crt-titles {
+  display: flex;
+  overflow: scroll;
+  align-items: center;
+  position: sticky;
+  z-index: 9999;
+}
+.tp-ctr .tp-crt-titles .tp-ctr-titles-title {
+  flex-shrink: 0;
+  text-align: center;
+  width: calc(100% / 5);
+  padding: 0.2rem 0;
+}
+.tp-ctr .tp-crt-titles .tp-ctr-titles-title span {
+  font-size: 0.28rem;
+}
+.tp-ctr .tp-crt-titles .tp-ctr-titles-title .tp-crt-titles-title-active {
+  color: red;
+  font-weight: bolder;
+}
+.tp-ctr .tp-crt-titles .active-line {
+  width: 0.5rem;
+  height: 0.1rem;
+  border-radius: 0.05rem;
+  background-color: red;
+  position: absolute;
+  bottom: 0;
+  transition: all 0.3s;
+}
+.tp-ctr .tp-ctr-contents-container {
+  overflow: hidden;
+}
+.tp-ctr .tp-ctr-contents-container .tp-ctr-contents {
+  display: flex;
+}
+.tp-ctr .tp-ctr-contents-container .tp-ctr-contents.transition {
+  transition: all 0.3s;
+}
+.tp-ctr .tp-ctr-contents-container .tp-ctr-contents .tp-ctr-contents-content {
+  flex-shrink: 0;
+  width: 100%;
+}

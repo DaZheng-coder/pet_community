@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import UserCardList from './UserCardList'
 import DynamicItem from '@/components/DynamicItem'
+import SwiperContent from '@/components/SwiperContent'
 import Topic from './Topic'
 import PetClass from './PetClass'
 import './index.less'

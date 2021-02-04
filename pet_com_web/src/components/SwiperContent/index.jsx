@@ -21,24 +21,14 @@ export default class SwiperContent extends Component {
     touching: false
   }
 
-  componentDidMount() {
-  }
-
-  componentWillUnmount() {
-  }
-
   handleTouchStart = (e) => {
     // 如果滚动条在最顶部，记录开始触碰点
-    const isScrollTop = window.scrollY === 0
-    // if (isScrollTop) {
-    //   this.setState({preY: e.touches[0].clientY})
-    // }
     this.setState({preY: e.touches[0].clientY})
     this.setState({touching: true})
   }
 
   handleTouchMove = (e) => {
-    const {reloadHeight,height,preY} = this.state
+    const {reloadHeight,preY} = this.state
     // 如果滚动条滚动到最顶部，touch方向为向下（move>0），限制高度
     // 如果滚动条在最顶部，touch方向向上，自然滑动
     // 获取是否在最顶部

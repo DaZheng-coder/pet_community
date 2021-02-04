@@ -1,7 +1,9 @@
 * {
   font-size: 0.15rem;
   color: black;
-  scroll-behavior: smooth;
+}
+.page {
+  height: 100vh;
 }
 h3 {
   font-size: 0.5rem;

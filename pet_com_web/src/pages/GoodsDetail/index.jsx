@@ -50,7 +50,7 @@ class GoodsDetail extends Component {
   render() {
     const {isPopup, count, goodsInfo} = this.state
     return (
-      <div className="goods-detail-container">
+      <div className="goods-detail-container router-view">
         <Nav handleScroll={this.handleScroll}/>
         <div ref={c => this.topDom = c} id="goods" className="goods-detail-container-imgs"><SwiperImg imgsUrl={goodsInfo && goodsInfo.swiperImgs}/></div>
         <div className="bg padding1">

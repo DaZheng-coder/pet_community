@@ -3,7 +3,7 @@ import NavBar from '@/components/NavBar'
 import Item from '@/components/HandleItem/Item'
 import Search from '@/components/Search'
 import SwiperImg from '@/components/SwiperImg'
-import LinkageBar from '@/components/LinkageBar'
+// import LinkageBar from '@/components/LinkageBar'
 import GoodsItem from '@/components/GoodsItem'
 import CartIcon from '@/components/CartIcon'
 
@@ -66,20 +66,13 @@ class Shop extends Component {
   }
 
   componentDidMount() {
-    // console.log('商城页面已挂载')
     apiCategories().then(res => {
-      // console.log('获取分类数据成功', res.data)
-      
       const newTabItems = ['全部', ...(res.data.map(item => item.name))]
       // 传入分类信息
-      // console.log('res.data',res.data)
       const newContentList = res.data.map(item => <ShopContent {...item} />)
-      // console.log('newContentList', newContentList)
       const all = {_id: 1, name: '全部'}
       this.setState({tabItems:newTabItems})
       this.setState({contentList: [<ShopContent {...all}/> ,...newContentList]})
-      const {contentList} = this.state
-      // console.log('newContentList', contentList)
     })
   }
 
@@ -107,18 +100,19 @@ class Shop extends Component {
             }
           </div>
         </div>
-        {contentList.length > 0 && <LinkageBar slidesPerView={5} tabItems={tabItems} contentList={contentList} height={height}/>}
+        {/* {contentList.length > 0 && <LinkageBar slidesPerView={5} tabItems={tabItems} contentList={contentList} height={height}/>} */}
       </div>
     )
   }
 }
 class ShopContent extends Component {
   state = {
-    commodities: []
+    commodities: [],
+    // 分页信息
+    page: 0
   }
 
   componentDidMount() {
-    // console.log('ShopContent props', this.props.name)
     this.getCommodities()
   }
 
@@ -126,10 +120,10 @@ class ShopContent extends Component {
   getCommodities () {
     const {_id, name} = this.props
     const selector = name === '全部' ? '1' : _id
-    const page = 0
+    const {page} = this.state
+    // 获取商品数据
     apiCommodities(selector, page).then(res => {
       this.setState({commodities: res.data})
-      // console.log('获得请求的商品数据', name, '数据:', res.data)
     })
   }
 

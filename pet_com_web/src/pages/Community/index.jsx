@@ -4,7 +4,8 @@ import 'swiper/swiper-bundle.css'
 // import Nav from './Nav'
 import NavBar from '@/components/NavBar'
 import Search from '@/components/Search'
-import LinkageBar from '@/components/LinkageBar'
+// import LinkageBar from '@/components/LinkageBar'
+import TabPage from '@/components/TabPage'
 import SwiperImg from '@/components/SwiperImg/'
 import Content from './Content'
 import './index.less'
@@ -44,7 +45,18 @@ export default class Community extends Component {
       <div className="community-container">
         <NavBar leftSlot={false} centerSlot={<Search bgColor={'rgb(248,248,248)'}/>} getHeight={this.getHeight} rightSlot={<i className="iconfont icon-icon-13 font-bolder" />}/>
         <SwiperImg imgsUrl={posterList} className="community-container-imgs"/>
-        <LinkageBar {...linkageBarProps} height={height}/>
+        {/* <LinkageBar {...linkageBarProps} height={height}/> */}
+        <TabPage 
+          height={height}
+          titles={['标题1','标题好帅2','标题3','标题4','标题5','标题6','标题7']}
+          tab0={<Content type="recommend"/>}
+          tab1={<Content type="follow"/>}
+          tab2={<Content type="dynamic"/>}
+          tab3={<Content type="qa" />}
+          tab4={<Content type="topic" />}
+          tab5={<Content type="nearby" />}
+          tab6={<Content type="petClass" />}
+        />
       </div>
     )
   }

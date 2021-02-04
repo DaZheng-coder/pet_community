@@ -1,5 +1,5 @@
 import React, { Component, lazy, Suspense } from 'react'
-import {Redirect, Route} from 'react-router-dom'
+import {Redirect, Route, withRouter} from 'react-router-dom'
 import CacheRoute, { CacheSwitch } from 'react-router-cache-route'
 // 路由加载中组件
 import Loading from '../components/Loading/'
@@ -23,7 +23,16 @@ const ArticleDetail = lazy(() => import('../pages/ArticleDetail'))
 const AddressList = lazy(() => import('../pages/AddressList'))
 const BuySuccess = lazy(() => import('../pages/BuySuccess'))
 
-export default class Router extends Component {
+class Router extends Component {
+  componentDidMount() {
+    // 当地址为空时，跳转到首页
+    const {pathname} = this.props.location
+    console.log('router', this.props)
+    if (pathname === '/') {
+      this.props.history.replace('/home')
+    }
+  }
+
   render() {
     return (
       <div>
@@ -52,3 +61,5 @@ export default class Router extends Component {
     )
   }
 }
+
+export default withRouter(Router)

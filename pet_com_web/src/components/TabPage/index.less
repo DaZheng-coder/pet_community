@@ -1,0 +1,48 @@
+.tp-ctr {
+  .tp-crt-titles {
+    display: flex;
+    overflow: scroll;
+    align-items: center;
+    position: sticky;
+    z-index: 9999;
+    .tp-ctr-titles-title {
+      flex-shrink: 0;
+      text-align: center;
+      width: calc(100% / 5);
+      padding: 0.2rem 0;
+      span {
+        font-size: 0.28rem;
+      }
+      .tp-crt-titles-title-active {
+        color: red;
+        font-weight: bolder;
+      }
+    }
+    .active-line {
+      width: 0.5rem;
+      height: 0.1rem;
+      border-radius: 0.05rem;
+      background-color: red;
+      position: absolute;
+      bottom: 0;
+      transition: all .3s;
+    }
+  }
+  .tp-ctr-contents-container {
+    overflow: hidden;
+    .tp-ctr-contents{
+      display: flex;
+      // overflow: hidden;
+      &.transition {
+        transition: all .3s;
+      }
+      .tp-ctr-contents-content {
+        flex-shrink: 0;
+        width: 100%;
+        // max-height: 100vh;
+        // overflow: scroll;
+      }
+    }
+  }
+  
+}

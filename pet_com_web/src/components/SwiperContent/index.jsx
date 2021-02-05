@@ -77,7 +77,8 @@ export default class SwiperContent extends Component {
     this.setState({touching: false})
   }
 
-  loading = () => {
+  loading = async () => {
+    // const isLoad = awaitthis.props.updateData()
     setTimeout(() => {
       this.setState({status: LOADED})
       setTimeout(() => this.reBackState(), 500)

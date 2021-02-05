@@ -2,23 +2,51 @@ import React, { Component, Fragment } from 'react'
 import './index.less'
 
 // 标签页
-export default class TabPage extends Component {
+export default class NoneTabPage extends Component {
   state = {
     // 记录最开始的点
     startX: 0,
     startY: 0,
-    // 记录上一个点
-    preX: 0,
     // 记录最后的点
     endX: 0,
     // 记录当前显示的标签页
     activeIdx: 0,
     // translate移动距离
-    shift: 0,
+    offset: 0,
     // 是否添加动画
     transition: false,
     // 标题下方小条的位置
     lineLeft: 0,
+    // 判断是否给内容添加高度限制和滚动条
+    isScroll: false
+  }
+
+  componentDidMount () {
+    // 设置最开始活跃的标签页
+    this.moveTab(0)
+    window.addEventListener('scroll', this.hanldeScroll)
+    this.contents.addEventListener('scroll', this.handleContentsScroll)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.hanldeScroll)
+  }
+
+  handleContentsScroll = (e) => {
+    e.stopPropagation()
+    console.log('123')
+  }
+
+  // 解决滚动时上部内容不滚动的问题
+  hanldeScroll = (e) => {
+    e.stopPropagation()
+    const heightTop = this.titles.getBoundingClientRect().top
+    const {height} = this.props
+    if (heightTop <= height) {
+      this.setState({isScroll: true})
+    } else {
+      this.setState({isScroll: false})
+    }
   }
 
   // 滑动开始
@@ -26,28 +54,22 @@ export default class TabPage extends Component {
     e.stopPropagation()
     this.setState({transition: false})
     const startX = e.touches[0].clientX
-    const startY = e.touches[0].clientY
     this.setState({startX})
-    this.setState({startY})
-    this.setState({preX: startX})
   }
   // 滑动中
   handleTouchMove = (e) => {
     e.stopPropagation()
     // 判断滑动方向是否上下
-    const {shift,preX,startY} = this.state
-    if(Math.abs(e.touches[0].clientY - startY) > 0) {
-      this.setState({nextPage: false})
-    }
+    const {offset,startX,preX} = this.state
     const currentX = e.touches[0].clientX
     const move = currentX - preX
-    this.setState({shift: shift + move})
+    this.setState({offset: offset + move})
     this.setState({preX: currentX})
   }
   // 滑动结束
   handleTouchEnd = (e) => {
     e.stopPropagation()
-    let {startX,preX,activeIdx} = this.state
+    let {startX,activeIdx,preX} = this.state
     const {titles} = this.props
     const move = preX - startX
     const limit = window.innerWidth / 3
@@ -71,7 +93,7 @@ export default class TabPage extends Component {
     // 移动标签页
     const contentW = this.contents.clientWidth
     this.setState({activeIdx})
-    this.setState({shift: -contentW * activeIdx})
+    this.setState({offset: -contentW * activeIdx})
     this.setState({transition: true})
     // 移动下方小条
     const titleW = this.title.getBoundingClientRect().width
@@ -96,8 +118,6 @@ export default class TabPage extends Component {
   handleTitlesClick = (e) => {
     e.stopPropagation()
     const targetIdx = e.target.getAttribute('index')
-    console.log('e.target', e.target)
-    console.log('targetIdx', targetIdx)
     this.moveTab(targetIdx)
   }
 
@@ -106,7 +126,7 @@ export default class TabPage extends Component {
       // 父组件传入的标签页 标题，type:数组
       titles
     } = this.props
-    const {shift,transition,activeIdx,lineLeft} = this.state
+    const {offset,transition,activeIdx,lineLeft,isScroll} = this.state
     return (
       <div className="tp-ctr">
         <div onClick={this.handleTitlesClick} style={{top: this.props.height + 'px'}} ref={c => this.titles = c} className="tp-crt-titles bg">
@@ -119,16 +139,16 @@ export default class TabPage extends Component {
         </div>
         <div className="tp-ctr-contents-container">
           <div className={`${transition ? 'transition' : ''} tp-ctr-contents`}
-            onTouchStart={this.handleTouchStart}
-            onTouchMove={this.handleTouchMove}
-            onTouchEnd={this.handleTouchEnd}
-            style={{transform: `translateX(${shift}px)`}}
+            // onTouchStart={this.handleTouchStart}
+            // onTouchMove={this.handleTouchMove}
+            // onTouchEnd={this.handleTouchEnd}
+            style={{transform: `translateX(${offset}px)`}}
             ref={c => this.contents = c}
           >
             {titles && titles.map((title,index) => 
               <div key={index} 
-                className="tp-ctr-contents-content">
-                {this.props['tab'+index]}
+                className={`${isScroll ? 'tp-ctr-content-scroll' : ''} tp-ctr-contents-content`}>
+                {this.props.tabList[index]}
               </div>
             )}
           </div>  

@@ -4,6 +4,8 @@ import Item from '@/components/HandleItem/Item'
 import Search from '@/components/Search'
 import SwiperImg from '@/components/SwiperImg'
 // import LinkageBar from '@/components/LinkageBar'
+import SwiperContent from '@/components/SwiperContent'
+import TabPage from '@/components/TabPage'
 import GoodsItem from '@/components/GoodsItem'
 import CartIcon from '@/components/CartIcon'
 
@@ -94,13 +96,21 @@ class Shop extends Component {
         />
         <div className="page-pd bg">
           <SwiperImg imgsUrl={posterList} className="shop-container-imgs"/>
-          <div className="margin1-t shop-handle-items flex">
+          {/* <div className="margin1-t shop-handle-items flex">
             {
               handleItem.map((item,index) => <div key={index} className="shop-handle-item"><Item text={item.title} url={item.icon}/></div>)
             }
-          </div>
+          </div> */}
         </div>
         {/* {contentList.length > 0 && <LinkageBar slidesPerView={5} tabItems={tabItems} contentList={contentList} height={height}/>} */}
+        {
+          contentList.length > 0 && 
+            <TabPage 
+              height={height}
+              titles={tabItems}
+              tabList={contentList}
+            />
+        }
       </div>
     )
   }
@@ -109,32 +119,43 @@ class ShopContent extends Component {
   state = {
     commodities: [],
     // 分页信息
-    page: 0
+    page: -1
   }
 
   componentDidMount() {
-    this.getCommodities()
+    this.updateData()
+  }
+
+  // 更新商品数据
+  updateData = () => {
+    let {page} = this.state
+    page++
+    this.setState({page})
+    this.getCommodities(page)
   }
 
   // 获取商品数据
-  getCommodities () {
+  async getCommodities (page) {
     const {_id, name} = this.props
     const selector = name === '全部' ? '1' : _id
-    const {page} = this.state
+    // const {page} = this.state
     // 获取商品数据
-    apiCommodities(selector, page).then(res => {
+    const res = await apiCommodities(selector, page)
+    if (res) {
       this.setState({commodities: res.data})
-    })
+    }
   }
 
   render() {
     const {commodities} = this.state
     return (
-      <div className="shop-content-container router-view">
-        {
-          commodities.length > 0 && commodities.map(commodity => <GoodsItem key={commodity._id} {...commodity}/>) 
-        }
-      </div>
+      // <SwiperContent>
+        <div className="shop-content-container router-view">
+          {
+            commodities.length > 0 && commodities.map(commodity => <GoodsItem key={commodity._id} {...commodity}/>) 
+          }
+        </div>
+      // </SwiperContent>
     )
   }
 }

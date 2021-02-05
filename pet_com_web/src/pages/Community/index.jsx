@@ -11,19 +11,6 @@ import Content from './Content'
 import './index.less'
 export default class Community extends Component {
   state = {
-    linkageBarProps: {
-      tabItems: ['推荐','关注','动态','问答','话题','附近','宠物课堂'],
-      slidesPerView: 6,
-      contentList: [
-        <Content type="recommend"/>,
-        <Content type="follow"/>,
-        <Content type="dynamic"/>,
-        <Content type="qa" />,
-        <Content type="topic" />,
-        <Content type="nearby" />,
-        <Content type="petClass" />
-      ],
-    },
     // 录播的海报路径
     posterList: [
       'https://iconfont.alicdn.com/t/31a43374-e29e-4ead-aa09-3cda3f70ca3d.png',
@@ -49,13 +36,15 @@ export default class Community extends Component {
         <TabPage 
           height={height}
           titles={['标题1','标题好帅2','标题3','标题4','标题5','标题6','标题7']}
-          tab0={<Content type="recommend"/>}
-          tab1={<Content type="follow"/>}
-          tab2={<Content type="dynamic"/>}
-          tab3={<Content type="qa" />}
-          tab4={<Content type="topic" />}
-          tab5={<Content type="nearby" />}
-          tab6={<Content type="petClass" />}
+          tabList={[
+            <Content type="recommend"/>,
+            <Content type="follow"/>,
+            <Content type="dynamic"/>,
+            <Content type="qa" />,
+            <Content type="topic" />,
+            <Content type="nearby" />,
+            <Content type="petClass" />
+          ]}
         />
       </div>
     )

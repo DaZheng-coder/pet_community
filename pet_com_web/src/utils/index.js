@@ -55,3 +55,19 @@ export const localStorageGet = name => {
   }
   return result
 }
+
+/**
+ * 
+ * @param {节流} fn 执行的函数
+ */
+export function throttle (fn) {
+  let canRun =  true
+  return function () {
+    if (!canRun) return 
+    canRun = false
+    setTimeout(() => {
+      fn.apply(this, arguments)
+      canRun = true
+    }, 500)
+  }
+}

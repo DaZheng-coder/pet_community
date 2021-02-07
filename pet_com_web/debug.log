@@ -10,3 +10,12 @@
 [0201/104245.592:ERROR:directory_reader_win.cc(43)] FindFirstFile: 系统找不到指定的路径。 (0x3)
 [0202/090626.883:ERROR:directory_reader_win.cc(43)] FindFirstFile: 系统找不到指定的路径。 (0x3)
 [0204/094147.616:ERROR:directory_reader_win.cc(43)] FindFirstFile: 系统找不到指定的路径。 (0x3)
+[0205/141325.186:ERROR:directory_reader_win.cc(43)] FindFirstFile: 系统找不到指定的路径。 (0x3)
+[0205/231321.261:ERROR:file_io.cc(135)] WriteFile: 磁盘空间不足。 (0x70)
+[0205/231321.262:ERROR:crash_report_exception_handler.cc(113)] WriteEverything failed
+[0205/231321.262:ERROR:filesystem_win.cc(148)] DeleteFile C:\Users\92437\AppData\Local\Google\Chrome\User Data\Crashpad\reports\71eece2b-599c-439d-aafb-cb505823c746.dmp: 另一个程序正在使用此文件，进程无法访问。 (0x20)
+[0206/095811.139:ERROR:directory_reader_win.cc(43)] FindFirstFile: 系统找不到指定的路径。 (0x3)
+[0206/194809.806:ERROR:file_io.cc(135)] WriteFile: 磁盘空间不足。 (0x70)
+[0206/194809.806:ERROR:crash_report_exception_handler.cc(113)] WriteEverything failed
+[0206/194809.807:ERROR:filesystem_win.cc(148)] DeleteFile C:\Users\92437\AppData\Local\Google\Chrome\User Data\Crashpad\reports\b11b3792-dd73-4b45-9514-b4231b041301.dmp: 另一个程序正在使用此文件，进程无法访问。 (0x20)
+[0207/104835.230:ERROR:directory_reader_win.cc(43)] FindFirstFile: 系统找不到指定的路径。 (0x3)

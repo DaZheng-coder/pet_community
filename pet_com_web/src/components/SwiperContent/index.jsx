@@ -6,8 +6,10 @@ import {
   WAITING,
   LOADING,
   LOADED,
-  ALREADY_WAITING
+  ALREADY_WAITING,
+  END
 } from './contant.js'
+import {throttle} from '@/utils'
 import './index.less'
 
 export default class SwiperContent extends Component {
@@ -18,7 +20,24 @@ export default class SwiperContent extends Component {
     status: NORMAL,
     height: 0,
     // 动画开关
-    touching: false
+    touching: false,
+    // 下拉加载更多的状态
+    moreStatus: LOADING,
+  }
+
+  componentDidMount () {
+    window.addEventListener('scroll', throttle(this.handleScroll))
+  }
+
+  handleScroll = (e) => {
+    e.stopPropagation()
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+    let clientHeight = document.documentElement.clientHeight || document.body.clientHeight
+    let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
+    if (scrollHeight > clientHeight && scrollTop + clientHeight === scrollHeight) {
+      this.setState({moreLoading: LOADING})
+      this.props.loadingMethod(this.moreLoaded, 'addLoad')
+    }
   }
 
   handleTouchStart = (e) => {
@@ -43,6 +62,7 @@ export default class SwiperContent extends Component {
       // 计算获取要限制的高度
       const limitHeight = windowHeight - domBoundingTop
       this.setState({height: limitHeight})
+
       // 已经限制了高度，开始设置reloadHeight
       this.setState({reloadHeight: reloadHeight + move})
       // 更新preY为当前点
@@ -70,21 +90,39 @@ export default class SwiperContent extends Component {
     if(reloadHeight > ALREADY_WAITING) {
       this.setState({reloadHeight: ALREADY_WAITING})
       this.setState({status: LOADING})
-      this.loading()
+      this.reLoading()
     } else {
       this.reBackState()
     }
     this.setState({touching: false})
   }
 
-  loading = async () => {
-    // const isLoad = awaitthis.props.updateData()
-    setTimeout(() => {
+  // 显示加载完的状态
+  loaded = (bool) => {
+    console.log('bool', bool)
+    if (bool) {
+      this.setState({status: END})
+    } else {
       this.setState({status: LOADED})
-      setTimeout(() => this.reBackState(), 500)
-    }, 2000)
+    }
+    setTimeout(() => this.reBackState(), 500)
   }
 
+  moreLoaded = (bool) => {
+    console.log('bool', bool)
+    if (bool) {
+      this.setState({moreStatus: END})
+    } else {
+      this.setState({moreLoading: LOADED})
+    }
+  }
+
+  // 加载中
+  reLoading = async () => {
+    this.props.loadingMethod(this.loaded)
+  }
+
+  // 重置到最初状态
   reBackState = () => {
     this.setState({reloadHeight: 0})
     this.setState({preY: null})
@@ -93,8 +131,7 @@ export default class SwiperContent extends Component {
   }
 
   render() {
-    const {reloadHeight, status, height, touching} = this.state
-    const innerHeight = window.innerHeight
+    const {reloadHeight, status, height, touching, moreStatus} = this.state
     return (
       <div
         ref={c => this.dom = c}
@@ -109,18 +146,21 @@ export default class SwiperContent extends Component {
             {
               status === NORMAL ? <div>下拉即可刷新</div> : 
                 status === WAITING ? <div>松开即可刷新,上拉取消加载</div> :
-                  status === LOADING ? <div>
-                    <MiniLoading/>
-                  </div> :
-                    <div>加载完成</div> 
+                  status === LOADING ? <MiniLoading/> :
+                    status === LOADED ?<div>加载完成</div> :
+                      <div>没有更多了</div>
             }
           </div>
           <div className="swiper-content-container-holder-article">
-            {this.props.children}
-          </div>
-          <div className="load-more">
-            下拉加载更多
+            {this.props.children} 
           </div> 
+          <div className="load-more">
+            {
+              moreStatus === LOADING ? <MiniLoading /> : 
+                moreStatus === LOADED ? <span>加载完成</span> :
+                  <span>没有更多了</span>
+            }
+          </div>
         </div>
       </div>
     )

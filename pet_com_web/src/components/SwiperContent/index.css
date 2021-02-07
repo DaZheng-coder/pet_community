@@ -1,5 +1,4 @@
 .swiper-content-container {
-  overflow: hidden;
   transition: all 0.3s;
 }
 .swiper-content-container .swiper-content-container-holder .load-reload,
@@ -9,8 +8,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 0.28rem;
 }
 .swiper-content-container .swiper-content-container-holder .load-reload.transition,
 .swiper-content-container .swiper-content-container-holder .load-more.transition {
   transition: all 0.3s;
+}
+.swiper-content-container .swiper-content-container-holder .load-more {
+  padding-bottom: 1rem;
+}
+.swiper-content-container .swiper-content-container-holder .swiper-content-container-holder-article {
+  min-height: 100vh;
+}
+.swiper-content-container .swiper-content-container-holder .load-more {
+  height: 2rem;
 }

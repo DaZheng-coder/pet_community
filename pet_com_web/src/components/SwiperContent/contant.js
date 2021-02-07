@@ -9,6 +9,8 @@ export const WAITING = 'waiting'
 export const LOADING = 'loading'
 // 加载完成
 export const LOADED = 'loaded'
+// 没有了
+export const END = 'end'
 
 // 触发可松开刷新的条件 单位px
 export const ALREADY_WAITING = 50

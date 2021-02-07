@@ -101,12 +101,12 @@ export default class NoneTabPage extends Component {
     this.setState({lineLeft: titleW * activeIdx + titleW / 2 - lineW / 2})
     // 移动标题栏
     const center = parseInt(this.props.titles.length / 2)
-    if (activeIdx > center) {
+    if (activeIdx > center - 1) {
       this.titles.scrollBy({
         left: titleW,
         behavior: 'smooth'
       })
-    } else{
+    } else if (activeIdx < center){
       this.titles.scrollBy({
         left: -titleW,
         behavior: 'smooth'
@@ -118,6 +118,7 @@ export default class NoneTabPage extends Component {
   handleTitlesClick = (e) => {
     e.stopPropagation()
     const targetIdx = e.target.getAttribute('index')
+    console.log('targetIdx', targetIdx)
     this.moveTab(targetIdx)
   }
 
@@ -148,7 +149,7 @@ export default class NoneTabPage extends Component {
             {titles && titles.map((title,index) => 
               <div key={index} 
                 className={`${isScroll ? 'tp-ctr-content-scroll' : ''} tp-ctr-contents-content`}>
-                {this.props.tabList[index]}
+                {activeIdx == index && this.props.tabList[index]}
               </div>
             )}
           </div>  

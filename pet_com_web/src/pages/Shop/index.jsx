@@ -119,43 +119,59 @@ class ShopContent extends Component {
   state = {
     commodities: [],
     // 分页信息
-    page: -1
+    page: 0
   }
 
   componentDidMount() {
-    this.updateData()
+    this.getCommodities(() => {})
   }
 
   // 更新商品数据
-  updateData = () => {
+  // updateData = (loadedFun) => {
+  //   let {page} = this.state
+  //   page++
+  //   this.setState({page})
+  //   this.getCommodities(loadedFun)
+  // }
+
+  // 获取商品数据
+  getCommodities = (loadedFun, type='reload') => {
+    const {_id, name} = this.props
+    const selector = name === '全部' ? '1' : _id
     let {page} = this.state
     page++
     this.setState({page})
-    this.getCommodities(page)
-  }
-
-  // 获取商品数据
-  async getCommodities (page) {
-    const {_id, name} = this.props
-    const selector = name === '全部' ? '1' : _id
-    // const {page} = this.state
     // 获取商品数据
-    const res = await apiCommodities(selector, page)
-    if (res) {
-      this.setState({commodities: res.data})
-    }
+    apiCommodities(selector, page).then(res => {
+      // 判断是否有结果
+      console.log('结果', res)
+      if(res.data.length !== 0) {
+        console.log('不为0')
+        if (type === 'reload') {
+          this.setState({commodities: res.data})
+        } else if (type==='addLoad') {
+          const {commodities} = this.state
+          this.setState({commodities: [...commodities, ...res.data]})
+        }
+        loadedFun()
+      } else {
+        // 已经加载所有
+        console.log('0')
+        loadedFun(true)
+      }
+    })
   }
 
   render() {
     const {commodities} = this.state
     return (
-      // <SwiperContent>
-        <div className="shop-content-container router-view">
+      <SwiperContent loadingMethod={this.getCommodities}>
+        <div className="shop-content-container">
           {
             commodities.length > 0 && commodities.map(commodity => <GoodsItem key={commodity._id} {...commodity}/>) 
           }
         </div>
-      // </SwiperContent>
+      </SwiperContent>
     )
   }
 }

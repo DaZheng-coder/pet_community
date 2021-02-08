@@ -32,20 +32,7 @@ export default class Community extends Component {
       <div className="community-container">
         <NavBar leftSlot={false} centerSlot={<Search bgColor={'rgb(248,248,248)'}/>} getHeight={this.getHeight} rightSlot={<i className="iconfont icon-icon-13 font-bolder" />}/>
         <SwiperImg imgsUrl={posterList} className="community-container-imgs"/>
-        {/* <LinkageBar {...linkageBarProps} height={height}/> */}
-        <TabPage 
-          height={height}
-          titles={['标题1','标题好帅2','标题3','标题4','标题5','标题6','标题7']}
-          tabList={[
-            <Content type="recommend"/>,
-            <Content type="follow"/>,
-            <Content type="dynamic"/>,
-            <Content type="qa" />,
-            <Content type="topic" />,
-            <Content type="nearby" />,
-            <Content type="petClass" />
-          ]}
-        />
+        <Content type="recommend"/>
       </div>
     )
   }

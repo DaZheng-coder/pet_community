@@ -126,14 +126,6 @@ class ShopContent extends Component {
     this.getCommodities(() => {})
   }
 
-  // 更新商品数据
-  // updateData = (loadedFun) => {
-  //   let {page} = this.state
-  //   page++
-  //   this.setState({page})
-  //   this.getCommodities(loadedFun)
-  // }
-
   // 获取商品数据
   getCommodities = (loadedFun, type='reload') => {
     const {_id, name} = this.props
@@ -144,9 +136,7 @@ class ShopContent extends Component {
     // 获取商品数据
     apiCommodities(selector, page).then(res => {
       // 判断是否有结果
-      console.log('结果', res)
       if(res.data.length !== 0) {
-        console.log('不为0')
         if (type === 'reload') {
           this.setState({commodities: res.data})
         } else if (type==='addLoad') {
@@ -156,7 +146,6 @@ class ShopContent extends Component {
         loadedFun()
       } else {
         // 已经加载所有
-        console.log('0')
         loadedFun(true)
       }
     })

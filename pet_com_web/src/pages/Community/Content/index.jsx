@@ -4,14 +4,17 @@ import DynamicItem from '@/components/DynamicItem'
 import SwiperContent from '@/components/SwiperContent'
 import Topic from './Topic'
 import PetClass from './PetClass'
+import {apiDynamicList} from '@/api/api'
 import './index.less'
 
 export default class Content extends Component { 
-  state = { dynamicList: [] }
+  state = { 
+    dynamicList: [],
+    page: 0
+  }
 
   componentDidMount () {
-    const dynamicList = this.getDynamicList()
-    this.setState({dynamicList})
+    this.getDynamics(() => {})
   }
 
   // 获取动态数列表
@@ -196,12 +199,31 @@ export default class Content extends Component {
     }
   }
 
+  // 获取动态列表，对接接口版
+  getDynamics = (loadedFun, type='reload') => {
+    let {page} = this.state
+    page++
+    this.setState({page})
+    apiDynamicList(page).then(res => {
+      if (res.data.length !== 0) {
+        if (type === 'reload') {
+          this.setState({dynamicList: res.data})
+        } else if (type === 'addLoad') {
+          const {dynamicList} = this.state
+          this.setState({dynamicList: [...dynamicList,...res.data]})
+        }
+        loadedFun()
+      } else {
+        loadedFun(true)
+      }
+    })
+  }
+
   render() {
     const {type} = this.props
     const {dynamicList} = this.state
-    console.log('初次加载', type)
     return (
-      <div>
+      <SwiperContent loadingMethod={this.getDynamics}>
         <header className="bg">
           {
             (type === 'recommend' && <UserCardList/>) ||
@@ -219,12 +241,12 @@ export default class Content extends Component {
           {Boolean(['topic', 'petClass'].indexOf(type)) && 
             <div>
               {
-                dynamicList && dynamicList.map(dynamic => <DynamicItem key={dynamic.id} {...dynamic} />)
+                dynamicList && dynamicList.map(dynamic => <DynamicItem key={dynamic._id} {...dynamic} />)
               }
             </div>
           }
         </article>
-      </div>
+      </SwiperContent>
     )
   }
 }

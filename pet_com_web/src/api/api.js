@@ -33,3 +33,8 @@ export const apiDeleteAddress = (_id) => service.delete(`address/delete/${_id}`)
 export const apiOrderList = (_id) => service.get(`/order/list/${_id}`)
 // 创建添加订单
 export const apiAddOrder = (body) => service.post('/order/create', body)
+
+// 获取动态列表
+export const apiDynamicList = (page) => service.get(`/dynamic/list/${page}`)
+// 更新动态点赞
+export const apiDynamicGood = (dynamic_id, user_id) => service.get(`/dynamic/good/${dynamic_id}/${user_id}`)

@@ -2,21 +2,30 @@ import React, { Component } from 'react'
 import NavBar from '@/components/NavBar'
 import Avatar from '@/components/Avatar'
 import DynamicItem from '@/components/DynamicItem'
+import {apiDynamicDetail} from '@/api/api'
 import Common from '@/components/Common'
+// import PubSub from 'pubsub-js'
 import './index.less'
 
 export default class DynamicDetail extends Component {
   state = {
-    user: {
-      username: '小赵',
-      avatarUrl: 'https://iconfont.alicdn.com/t/eda32ded-1960-4b0a-b99f-5bff9e9e7ab4.png'
-    },
-    dynamicDetail: {
-      text: '小流氓',
-      imgs: [
-        'https://iconfont.alicdn.com/t/3590deff-837f-44d8-884c-d365bafcef25.png'
-      ]
-    }
+    dynamicDetail: {},
+    user: {}
+  }
+  
+  componentDidMount () {
+    console.log('this.props', this.props)
+    this.getDynamicDetail()
+  }
+
+  // 获取动态详情
+  getDynamicDetail = () => {
+    console.log('id', this.props.match.params.id)
+    apiDynamicDetail(this.props.match.params.id).then(res => {
+      console.log('获取动态详情', res)
+      this.setState({dynamicDetail: res.data})
+      this.setState({user: res.data.user})
+    })
   }
 
   // 从子组件中获取子组件的popup方法
@@ -29,13 +38,19 @@ export default class DynamicDetail extends Component {
     this.isShowPopup(e)
   }
   render() {
-    const {user,dynamicDetail} = this.state
+    const {
+      dynamic,
+      commonList
+    } = this.state.dynamicDetail
+    const {user} = this.state
+    console.log('user', user)
+    console.log('dynamic', dynamic)
     return (
-      <div>
+      <div className="router-view">
         <NavBar 
           centerSlot={
             <div className="nav-user-info flex">
-              <Avatar className="margin05-r" size="mini" url={user.avatarUrl}/>
+              {user.avatar && <Avatar className="margin05-r" size="mini" url={user.avatar}/>}
               <span>{user.username}</span>
             </div>
           }
@@ -44,13 +59,13 @@ export default class DynamicDetail extends Component {
           } 
         />
         <div className="bg padding1-lr">
-          <DynamicItem isDetail notShowUser content={dynamicDetail}>
-            <div className="font-gray margin1-t">2020-10-21 10:20:21</div>
-          </DynamicItem>
+          {dynamic && <DynamicItem isDetail notShowUser {...dynamic}>
+            <div className="font-deep-gray margin1-t">{dynamic.content.updatedAt}</div>
+          </DynamicItem>}
         </div>
-        <div className="padding1 font-gray">共 3 条评论</div>
+        <div className="padding1 font-deep-gray">共 {dynamic && dynamic.commonNum} 条评论</div>
         <div className="padding1-lr bg">
-          <Common getIsShowPopup={this.getIsShowPopup}/>
+          {dynamic && <Common dynamic_id={dynamic._id} commonList={commonList} getIsShowPopup={this.getIsShowPopup}/>}
         </div>
       </div>
     )

@@ -38,3 +38,10 @@ export const apiAddOrder = (body) => service.post('/order/create', body)
 export const apiDynamicList = (page) => service.get(`/dynamic/list/${page}`)
 // 更新动态点赞
 export const apiDynamicGood = (dynamic_id, user_id) => service.get(`/dynamic/good/${dynamic_id}/${user_id}`)
+// 获取单个动态的详细信息
+export const apiDynamicDetail = (dynamic_id) => service.get(`/dynamic/detail/${dynamic_id}`)
+
+// 创建评论
+export const apiCommonCreate = (body) => service.post('/common/create', body)
+// 评论点赞
+export const apiCommonGood = (user_id, common_id) => service.get(`/common/good/${user_id}/${common_id}`)

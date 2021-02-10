@@ -174,10 +174,10 @@ module.exports = app => {
   */
   // 获取动态列表
   router.get('/dynamic/list/:page', async (req, res) => {
-    const data = await Dynamic.find().sort({createdAt: 1}).limit(20).skip(20 * req.params.page).lean()
+    const data = await Dynamic.find().sort({createdAt: -1}).limit(20).skip(20 * req.params.page).lean()
     let result = []
     for (let item of data) {
-      const common = await Common.find({parent: item._id}).lean()
+      const common = await Common.find({parent: item._id}).sort({createdAt:-1}).lean()
       const user = await User.findOne({_id: item.user_id}).lean()
       const resultItem = {
         _id: item._id,
@@ -192,10 +192,72 @@ module.exports = app => {
     }
     res.send(result)
   })
+
   // 创建动态
   router.post('/dynamic/list', async (req,res) => {
     const data = await Dynamic.create(req.body)
     res.send(data)
+  })
+
+  // 获取单个动态的详细信息，传入的参数_id为动态id
+  router.get('/dynamic/detail/:_id', async (req, res) => {
+    // 获取动态信息
+    const dynamicDetail = await Dynamic.findById(req.params._id).lean()
+    // 根据动态的id获取动态作者
+    const dynamicUser = await User.findById(dynamicDetail.user_id).lean()
+    // 根据动态的id获取评论数
+    const commonList = await Common.find({parent: dynamicDetail._id}).sort({createdAt: -1}).lean()
+    // 根据评论列表获取各个评论的发送者数据
+    // 创建一个空数组来接收整理数据后的评论列表
+    const newCommonList = []
+    for (let common of commonList) {
+      const commonUser = await User.findById(common.user_id).lean()
+      const secCommonList = await Common.find({parent: common._id}).sort({createdAt: -1}).limit(2)
+      const newSecCommonList = []
+      for (let secComm of secCommonList) {
+        const user = await User.findById(secComm.user_id)
+        newSecCommonList.push({
+          _id: secComm._id,
+          user,
+          dynamic: {
+            _id: common._id,
+            user,
+            content: secComm,
+            commonNum: 0
+          },
+          commonList: [],
+          secCommonList: []
+        })
+      }
+      // 整理对象数据
+      const commonResultItem = {
+        _id: common._id,
+        user: commonUser,
+        dynamic: {
+          _id: common._id,
+          user: commonUser,
+          content: common,
+          commonNum: 0
+        },
+        commonList:  [],
+        secCommonList:newSecCommonList
+      }
+      newCommonList.push(commonResultItem)
+    }
+    // 整理返回的动态数据
+    const newDynamic = {
+      _id: dynamicDetail._id,
+      user: dynamicUser,
+      dynamic: {
+        _id: dynamicDetail._id,
+        user: dynamicUser,
+        content: dynamicDetail,
+        commonNum: newCommonList.length
+      },
+      commonList: newCommonList,
+      secCommonList: []
+    }
+    res.send(newDynamic)
   })
   // 动态点赞，传入的参数第一个是动态id，第二是用户id
   router.get('/dynamic/good/:dynamic_id/:user_id', async (req, res) => {
@@ -211,6 +273,42 @@ module.exports = app => {
     }
     console.log('动态', dynamic)
     const data = await Dynamic.findOneAndUpdate({_id: dynamic_id}, dynamic)
+    res.send(data)
+  })
+
+  /**
+    评论相关路由
+  */
+  // 创建评论
+  router.post('/common/create', async (req,res) => {
+    const common = await Common.create(req.body)
+    const commonUser = await User.findById(common.user_id)
+    const commonResultItem = {
+      _id: common._id,
+      user: commonUser,
+      dynamic: {
+        _id: common._id,
+        user: commonUser,
+        content: common,
+        commonNum: 0
+      },
+      commonList:  [],
+      secCommonList: []
+    }
+    res.send(commonResultItem)
+  })
+  // 评论点赞
+  router.get('/common/good/:user_id/:common_id', async (req, res) => {
+    const {user_id, common_id} = req.params
+    const common = await Common.findById(common_id)
+    const goodArr = common.good.toString().split(',')
+    if(goodArr.includes(user_id)) {
+      const newGood = goodArr.filter(item => item !== user_id)
+      common.good = newGood
+    } else {
+      common.good.push(user_id)
+    }
+    const data = await Common.findOneAndUpdate({_id: common._id}, common)
     res.send(data)
   })
 

@@ -311,6 +311,27 @@ module.exports = app => {
     const data = await Common.findOneAndUpdate({_id: common._id}, common)
     res.send(data)
   })
+  // 获取次级评论详情
+  router.get('/common/second/detail/:common_id', async (req, res) => {
+    const {common_id} = req.params
+    const common = await findReplyComm(common_id)
+    res.send(common)
+  })
+
+  async function findReplyComm(common_id) {
+    const common = await Common.findById(common_id).lean()
+    // 找到所有回复此评论的次次级评论
+    const replyComm = await Common.find({parent: common_id})
+    replyComm.send_common_user = await User.findById(replyComm.user_id)
+    replyComm.reply_common_user = await User.findById(replyComm.parent)
+    if (replyComm.length > 0) {
+      for (let comm of replyComm) {
+        await findReplyComm(comm._id)
+      }
+    }
+    common.replyComm = replyComm
+    return common
+  }
 
 
   /**

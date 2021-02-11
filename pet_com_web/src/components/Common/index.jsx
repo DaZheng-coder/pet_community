@@ -4,6 +4,7 @@ import Popup from '@/components/Popup'
 import Button from '@/components/Button'
 import EditCommonBar from '@/components/EditCommonBar'
 import DynamicItem from '@/components/DynamicItem'
+import SecondCommonDetail from './SecondCommonDetail'
 import './index.less'
 
 export default class Common extends Component {
@@ -11,7 +12,8 @@ export default class Common extends Component {
     secondCommon: true,
     isPopup: this.props.isPopup,
     commonIsPopup: false,
-    commonList: this.props.commonList
+    commonList: this.props.commonList,
+    common_id: 0
   }
 
   componentDidMount() {
@@ -20,9 +22,10 @@ export default class Common extends Component {
   }
 
   // 处理点击评论区的评论的事件，显示二级评论详细信息
-  handleSecCommonClick = (e) => {
+  handleSecCommonClick = (e,common_id) => {
     e.stopPropagation()
     console.log('显示二级评论详细信息')
+    this.setState({common_id})
     this.isShowCommonPopup(e)
   }
 
@@ -69,8 +72,7 @@ export default class Common extends Component {
   }
 
   render() {
-    const {isPopup,commonList,commonIsPopup} = this.state
-    console.log('commonList', commonList)
+    const {isPopup,commonList,commonIsPopup,common_id} = this.state
     return (
       <Fragment>
         <div>
@@ -88,7 +90,7 @@ export default class Common extends Component {
                   </div>
                   <i className="iconfont icon-icon-47" onClick={this.isShowPopup}></i>
                 </div>
-                <div onClick={this.handleSecCommonClick} className="common-content margin1-t">
+                <div onClick={(e) => this.handleSecCommonClick(e,common._id)} className="common-content margin1-t">
                   <span>{common.dynamic.content.text}</span>
                   {
                     common && common.secCommonList && common.secCommonList.slice(0,2).map(secCommon => 
@@ -108,7 +110,7 @@ export default class Common extends Component {
           </Popup>
           {/* 次级评论区 */}
           <Popup isPopup={commonIsPopup} popout={this.isShowCommonPopup}>
-            <SecondCommonDetail />
+            {common_id !==0 && <SecondCommonDetail common_id={common_id}/>}
           </Popup>
         </div>
         <EditCommonBar dynamic_id={this.props.dynamic_id} update={this.updateCommonList}/>
@@ -129,13 +131,3 @@ class SecondCommon extends Component {
   }
 }
 
-class SecondCommonDetail extends Component {
-  render() {
-    return (
-      <div className="margin1-t second-common padding1 flex bg-gray">
-        {/* <a className="font-blue">评论者</a>
-        <span>: 评论内容</span> */}
-      </div>
-    )
-  }
-}

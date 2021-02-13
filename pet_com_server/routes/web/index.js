@@ -264,14 +264,12 @@ module.exports = app => {
     const {user_id, dynamic_id} = req.params
     const dynamic = await Dynamic.findOne({_id: dynamic_id}).lean()
     const goodArr = dynamic.good.toString().split(',')
-    console.log('分隔后的数组', goodArr.includes(user_id))
     if (goodArr.includes(user_id)) {
       const newGood = goodArr.filter(item => item!==user_id)
       dynamic.good = newGood
     } else {
       dynamic.good.push(user_id)
     }
-    console.log('动态', dynamic)
     const data = await Dynamic.findOneAndUpdate({_id: dynamic_id}, dynamic)
     res.send(data)
   })
@@ -297,6 +295,13 @@ module.exports = app => {
     }
     res.send(commonResultItem)
   })
+  // 删除评论
+  router.delete('/common/delete/:common_id', async (req,res) => {
+    await Common.findByIdAndDelete(req.params.common_id)
+    res.send({
+      success: true
+    })
+  })
   // 评论点赞
   router.get('/common/good/:user_id/:common_id', async (req, res) => {
     const {user_id, common_id} = req.params
@@ -321,12 +326,19 @@ module.exports = app => {
   async function findReplyComm(common_id) {
     const common = await Common.findById(common_id).lean()
     // 找到所有回复此评论的次次级评论
-    const replyComm = await Common.find({parent: common_id})
-    replyComm.send_common_user = await User.findById(replyComm.user_id)
-    replyComm.reply_common_user = await User.findById(replyComm.parent)
-    if (replyComm.length > 0) {
-      for (let comm of replyComm) {
-        await findReplyComm(comm._id)
+    common.send_common_user = await User.findById(common.user_id)
+    let tempComm = await Common.findById(common.parent)
+    if (!tempComm) {
+      tempComm = await Dynamic.findById(common.parent)
+    }
+    console.log('parent', tempComm)
+    common.reply_common_user = await User.findById(tempComm.user_id)
+    const replyCommArr = await Common.find({parent: common_id})
+    const replyComm = []
+    if (replyCommArr.length > 0) {
+      for (let comm of replyCommArr) {
+        const secComm = await findReplyComm(comm._id)
+        replyComm.push(secComm)
       }
     }
     common.replyComm = replyComm

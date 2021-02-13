@@ -47,3 +47,5 @@ export const apiCommonCreate = (body) => service.post('/common/create', body)
 export const apiCommonGood = (user_id, common_id) => service.get(`/common/good/${user_id}/${common_id}`)
 // 获取次级评论详情
 export const apiCommonSecondDetail = (common_id) => service.get(`/common/second/detail/${common_id}`)
+// 删除评论
+export const apiCommonDelete = (common_id) => service.delete(`/common/delete/${common_id}`)

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import {connect} from 'react-redux'
 import Avatar from '@/components/Avatar'
 import Popup from '@/components/Popup'
 import Button from '@/components/Button'
@@ -7,7 +8,7 @@ import DynamicItem from '@/components/DynamicItem'
 import SecondCommonDetail from './SecondCommonDetail'
 import './index.less'
 
-export default class Common extends Component {
+class Common extends Component {
   state = {
     secondCommon: true,
     isPopup: this.props.isPopup,
@@ -24,14 +25,12 @@ export default class Common extends Component {
   // 处理点击评论区的评论的事件，显示二级评论详细信息
   handleSecCommonClick = (e,common_id) => {
     e.stopPropagation()
-    console.log('显示二级评论详细信息')
     this.setState({common_id})
     this.isShowCommonPopup(e)
   }
 
   // 更新评论列表
   updateCommonList = (common) => {
-    console.log('common', common)
     const {commonList} = this.state
     this.setState({commonList: [common,...commonList]})
   }
@@ -53,7 +52,6 @@ export default class Common extends Component {
   // 添加次级评论
   addSecondCommon = (secCommon) => {
     const {commonList} = this.state
-    console.log('添加次级评论', secCommon)
     // 找到添加评论后的那条评论
     const newCommonList = commonList.map(common => {
       if (common._id === secCommon.dynamic.content.parent) {
@@ -104,7 +102,10 @@ export default class Common extends Component {
           <span className="padding1 font25 flex-center">评论区空空的，点击下方添加评论吧</span>}
           <Popup isPopup={isPopup} popout={this.isShowPopup}>
             <div className="padding1 transparent">
-              <Button className="bg-gray radius-mini font25">举报</Button>
+              {/* {
+                this.props.app_user._id == this.state.common.user._id && <Button className="radius-mini font25" type="danger">删除</Button>
+              } */}
+              <Button className="bg-gray radius-mini font25 margin1-t">举报</Button>
               <Button onClick={this.isShowPopup} className="margin1-t radius-mini font25 font-bold">取消</Button>
             </div>
           </Popup>
@@ -118,6 +119,8 @@ export default class Common extends Component {
     )
   }
 }
+
+export default connect(state => (app_user: state.user))(Common)
 
 class SecondCommon extends Component {
   render() {

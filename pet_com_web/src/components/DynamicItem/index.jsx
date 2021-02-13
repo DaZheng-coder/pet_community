@@ -13,7 +13,7 @@ class DynamicItem extends Component {
     isPopup: false,
     // 点赞数
     goods: this.props.dynamic ? this.props.dynamic.content.good.length : this.props.content.good.length,
-    isGood: this.props.content && this.props.content.good.includes(this.props.app_user._id)
+    isGood: this.props.content && this.props.content.good.includes(this.props.app_user._id) 
   }
 
   isShowPopup = (e) => {
@@ -74,7 +74,6 @@ class DynamicItem extends Component {
   // 处理点击发送评论的事件
   handleSendClick = (e) => {
     e.stopPropagation()
-    console.log('this.textarea', this.textarea.value)
     const body = {
       user_id: this.props.app_user._id,
       text: this.textarea.value,
@@ -89,7 +88,7 @@ class DynamicItem extends Component {
   }
 
   render() {
-    const {_id,user,app_user,content,commonNum} = this.props
+    const {_id,user,content,commonNum} = this.props
     const {isPopup,goods,isGood} = this.state
     return (
       <div onClick={this.props.isDetail ? null : () => this.props.history.push(`/dynamicDetail/${_id}`)} className=" dynamic-container">

@@ -29,7 +29,7 @@ class Router extends Component {
     const {pathname} = this.props.location
     console.log('router', this.props)
     if (pathname === '/') {
-      this.props.history.replace('/home')
+      this.props.history.replace('/community')
     }
   }
 

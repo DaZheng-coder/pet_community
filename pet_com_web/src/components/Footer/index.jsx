@@ -8,7 +8,7 @@ class Footer extends Component {
   state = {
     // 存放显示下方导航栏的数组
     footerNavArr: [
-      '/home',
+      // '/home',
       '/community',
       '/shop',
       '/user'
@@ -16,7 +16,6 @@ class Footer extends Component {
   }
 
   render() {
-    console.log('足部的user',this.props.user)
     const {footerNavArr} = this.state
     const {user} = this.props
     return (
@@ -26,11 +25,11 @@ class Footer extends Component {
             <Fragment>
               {/* <div className="mask footer-mask sticky"></div> */}
               <section className='footer-container'>
-                <FooterNavLink to='/home' text='主页' iconClass='icon-icon-7'/>
+                {/* <FooterNavLink to='/home' text='主页' iconClass='icon-icon-7'/> */}
                 <FooterNavLink to='/community' text='宠圈' iconClass='icon-icon-135'/>
-                <div className='user-handle'>
+                {/* <div className='user-handle'>
                   <i className='user-handle-btn iconfont icon-icon-56'></i>
-                </div>
+                </div> */}
                 <FooterNavLink to='/shop' text='商城' iconClass='icon-icon-20'/>
                 <FooterNavLink to={user._id ? '/user' : '/login'} text={user._id ? '我的' : '登录'} iconClass='icon-icon-14'/>
               </section>

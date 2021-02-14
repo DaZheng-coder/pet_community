@@ -40,6 +40,8 @@ export const apiDynamicList = (page) => service.get(`/dynamic/list/${page}`)
 export const apiDynamicGood = (dynamic_id, user_id) => service.get(`/dynamic/good/${dynamic_id}/${user_id}`)
 // 获取单个动态的详细信息
 export const apiDynamicDetail = (dynamic_id) => service.get(`/dynamic/detail/${dynamic_id}`)
+// 获取个人动态列表
+export const apiDynamicMyList = (user_id) => service.get(`dynamic/my/list/${user_id}`)
 
 // 创建评论
 export const apiCommonCreate = (body) => service.post('/common/create', body)
@@ -49,3 +51,5 @@ export const apiCommonGood = (user_id, common_id) => service.get(`/common/good/$
 export const apiCommonSecondDetail = (common_id) => service.get(`/common/second/detail/${common_id}`)
 // 删除评论
 export const apiCommonDelete = (common_id) => service.delete(`/common/delete/${common_id}`)
+// 获取个人发布的评论列表
+export const apiCommonMyList = (user_id) => service.get(`/common/my/list/${user_id}`)

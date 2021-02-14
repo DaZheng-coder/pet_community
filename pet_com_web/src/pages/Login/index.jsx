@@ -20,18 +20,15 @@ class Login extends Component {
 
   handleLogin = (e) => {
     e.stopPropagation()
-    console.log('登录')
-    console.log(this.username.value, this.password.value)
     const user = {
       username: this.username.value,
       password: this.password.value
     }
     apiLogin(user).then(res => {
-      console.log('登录成功', res)
       this.props.set_user(res.data.user)
       localStorageSet("userToken", res.data.token)
       Toast.success('登录成功', 2000)
-      this.props.history.replace('/home')
+      this.props.history.replace('/community')
     })
   }
 

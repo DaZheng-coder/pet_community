@@ -47,7 +47,7 @@ class User extends Component {
               {
                 user ? <Fragment>
                   <span className="font3 font-bolder">{user.username}</span>
-                  <span className="font1 font-gray">用户id：{user._id}</span>
+                  <span className="font1 font-deep-gray">用户id：{user._id}</span>
                 </Fragment> : <Fragment>
                   <span className="font3">用户未登录，点击登录</span>
                 </Fragment>
@@ -58,24 +58,24 @@ class User extends Component {
           <div className="padding1-tb">
             <div className="padding1-tb"><span className="font3 font-bolder">更多</span></div>
             <div className="flex user-container-handle">
-              <div className="user-container-handle-item flex flex-column">
+              <div onClick={() => this.props.history.push('/myCommon')} className="user-container-handle-item flex flex-column">
                 <i className="iconfont icon-icon-5" />
-                <span className="font-gray">评论</span>
+                <span className="font-deep-gray">评论</span>
               </div>
-              <div className="user-container-handle-item flex flex-column">
-                <i className="iconfont icon-icon-5" />
-                <span className="font-gray">我的赞</span>
-              </div>
-              <div className="user-container-handle-item flex flex-column">
-                <i className="iconfont icon-icon-5" />
-                <span className="font-gray">提问</span>
+              {/* <div className="user-container-handle-item flex flex-column">
+                <i className="iconfont icon-icon-42" />
+                <span className="font-deep-gray">我的赞</span>
+              </div> */}
+              <div onClick={() => this.props.history.push('/myDynamic')} className="user-container-handle-item flex flex-column">
+                <i className="iconfont icon-icon-16" />
+                <span className="font-deep-gray">我的动态</span>
               </div>
             </div>
           </div>
         </div>
-        <div className="user-container-img flex-center padding1-tb">
+        {/* <div className="user-container-img flex-center padding1-tb">
           <img src="https://iconfont.alicdn.com/t/d19c38ab-7cb5-4e52-a709-2f19dbd6fece.png" alt="广告图片"/>
-        </div>
+        </div> */}
         <div className="margin1-t bg padding1-lr">
           <div className="padding05-tb"><span className="font3 font-bold">常用功能</span></div>
           <div>

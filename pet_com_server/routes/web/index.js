@@ -274,6 +274,12 @@ module.exports = app => {
     res.send(data)
   })
 
+  // 获取动态列表
+  router.get('/dynamic/my/list/:user_id', async (req,res) => {
+    const dynamicList = await Dynamic.find({user_id: req.params.user_id})
+    res.send(dynamicList)
+  })
+
   /**
     评论相关路由
   */
@@ -344,6 +350,12 @@ module.exports = app => {
     common.replyComm = replyComm
     return common
   }
+
+  // 获取个人评论列表
+  router.get('/common/my/list/:user_id', async (req,res) => {
+    const commonList = await Common.find({user_id: req.params.user_id})
+    res.send(commonList)
+  })
 
 
   /**

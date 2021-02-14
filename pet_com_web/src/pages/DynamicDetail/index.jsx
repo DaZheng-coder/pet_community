@@ -14,15 +14,12 @@ export default class DynamicDetail extends Component {
   }
   
   componentDidMount () {
-    console.log('this.props', this.props)
     this.getDynamicDetail()
   }
 
   // 获取动态详情
   getDynamicDetail = () => {
-    console.log('id', this.props.match.params.id)
     apiDynamicDetail(this.props.match.params.id).then(res => {
-      console.log('获取动态详情', res)
       this.setState({dynamicDetail: res.data})
       this.setState({user: res.data.user})
     })
@@ -43,8 +40,6 @@ export default class DynamicDetail extends Component {
       commonList
     } = this.state.dynamicDetail
     const {user} = this.state
-    console.log('user', user)
-    console.log('dynamic', dynamic)
     return (
       <div className="router-view">
         <NavBar 

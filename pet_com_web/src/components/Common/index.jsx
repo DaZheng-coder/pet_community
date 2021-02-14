@@ -105,7 +105,7 @@ class Common extends Component {
               {/* {
                 this.props.app_user._id == this.state.common.user._id && <Button className="radius-mini font25" type="danger">删除</Button>
               } */}
-              <Button className="bg-gray radius-mini font25 margin1-t">举报</Button>
+              <Button className="bg-gray radius-mini font25 margin1-t" onClick={this.isShowPopup}>举报</Button>
               <Button onClick={this.isShowPopup} className="margin1-t radius-mini font25 font-bold">取消</Button>
             </div>
           </Popup>
@@ -120,7 +120,7 @@ class Common extends Component {
   }
 }
 
-export default connect(state => (app_user: state.user))(Common)
+export default connect(state => ({app_user: state.user}))(Common)
 
 class SecondCommon extends Component {
   render() {

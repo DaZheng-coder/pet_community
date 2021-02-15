@@ -26,6 +26,8 @@ const BuySuccess = lazy(() => import('../pages/BuySuccess'))
 const MyCommon = lazy(() => import('../pages/MyCommon'))
 const MyDynamic = lazy(() => import('../pages/MyDynamic'))
 
+const CreateDynamic = lazy(() => import('../pages/CreateDynamic'))
+
 class Router extends Component {
   componentDidMount() {
     // 当地址为空时，跳转到首页
@@ -61,6 +63,7 @@ class Router extends Component {
           <Route path='/buySuccess' component={BuySuccess}/>
           <CacheRoute path='/myCommon' component={MyCommon} />
           <CacheRoute path='/myDynamic' component={MyDynamic} />
+          <CacheRoute path='/createDynamic' component={CreateDynamic} />
         </Suspense>
       </div>
     )

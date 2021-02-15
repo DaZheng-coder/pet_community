@@ -9,7 +9,8 @@ import TabPage from '@/components/TabPage'
 import SwiperImg from '@/components/SwiperImg/'
 import Content from './Content'
 import './index.less'
-export default class Community extends Component {
+import { withRouter } from 'react-router-dom'
+class Community extends Component {
   state = {
     // 录播的海报路径
     posterList: [
@@ -26,14 +27,27 @@ export default class Community extends Component {
     this.setState({height})
   }
 
+  // 点击创建动态
+  handleNavBarDynamicClick = (e) => {
+    e.stopPropagation()
+    this.props.history.push('/createDynamic')
+  }
+
   render() {
     const {linkageBarProps, posterList, height} = this.state
     return (
       <div className="community-container">
-        <NavBar leftSlot={false} centerSlot={<Search bgColor={'rgb(248,248,248)'}/>} getHeight={this.getHeight} rightSlot={<i className="iconfont icon-icon-13 font-bolder" />}/>
+        <NavBar leftSlot={false} centerSlot={<Search bgColor={'rgb(248,248,248)'}/>} getHeight={this.getHeight} rightSlot={
+          <div onClick={this.handleNavBarDynamicClick}>
+            <i className="iconfont icon-icon-58 font-bolder" />
+            <span className="font3 font-bold"> 创建动态</span>
+          </div>}
+        />
         <SwiperImg imgsUrl={posterList} className="community-container-imgs"/>
         <Content type="recommend"/>
       </div>
     )
   }
 }
+
+export default withRouter(Community)

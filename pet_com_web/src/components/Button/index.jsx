@@ -14,6 +14,7 @@ export default class Button extends Component {
     return (
       <div 
         onClick={this.handleClick} 
+        style={this.props.style}
         className={`my-button ${this.props.type || 'default'} ${this.props.className}`}
       >{this.props.title || this.props.children}</div>
     )

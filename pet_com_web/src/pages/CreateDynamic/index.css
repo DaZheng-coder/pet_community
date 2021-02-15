@@ -1,0 +1,61 @@
+.cd-ctn .cd-ctn-send-btn {
+  padding: 0.05rem 0.2rem;
+  margin-left: -0.4rem;
+}
+.cd-ctn .cd-btn-textarea {
+  height: 100%;
+  border: none;
+  font-size: 0.26rem;
+  width: 100%;
+}
+.cd-ctn .cd-btn-imgs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 0.3rem;
+}
+.cd-ctn .cd-btn-imgs .cd-btn-picture-btn-bg {
+  width: 2rem;
+  height: 2rem;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  margin-right: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+.cd-ctn .cd-btn-imgs .cd-btn-picture-btn-bg .img-delete {
+  position: absolute;
+  top: 0;
+  right: 0.1rem;
+  border-top-right-radius: 0.25rem;
+  background-color: #ff3e3e;
+  width: 0.4rem;
+  height: 0.4rem;
+}
+.cd-ctn .cd-btn-imgs .cd-btn-picture-btn-bg .img-delete i {
+  font-size: 0.3rem;
+  position: absolute;
+  color: white;
+  font-weight: bolder;
+  top: -0.7rem;
+  right: 0.06rem;
+}
+.cd-ctn .cd-btn-imgs .cd-btn-picture-btn-bg .cd-btn-img {
+  width: 95%;
+  height: 95%;
+  object-fit: cover;
+  border-radius: 0.25rem;
+}
+.cd-ctn .cd-btn-imgs .cd-btn-picture-btn-bg .iconfont {
+  font-size: 2rem;
+  color: #ccc;
+  line-height: 1.85rem;
+}
+.cd-ctn .cd-btn-imgs .cd-btn-picture-btn-bg .cd-btn-picture-btn {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

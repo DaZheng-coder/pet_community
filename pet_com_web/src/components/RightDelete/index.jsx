@@ -4,7 +4,7 @@ import './index.less'
 export default class RightDelete extends Component {
   render() {
     return (
-      <div onClick={this.props.onClick} className="rd-container">
+      <div onClick={this.props.onClick} className={`rd-container ${this.props.className}`}>
         <div className="rd">
           <div className="rd-left">
             <div className={`rd-input ${this.props.isCheckbox ? '' : 'vhidden'}`}>

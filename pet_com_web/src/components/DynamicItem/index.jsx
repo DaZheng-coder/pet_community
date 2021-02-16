@@ -114,7 +114,8 @@ class DynamicItem extends Component {
                     <div key={index} className="dynamic-container-content-imgs-item">
                       <img className="wh100" src={img} alt="动态附图"/>
                     </div>) :
-                    content && <img style={{width: '60%'}} src={content.imgs[0]} alt="动态附图" />
+                    content.imgs.length !== 0 &&
+                      <img style={{width: '60%'}} src={content.imgs[0]} alt="动态附图" />
                 }
               </div>
             </div>

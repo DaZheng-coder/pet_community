@@ -29,6 +29,27 @@ module.exports = app => {
     res.send(cats)
   })
 
+  const multer = require('multer')
+  const MAO = require('multer-aliyun-oss');
+  const upload = multer({
+    dest: __dirname + '/../../uploads'
+    // ,storage: MAO({
+    //   config: {
+    //     region: 'oss-cn-zhangjiakou',
+    //     accessKeyId: '替换为你的真实id',
+    //     accessKeySecret: '替换为你的真实secret',
+    //     bucket: 'pet-com'
+    //   }
+    // })
+  })
+
+  app.post('/web/api/upload', upload.single('file'), async (req,res) => {
+    console.log('接受文件')
+    const file = req.file
+    file.url = `http://localhost:3000/uploads/${file.filename}`
+    res.send(file.url)
+  })
+
   // 根据分类获取商品，传入分类为1表示获取全部
   router.get('/commodities/:category/:page', async (req, res) => {
     const params = req.params.category !== '1' ? {category: req.params.category} : null 
@@ -172,10 +193,23 @@ module.exports = app => {
   /**
     动态相关路由
   */
+  // 清除所有动态列表
+  app.get('/web/api/dynamic/list/deleteAll', async (req, res) => {
+    await Dynamic.deleteMany({})
+    res.send({
+      message: 'success'
+    })
+  })
+  // app.get('/web/api/dynamic/list/all', async (req,res) => {
+  //   const data = await Dynamic.find()
+  //   res.send(data)
+  // })
   // 获取动态列表
   router.get('/dynamic/list/:page', async (req, res) => {
-    const data = await Dynamic.find().sort({createdAt: -1}).limit(20).skip(20 * req.params.page).lean()
+    console.log('页数长度', req.params.page)
+    const data = await Dynamic.find().sort({createdAt: -1}).limit(20).skip(20 * (req.params.page - 1))
     let result = []
+    console.log('data的长度', data.length)
     for (let item of data) {
       const common = await Common.find({parent: item._id}).sort({createdAt:-1}).lean()
       const user = await User.findOne({_id: item.user_id}).lean()
@@ -194,7 +228,7 @@ module.exports = app => {
   })
 
   // 创建动态
-  router.post('/dynamic/list', async (req,res) => {
+  router.post('/dynamic/create', async (req,res) => {
     const data = await Dynamic.create(req.body)
     res.send(data)
   })

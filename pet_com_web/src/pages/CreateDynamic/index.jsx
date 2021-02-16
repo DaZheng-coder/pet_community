@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 import NavBar from '@/components/NavBar'
 import Button from '@/components/Button'
 import {nanoid} from 'nanoid'
+import {dataURLtoFile} from '@/utils'
+import {apiDynamicCreate} from '@/api/api'
+import PubSub from 'pubsub-js'
+import axios from 'axios'
 import './index.less'
+import { withRouter } from 'react-router-dom'
 
-export default class CreateDynamic extends Component {
+class CreateDynamic extends Component {
 
   state = {
     imgs: []
@@ -13,6 +19,18 @@ export default class CreateDynamic extends Component {
   // 发送动态事件
   handleSendClick = (e) => {
     e.stopPropagation()
+    console.log('内容', this.textarea.value)
+    const body = {
+      user_id: this.props.app_user._id,
+      text: this.textarea.value,
+      imgs: this.state.imgs
+    }
+    apiDynamicCreate(body).then(res => {
+      console.log('创建动态成功', res)
+      // 重新刷新动态页面列表
+      PubSub.publish('updateDynamicList', 'restart')
+      this.props.history.replace('/community')
+    })
   }
 
   // 点击添加图片
@@ -21,21 +39,42 @@ export default class CreateDynamic extends Component {
     console.log('添加图片')
     console.log('事件本身', e)
     const files = e.target.files
+    // const imageType = /^image\//
     for (let file of files) {
+      // if(!imageType.test(file.type)) {
+      //   console.log('请选择图片！')
+      //   return 
+      // }
+      console.log('进入循环')
       let reader = new FileReader()
+      console.log('读取文件')
       reader.onload = (e) => {
         // 更换图片
-        // this.setState({url: e.target.result})
         const {imgs} = this.state
-        console.log('进入方法', e.target)
-        if (type==='add') {
-          this.setState({imgs: [...imgs,e.target.result]})
-        } else if (type === 'replace') {
-          const newImgs = imgs.map((img,idx) => 
-            index === idx ? e.target.result : img
-          )
-          this.setState({imgs: newImgs})
-        }
+        console.log('进入事件')
+        const resFile = dataURLtoFile(e.target.result, 'pj' + Date.now() + '.jpg')
+        const formData = new FormData()
+        formData.append('file', resFile)
+        axios({
+          method: 'POST',
+          url: "http://localhost:3000/web/api/upload",
+          data: formData,
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        }).then(res => {
+          console.log('res.url', res)
+          if (type==='add') {
+            this.setState({imgs: [...imgs,res.data]})
+          } else if (type === 'replace') { 
+            const newImgs = imgs.map((img,idx) => 
+              index === idx ? res.data : img
+            )
+            this.setState({imgs: newImgs})
+          }
+        })
+        
+        // 以下内容为测试
       }
       reader.readAsDataURL(file || null)
     }
@@ -111,3 +150,5 @@ export default class CreateDynamic extends Component {
     )
   }
 }
+
+export default connect(state => ({app_user: state.user}))(withRouter(CreateDynamic))

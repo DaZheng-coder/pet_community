@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import UserCardList from './UserCardList'
 import DynamicItem from '@/components/DynamicItem'
 import SwiperContent from '@/components/SwiperContent'
+import Pubsub from 'pubsub-js'
 import Topic from './Topic'
 import PetClass from './PetClass'
 import {apiDynamicList} from '@/api/api'
@@ -15,6 +16,17 @@ export default class Content extends Component {
 
   componentDidMount () {
     this.getDynamics(() => {})
+    Pubsub.subscribe('updateDynamicList', (msg,data) => {
+      // 重新刷新列表
+      if (data === 'restart') {
+        this.setState({page: 0})
+        this.getDynamics(() => {})
+      }
+    })
+  }
+
+  componentWillUnmount () {
+    Pubsub.unsubscribe('updateDynamicList')
   }
 
   // 获取动态列表，对接接口版

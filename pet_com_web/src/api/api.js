@@ -34,6 +34,8 @@ export const apiOrderList = (_id) => service.get(`/order/list/${_id}`)
 // 创建添加订单
 export const apiAddOrder = (body) => service.post('/order/create', body)
 
+// 创建动态
+export const apiDynamicCreate = (body) => service.post('/dynamic/create', body)
 // 获取动态列表
 export const apiDynamicList = (page) => service.get(`/dynamic/list/${page}`)
 // 更新动态点赞
@@ -53,3 +55,4 @@ export const apiCommonSecondDetail = (common_id) => service.get(`/common/second/
 export const apiCommonDelete = (common_id) => service.delete(`/common/delete/${common_id}`)
 // 获取个人发布的评论列表
 export const apiCommonMyList = (user_id) => service.get(`/common/my/list/${user_id}`)
+

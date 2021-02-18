@@ -3,6 +3,12 @@
 .recommend-container {
   overflow: hidden;
   .recommend-container-userList {
-    padding:@distance1;
+    padding:@distance1 0;
+    display: flex;
+    justify-content: space-between;
+    // overflow: scroll;
+    .recommend-container-userList-item {
+      margin-right: @distance1;
+    }
   }
 }

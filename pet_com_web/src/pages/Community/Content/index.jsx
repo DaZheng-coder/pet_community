@@ -54,7 +54,7 @@ export default class Content extends Component {
     const {dynamicList} = this.state
     return (
       <SwiperContent loadingMethod={this.getDynamics}>
-        <header className="bg">
+        {/* <header className="bg">
           {
             (type === 'recommend' && <UserCardList/>) ||
             (type === 'follow' && <div className="padding1 font-gray follow-span-bg">为您推荐</div>) ||
@@ -66,7 +66,7 @@ export default class Content extends Component {
             (type === 'nearby' && '') ||
             (type === 'petClass' && <PetClass/>)
           }
-        </header>
+        </header> */}
         <article className="bg padding1-lr">
           {Boolean(['topic', 'petClass'].indexOf(type)) && 
             <div>

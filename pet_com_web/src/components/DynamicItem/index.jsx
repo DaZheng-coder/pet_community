@@ -6,7 +6,7 @@ import DividLine from '@/components/DividLine/'
 import Popup from '@/components/Popup'
 import './index.less'
 import { withRouter } from 'react-router-dom'
-import {apiDynamicGood,apiCommonGood, apiCommonCreate} from '@/api/api'
+import {apiDynamicGood,apiCommonGood, apiCommonCreate,apiFollow} from '@/api/api'
 
 class DynamicItem extends Component {
   state = {
@@ -87,6 +87,16 @@ class DynamicItem extends Component {
     })
   }
 
+  // 点击关注
+  // handleFollowClick = (e) => {
+  //   e.stopPropagation()
+  //   // 发送关注请求
+  //   apiFollow(this.props.app_user._id, this.props._id).then(res => {
+  //     console.log('关注成功', res)
+      
+  //   })
+  // }
+
   render() {
     const {_id,user,content,commonNum} = this.props
     const {isPopup,goods,isGood} = this.state
@@ -95,15 +105,15 @@ class DynamicItem extends Component {
         <div className="dynamic-container-padding">
           <div className={`flex ${this.props.notShowUser && 'none'}`}>
             <div className="margin1-r">
-              <Avatar url={user && user.avatarUrl}/>
+              <Avatar url={user && user.avatarUrl} _id={user._id}/>
             </div>
             <div className="flex flex1 flex-column">
               <span className="font3 font-bolder">{user && user.username}</span>
               <span className="font-gray">{content && content.updatedAt}</span>
             </div>
-            <div className="dynamic-container-handle">
+            {/* <div onClick={this.handleFollowClick} className="dynamic-container-handle">
               <span className="dynamic-container-handle-focus">+ 关注</span>
-            </div>
+            </div> */}
           </div>
           <div className="dynamic-container-content">
             <div>
@@ -114,7 +124,7 @@ class DynamicItem extends Component {
                     <div key={index} className="dynamic-container-content-imgs-item">
                       <img className="wh100" src={img} alt="动态附图"/>
                     </div>) :
-                    content.imgs.length !== 0 &&
+                    content && content.imgs.length !== 0 &&
                       <img style={{width: '60%'}} src={content.imgs[0]} alt="动态附图" />
                 }
               </div>

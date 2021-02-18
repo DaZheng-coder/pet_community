@@ -3,6 +3,7 @@
   background-color: transparent;
   overflow: hidden;
   border-radius: 50%;
+  position: relative;
 }
 
 .normal {
@@ -22,4 +23,28 @@
 .no-avatar {
   background-image: url('../../assets/img/noAvatar.png');
   background-size: cover;
+}
+
+.avatar-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,.1);
+}
+
+.avatar-img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.other-user-info {
+  height: 80vh;
+  background-color: #fff;
+  z-index: 9999;
 }

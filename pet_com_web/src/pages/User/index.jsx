@@ -25,7 +25,7 @@ class User extends Component {
   handleBtnClick = () => {
     this.props.delete_user()
     this.setState({user: null})
-    this.props.history.replace('/home')
+    this.props.history.replace('/community')
     Toast.success('退出成功', 1000)
   }
 
@@ -42,7 +42,7 @@ class User extends Component {
         }/>
         <div className="user-container bg padding1-lr">
           <div className="flex padding1-tb">
-            <div className="margin1-r"><Avatar user={true} url={user && user.avatarUrl}/></div>
+            <div className="margin1-r">{user && <Avatar user={true} url={user.avatar}/>}</div>
             <div className="flex flex-column">
               {
                 user ? <Fragment>

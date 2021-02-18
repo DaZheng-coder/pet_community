@@ -8,12 +8,20 @@ export const apiCommodities = (category,page) => service.get(`/commodities/${cat
 // 根据id获取商品信息
 export const apiCommodity = (_id) => service.get(`/commodity/${_id}`)
 
+// 获取用户详细信息
+export const apiUserDetail = (user_id) => service.get(`/user/detail/${user_id}`)
+// 获取一些用户
+export const apiUserListSome = () => service.get('/user/list/some')
 // 注册用户
 export const apiRegister = (body) => service.post('/register', body)
+// 更新用户信息
+export const apiUserUpdate = (user_id,body) => service.put(`/user/update/${user_id}`, body)
 // 登录
 export const apiLogin = (body) => service.post('/login', body)
 // 查看是否有用户名
 export const apiIsExistUsername = (body) => service.get('/isExistUsername', body)
+// 关注
+export const apiFollow = (app_user_id, follow_user_id) => service.get(`/user/follow/add/${app_user_id}/${follow_user_id}`)
 
 // 获取购物车列表，传入的id是用户id
 export const apiCartList = (_id) => service.get(`/cart/list/${_id}`)
@@ -36,7 +44,7 @@ export const apiAddOrder = (body) => service.post('/order/create', body)
 
 // 创建动态
 export const apiDynamicCreate = (body) => service.post('/dynamic/create', body)
-// 获取动态列表
+// 获取动态列表，body为查询条件
 export const apiDynamicList = (page) => service.get(`/dynamic/list/${page}`)
 // 更新动态点赞
 export const apiDynamicGood = (dynamic_id, user_id) => service.get(`/dynamic/good/${dynamic_id}/${user_id}`)

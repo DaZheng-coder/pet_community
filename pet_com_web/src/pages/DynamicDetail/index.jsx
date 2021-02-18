@@ -3,6 +3,7 @@ import NavBar from '@/components/NavBar'
 import Avatar from '@/components/Avatar'
 import DynamicItem from '@/components/DynamicItem'
 import {apiDynamicDetail} from '@/api/api'
+import {nanoid} from 'nanoid'
 import Common from '@/components/Common'
 // import PubSub from 'pubsub-js'
 import './index.less'
@@ -45,7 +46,7 @@ export default class DynamicDetail extends Component {
         <NavBar 
           centerSlot={
             <div className="nav-user-info flex">
-              {user.avatar && <Avatar className="margin05-r" size="mini" url={user.avatar}/>}
+              <Avatar key={nanoid()} className="margin05-r" size="mini" url={user.avatar} _id={user._id}/>
               <span>{user.username}</span>
             </div>
           }

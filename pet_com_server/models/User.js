@@ -2,6 +2,8 @@ const mongoose = require('mongoose')
 
 const schema = new mongoose.Schema({
   username: {type: String},
+  follow: [{type: mongoose.SchemaTypes.ObjectId, ref: 'User'}],
+  fans: [{type: mongoose.SchemaTypes.ObjectId, ref: 'User'}],
   password: {
     type: String,
     select: false,

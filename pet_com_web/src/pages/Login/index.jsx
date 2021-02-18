@@ -7,6 +7,7 @@ import Toast from '@/components/Toast'
 import { withRouter } from 'react-router-dom'
 import {apiLogin} from '@/api/api'
 import {connect} from 'react-redux'
+import PubSub from 'pubsub-js'
 import {set_user} from '@/redux/action/user'
 import {localStorageSet} from '@/utils'
 
@@ -28,6 +29,7 @@ class Login extends Component {
       this.props.set_user(res.data.user)
       localStorageSet("userToken", res.data.token)
       Toast.success('登录成功', 2000)
+      PubSub.publish('updateDynamicList', 'restart')
       this.props.history.replace('/community')
     })
   }

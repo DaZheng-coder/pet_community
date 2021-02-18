@@ -79,7 +79,7 @@ class Common extends Component {
             addSecondCommon={this.addSecondCommon}
             isDetail isCommon notShowUser {...common}>
             <div className="flex">
-              <div className="margin1-r"><Avatar size="mini" url={common.user.avatar} /></div>
+              <div className="margin1-r"><Avatar size="mini" url={common.user.avatar} _id={common.user._id}/></div>
               <div className="flex flex1 flex-column">
                 <div className="common-header flex">
                   <div>

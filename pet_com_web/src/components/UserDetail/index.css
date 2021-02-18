@@ -1,0 +1,67 @@
+.ud-ctn {
+  height: 90vh;
+  background-color: white;
+  border-radius: 0.5rem 0.5rem 0 0;
+  margin: 0 0.15rem;
+  border: 1px solid #ccc;
+  position: relative;
+  overflow: scroll;
+}
+.ud-ctn .ud-ctn-title {
+  position: absolute;
+  font-size: 0.28rem;
+  font-weight: bolder;
+  text-align: center;
+  padding-top: 0.1rem;
+  width: calc(100% - 0.15rem * 2);
+}
+.ud-ctn .ud-ctn-bg .ud-ctn-user-info {
+  padding: 0.5rem 0 0.2rem;
+  margin: 0 0.2rem;
+  display: flex;
+}
+.ud-ctn .ud-ctn-bg .ud-ctn-user-info .ud-ctn-user-info-avatar {
+  width: 0.8rem;
+  height: 0.8rem;
+  display: block;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #ccc;
+}
+.ud-ctn .ud-ctn-bg .ud-ctn-user-info .ud-ctn-user-info-username-a-id {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-left: 0.2rem;
+}
+.ud-ctn .ud-ctn-bg .ud-ctn-user-info .ud-ctn-user-info-follow {
+  display: flex;
+  align-items: center;
+}
+.ud-ctn .ud-ctn-bg .ud-ctn-user-info .ud-ctn-user-info-follow .ud-ctn-user-info-follow-btn {
+  border: 1px solid #ccc;
+  padding: 0.02rem 0.2rem;
+  border-radius: 0.2rem;
+}
+.ud-ctn .ud-ctn-bg .ud-ctn-user-number {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 0.2rem;
+}
+.ud-ctn .ud-ctn-bg .ud-ctn-user-number .ud-ctn-user-item {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.ud-ctn .ud-ctn-dynamic-list {
+  margin: 0.2rem;
+}
+.ud-ctn .ud-ctn-dynamic-list .ud-ctn-dynamic-list-title {
+  font-size: 0.3rem;
+  font-weight: bolder;
+  margin-bottom: 0.1rem;
+}
+.ud-ctn .ud-ctn-dynamic-list .ud-ctn-dynamic-list-content {
+  padding-left: 0.2rem;
+}

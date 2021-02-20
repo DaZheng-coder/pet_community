@@ -575,11 +575,10 @@ module.exports = app => {
     ]
     for (let dynamic of rawData) {
       let userInfo = await User.findOne({username: dynamic.username})
-      const pwd = 123456
+      // const pwd = 123456
       if (!userInfo) {
         userInfo = {
           username: dynamic.username,
-          password: pwd,
           avatar: dynamic.avatar
         }
         await User.insertMany(userInfo)

@@ -6,7 +6,7 @@ import {localStorageGet}  from '@/utils'
 //保存环境变量
 const isPrd = process.env.NODE_ENV == 'production';
 //区分开发环境还是生产环境基础URL
-export const basicUrl = isPrd ? 'http://生产环境:3000/web/api' : 'http://localhost:3000/web/api'
+export const basicUrl = isPrd ? process.env.REACT_APP_API_URL : 'http://localhost:3000/web/api'
 
 // 设置axios基本路径
 const service = axios.create({

@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/NavBar/index.less"],"names":[],"mappings":"AAAA,kBACE,kBACF,CAFA,0CAGI,gBAEJ","file":"25.2ae8a5b6.chunk.css","sourcesContent":[".navbar-container {\n  align-items: center;\n  .navbar-container-right {\n    text-align: right;\n  }\n}\n@primary-color: #FF2A42;"]}

@@ -5,10 +5,10 @@ import {localStorageGet}  from '@/utils'
 // import Toast from ''
 
 //保存环境变量
-const isPrd = process.env.NODE_ENV == 'production';
+// const isPrd = process.env.NODE_ENV == 'production';
 //区分开发环境还是生产环境基础URL
-export const basicUrl = isPrd ? process.env.REACT_APP_API_URL : 'http://localhost:3001/web/api'
-// export const basicUrl = 'http://pet.zhengjunqin.top/web/api'
+// export const basicUrl = isPrd ? process.env.REACT_APP_API_URL : 'http://localhost:3001/web/api'
+export const basicUrl = 'http://pet.zhengjunqin.top/web/api'
 
 // 设置axios基本路径
 const service = axios.create({

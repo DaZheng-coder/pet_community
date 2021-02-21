@@ -1,9 +1,11 @@
 const express = require("express")
+const history = require('connect-history-api-fallback')
 
 const app = express()
 
 app.set('secret', 'i2u34y12oi3u4y8')
 
+app.use(history())
 app.use(require('cors')())
 app.use(express.json())
 // app.use('/', express.static(__dirname + '/web'))

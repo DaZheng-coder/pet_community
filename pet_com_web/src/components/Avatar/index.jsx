@@ -8,6 +8,8 @@ import PubSub from 'pubsub-js'
 import {apiUserUpdate} from '@/api/api'
 import axios from 'axios'
 import Popup from '@/components/Popup'
+import {localStorageGet} from '@/utils'
+import Toast from '@/components/Toast'
 import './index.less'
 
 class Avatar extends Component {
@@ -20,6 +22,10 @@ class Avatar extends Component {
 
   isShowPopup = (e) => {
     e.stopPropagation()
+    if ( localStorageGet('user') === null) {
+      Toast.warning('请先登录', 1500)
+      return 
+    }
     const {isPopup} = this.state
     this.setState({isPopup: !isPopup})
   }

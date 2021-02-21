@@ -3,9 +3,11 @@ import {connect} from 'react-redux'
 import Avatar from '@/components/Avatar/'
 import EditCommonBar from '@/components/EditCommonBar/'
 import DividLine from '@/components/DividLine/'
+import Toast from '@/components/Toast'
 import Popup from '@/components/Popup'
 import './index.less'
 import { withRouter } from 'react-router-dom'
+import {localStorageGet} from '@/utils'
 import {apiDynamicGood,apiCommonGood, apiCommonCreate,apiFollow} from '@/api/api'
 
 class DynamicItem extends Component {
@@ -13,7 +15,7 @@ class DynamicItem extends Component {
     isPopup: false,
     // 点赞数
     goods: this.props.dynamic ? this.props.dynamic.content.good.length : this.props.content.good.length,
-    isGood: this.props.content && this.props.content.good.includes(this.props.app_user._id) 
+    isGood: this.props.content && this.props.content.good.includes(this.props.app_user._id)
   }
 
   isShowPopup = (e) => {
@@ -30,6 +32,10 @@ class DynamicItem extends Component {
   // 处理点击评论触发的事件
   handleCommonClick = (e) => {
     e.stopPropagation()
+    if (localStorageGet('user') === null) {
+      Toast.warning('请先登录', 1000)
+      return 
+    }
     if (!this.props.isDetail && !this.props.isCommon) {
       // 如果不是动态详情，并且不是评论，则跳转到详情页
       this.props.history.push(`/dynamicDetail/${this.props._id}`)
@@ -41,6 +47,10 @@ class DynamicItem extends Component {
   // 处理点击点赞触发的事件
   handleGoodClick = (e) => {
     e.stopPropagation()
+    if (  localStorageGet('user') === null) {
+      Toast.warning('请先登录', 1000)
+      return 
+    }
     // 更新点赞数，判断用户是否点赞等等
     const {_id,app_user} = this.props
     let {goods} = this.state
@@ -74,6 +84,10 @@ class DynamicItem extends Component {
   // 处理点击发送评论的事件
   handleSendClick = (e) => {
     e.stopPropagation()
+    if (  localStorageGet('user') === null) {
+      Toast.warning('请先登录', 1000)
+      return 
+    }
     const body = {
       user_id: this.props.app_user._id,
       text: this.textarea.value,
@@ -85,6 +99,17 @@ class DynamicItem extends Component {
       this.props.addSecondCommon(res.data)
       this.isShowPopup(e)
     })
+  }
+
+  handleRouterPush = (e) => {
+    e.stopPropagation()
+    if (  localStorageGet('user') === null) {
+      Toast.warning('请先登录', 1000)
+      return 
+    }
+    if (!this.props.isDetail) {
+      this.props.history.push(`/dynamicDetail/${this.props._id}`)
+    }
   }
 
   // 点击关注
@@ -101,7 +126,7 @@ class DynamicItem extends Component {
     const {_id,user,content,commonNum} = this.props
     const {isPopup,goods,isGood} = this.state
     return (
-      <div onClick={this.props.isDetail ? null : () => this.props.history.push(`/dynamicDetail/${_id}`)} className=" dynamic-container">
+      <div onClick={this.handleRouterPush} className=" dynamic-container">
         <div className="dynamic-container-padding">
           <div className={`flex ${this.props.notShowUser && 'none'}`}>
             <div className="margin1-r">

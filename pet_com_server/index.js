@@ -6,12 +6,12 @@ app.set('secret', 'i2u34y12oi3u4y8')
 
 app.use(require('cors')())
 app.use(express.json())
-// app.use('/', express.static(__dirname + '/web'))
-// app.use('/admin', express.static(__dirname + '/admin'))
-// app.use('/uploads', express.static(__dirname + '/uploads'))
-app.use('/', express.static('./web'))
-app.use('/admin', express.static('./admin'))
-app.use('/uploads', express.static('./uploads'))
+app.use('/', express.static(__dirname + '/web'))
+app.use('/admin', express.static(__dirname + '/admin'))
+app.use('/uploads', express.static(__dirname + '/uploads'))
+// app.use('/', express.static('./web'))
+// app.use('/admin', express.static('./admin'))
+// app.use('/uploads', express.static('./uploads'))
 
 // 解决跨域 
 // app.all('*', function(req, res, next) {

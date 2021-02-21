@@ -29,6 +29,7 @@ const MyDynamic = lazy(() => import('../pages/MyDynamic'))
 const CreateDynamic = lazy(() => import('../pages/CreateDynamic'))
 
 class Router extends Component {
+
   componentDidMount() {
     // 当地址为空时，跳转到首页
     const {pathname} = this.props.location
@@ -53,17 +54,17 @@ class Router extends Component {
           <Route path="/petInfo/:id" component={PetInfo}/>
           <Route path="/more" component={More} />
           <Route path='/userSetting' component={UserSetting} />
-          <CacheRoute path='/dynamicDetail/:id' component={DynamicDetail} />
-          <CacheRoute path="/goodsDetail/:_id" component={GoodsDetail} />
-          <CacheRoute path="/commodity/:id" component={GoodsDetail} />
-          <CacheRoute path="/fillOrder" component={FillOrder} />
+          <Route path='/dynamicDetail/:id' component={DynamicDetail} />
+          <Route path="/goodsDetail/:_id" component={GoodsDetail} />
+          <Route path="/commodity/:id" component={GoodsDetail} />
+          <Route path="/fillOrder" component={FillOrder} />
           <Route path='/cart' component={Cart} />
-          <CacheRoute path='/articleDetail/:id' component={ArticleDetail} />
-          <CacheRoute path='/addressList' component={AddressList} />
+          <Route path='/articleDetail/:id' component={ArticleDetail} />
+          <Route path='/addressList' component={AddressList} />
           <Route path='/buySuccess' component={BuySuccess}/>
-          <CacheRoute path='/myCommon' component={MyCommon} />
-          <CacheRoute path='/myDynamic' component={MyDynamic} />
-          <CacheRoute path='/createDynamic' component={CreateDynamic} />
+          <Route path='/myCommon' component={MyCommon} />
+          <Route path='/myDynamic' component={MyDynamic} />
+          <Route path='/createDynamic' component={CreateDynamic} />
         </Suspense>
       </div>
     )

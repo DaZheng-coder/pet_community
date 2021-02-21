@@ -2,26 +2,36 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import './index.less'
 import { connect } from 'react-redux'
+import Toast from '@/components/Toast'
 import {apiCartAddCommodity} from '@/api/api'
-import {localStorageSet} from '@/utils'
+import {localStorageSet,localStorageGet} from '@/utils'
 
 class BuyButton extends Component {
   handleAddCart = async (e) => {
     e.stopPropagation()
-    const {_id, count} = this.props
-    console.log('数量', count)
-    console.log('加入购物车，商品_id', _id)
-    apiCartAddCommodity(this.props.user._id, {_id,count}).then(res => {
-      console.log('加入购物车结果', res)
-    })
+    if (localStorageGet('user') !== null) {
+      const {_id, count} = this.props
+      console.log('数量', count)
+      console.log('加入购物车，商品_id', _id)
+      apiCartAddCommodity(this.props.user._id, {_id,count}).then(res => {
+        console.log('加入购物车结果', res)
+        Toast.success('加入购物车成功', 2500)
+      }) 
+    } else {
+      Toast.warning('请先登录', 2000)
+    }
   }
 
   handleBuy = (e) => {
     e.stopPropagation()
-    const {_id,name,cover,count,price} = this.props
-    const orderList = [{_id,name,cover,count,price}]
-    localStorageSet('orderList', orderList)
-    this.props.history.push('/fillOrder')
+    if (localStorageGet('user') !== null) {
+      const {_id,name,cover,count,price} = this.props
+      const orderList = [{_id,name,cover,count,price}]
+      localStorageSet('orderList', orderList)
+      this.props.history.push('/fillOrder')
+    } else {
+      Toast.warning('请先登录', 2000)
+    }
   }
 
   render() {

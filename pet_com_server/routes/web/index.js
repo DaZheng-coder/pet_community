@@ -23,7 +23,7 @@ module.exports = app => {
     商品相关路由
   */
   // 获取商品分类
-  router.get('/categories/commodity', async (req, res) => {
+  app.get('/web/api/categories/commodity', async (req, res) => {
     const parent = await Category.findOne({name: '商品'})
     const cats = await Category.find().where({parent}).lean()
     res.send(cats)
@@ -51,14 +51,14 @@ module.exports = app => {
   })
 
   // 根据分类获取商品，传入分类为1表示获取全部
-  router.get('/commodities/:category/:page', async (req, res) => {
+  app.get('/web/api/commodities/:category/:page', async (req, res) => {
     const params = req.params.category !== '1' ? {category: req.params.category} : null 
     const data = await Commodity.find(params, {cover:1, name:1, price:1, discountPrice: 1, sales: 1}).sort({name: 1}).limit(20).skip(20 * req.params.page).lean()
     res.send(data)
   })
 
   // 根据_id获取商品信息
-  router.get('/commodity/:_id' , async (req,res) => {
+  app.get('/web/api/commodity/:_id' , async (req,res) => {
     const data = await Commodity.findById(req.params._id).lean()
     res.send(data)
   })

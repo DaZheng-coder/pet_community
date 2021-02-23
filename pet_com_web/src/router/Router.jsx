@@ -49,7 +49,7 @@ class Router extends Component {
           <CacheRoute path='/home' component={Home}/>
           <CacheRoute path='/community' component={Community}/>
           <CacheRoute path='/shop' component={Shop}/>
-          <CacheRoute path='/user' component={User}/>
+          <Route path='/user' component={User}/>
 
           <Route path="/petInfo/:id" component={PetInfo}/>
           <Route path="/more" component={More} />

@@ -31,6 +31,8 @@ class Login extends Component {
       Toast.success('登录成功', 2000)
       PubSub.publish('updateDynamicList', 'restart')
       this.props.history.replace('/community')
+    }).catch(err => {
+      Toast.warning(err.message, 1500)
     })
   }
 

@@ -6,6 +6,7 @@ import MiniLoading from '@/components/MiniLoading'
 import UserDetail from '@/components/UserDetail'
 import PubSub from 'pubsub-js'
 import {apiUserUpdate} from '@/api/api'
+import {basicUrl} from '@/api/index'
 import axios from 'axios'
 import Popup from '@/components/Popup'
 import {localStorageGet} from '@/utils'
@@ -64,7 +65,7 @@ class Avatar extends Component {
       formData.append('file', resFile)
       axios({
         method: 'POST',
-        url: "http://localhost:3000/web/api/upload",
+        url: `${basicUrl}/upload`,
         data: formData,
         headers: {
           "Content-Type": "multipart/form-data"

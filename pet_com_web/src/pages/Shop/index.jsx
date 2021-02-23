@@ -8,6 +8,7 @@ import SwiperContent from '@/components/SwiperContent'
 import TabPage from '@/components/TabPage'
 import GoodsItem from '@/components/GoodsItem'
 import CartIcon from '@/components/CartIcon'
+import None from '@/components/None'
 
 import {apiCategories, apiCommodities} from '@/api/api'
 
@@ -157,7 +158,8 @@ class ShopContent extends Component {
       <SwiperContent loadingMethod={this.getCommodities}>
         <div className="shop-content-container">
           {
-            commodities.length > 0 && commodities.map(commodity => <GoodsItem key={commodity._id} {...commodity}/>) 
+            commodities.length > 0 ? commodities.map(commodity => <GoodsItem key={commodity._id} {...commodity}/>) 
+            : <None />
           }
         </div>
       </SwiperContent>

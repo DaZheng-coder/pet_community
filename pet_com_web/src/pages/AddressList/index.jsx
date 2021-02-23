@@ -7,6 +7,7 @@ import RightDelete from '@/components/RightDelete'
 import './index.less'
 import { withRouter } from 'react-router-dom'
 import {apiAddressList, apiAddAddress, apiDeleteAddress} from '@/api/api'
+import {localStorageSet} from '@/utils'
 import PubSub from 'pubsub-js'
 class AddressList extends Component {
   state = {
@@ -35,6 +36,7 @@ class AddressList extends Component {
     e.stopPropagation()
     const address = this.state.addressList.filter(item => item._id === _id)[0]
     console.log('选中了', address)
+    localStorageSet('selectAddress', address)
     PubSub.publish('selectAddress', address)
     this.props.history.goBack()
   }

@@ -25,6 +25,10 @@ class FillOrder extends Component {
     this.setState({orderList}, this.computedTotalPrice)
 
     const setAddress = this.setAddress
+    const address = localStorageGet('selectAddress')
+    if(address) {
+      this.setAddress(address)
+    }
     // 订阅地址消息
     PubSub.subscribe('selectAddress', function (msg,data) {
       console.log('获取到地址', data)

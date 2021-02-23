@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import UserCardList from './UserCardList'
 import DynamicItem from '@/components/DynamicItem'
 import SwiperContent from '@/components/SwiperContent'
+import None from '@/components/None'
 import Pubsub from 'pubsub-js'
 import Topic from './Topic'
 import PetClass from './PetClass'
@@ -70,7 +71,8 @@ export default class Content extends Component {
           {/* {Boolean(['topic', 'petClass'].indexOf(type)) &&  */}
             <div className="bg padding1-lr">
               {
-                dynamicList && dynamicList.map(dynamic => <DynamicItem key={dynamic._id} {...dynamic} />)
+                dynamicList ? dynamicList.map(dynamic => <DynamicItem key={dynamic._id} {...dynamic} />)
+                  : <None />
               }
             </div>
           {/* } */}

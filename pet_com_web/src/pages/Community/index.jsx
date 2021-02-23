@@ -6,8 +6,10 @@ import NavBar from '@/components/NavBar'
 import Search from '@/components/Search'
 // import LinkageBar from '@/components/LinkageBar'
 import TabPage from '@/components/TabPage'
+import {localStorageGet} from '@/utils'
 import SwiperImg from '@/components/SwiperImg/'
 import Content from './Content'
+import Toast from '@/components/Toast'
 import './index.less'
 import { withRouter } from 'react-router-dom'
 class Community extends Component {
@@ -30,6 +32,10 @@ class Community extends Component {
   // 点击创建动态
   handleNavBarDynamicClick = (e) => {
     e.stopPropagation()
+    if (localStorageGet('user') === null) {
+      Toast.warning('请先登录', 1500) 
+      return
+    } 
     this.props.history.push('/createDynamic')
   }
 

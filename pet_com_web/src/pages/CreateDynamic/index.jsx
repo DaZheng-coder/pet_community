@@ -5,6 +5,7 @@ import Button from '@/components/Button'
 import {nanoid} from 'nanoid'
 import {dataURLtoFile} from '@/utils'
 import {apiDynamicCreate} from '@/api/api'
+import {basicUrl} from '@/api/index'
 import PubSub from 'pubsub-js'
 import axios from 'axios'
 import './index.less'
@@ -57,7 +58,7 @@ class CreateDynamic extends Component {
         formData.append('file', resFile)
         axios({
           method: 'POST',
-          url: "http://localhost:3000/web/api/upload",
+          url: `${basicUrl}/upload`,
           data: formData,
           headers: {
             "Content-Type": "multipart/form-data"

@@ -71,14 +71,7 @@ module.exports = app => {
     // 先寻找用户
     const user = await User.findOne({username: req.body.username})
     assert(!user, 422, '用户名已存在')
-    console.log('密码', req.body.password, typeof req.body.password)
-    const newPwd = require('bcrypt').hashSync(req.body.password, 10)
-    console.log('加密后', newPwd)
-    const newUser= {
-      username: req.body.username,
-      password: newPwd
-    }
-    const model = await User.create(newUser)
+    const model = await User.create(req.body)
     res.send(model)
   })
   // 获取用户详细信息
@@ -128,7 +121,8 @@ module.exports = app => {
     const {username, password} = req.body
     const user = await User.findOne({username}).select('+password')
     assert(user, 422, '用户不存在')
-    const isValid = require('bcrypt').compareSync(password, user.password)
+    // const isValid = require('bcrypt').compareSync(password, user.password)
+    const isValid = user.password === password
     assert(isValid, 422, '密码错误')
     const token = jwt.sign({ _id: user._id }, app.get('secret'))
     const {_id} = user

@@ -72,7 +72,7 @@ module.exports = app => {
     const user = await User.findOne({username: req.body.username})
     assert(!user, 422, '用户名已存在')
     console.log('用户信息', req.body)
-    console.log('类型' typeof req.body.password)
+    console.log('类型', typeof req.body.password)
     const model = await User.create(req.body)
     res.send(model)
   })

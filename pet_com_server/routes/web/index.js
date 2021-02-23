@@ -72,7 +72,13 @@ module.exports = app => {
     const user = await User.findOne({username: req.body.username})
     assert(!user, 422, '用户名已存在')
     console.log('密码', req.body.password, typeof req.body.password)
-    const model = await User.create(req.body)
+    const newPwd = require('bcrypt').hashSync(req.body.password, 10)
+    console.log('加密后', newPwd)
+    const newUser= {
+      username: req.body.username,
+      password: newPwd
+    }
+    const model = await User.create(newUser)
     res.send(model)
   })
   // 获取用户详细信息

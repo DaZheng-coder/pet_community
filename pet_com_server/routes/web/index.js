@@ -73,7 +73,7 @@ module.exports = app => {
     assert(!user, 422, '用户名已存在')
     const newUser = {
       username: req.body.username,
-      password: parseInt(req.body.password)
+      password: toString(parseInt(req.body.password))
     }
     const model = await User.create(req.body)
     res.send(model)

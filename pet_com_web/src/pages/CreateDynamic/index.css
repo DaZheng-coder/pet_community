@@ -23,6 +23,21 @@
   margin-right: 0.3rem;
   margin-bottom: 0.3rem;
 }
+.cd-ctn .cd-btn-imgs .cd-btn-picture-btn-bg .img-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
+}
+.cd-ctn .cd-btn-imgs .cd-btn-picture-btn-bg .img-loading.none {
+  display: none;
+}
 .cd-ctn .cd-btn-imgs .cd-btn-picture-btn-bg .img-delete {
   position: absolute;
   top: 0;

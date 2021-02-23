@@ -39,7 +39,7 @@ class Avatar extends Component {
     if (this.props.user) {
       // 如果是本机用户，修改头像
       this.input.click()
-      this.input.click()
+      // this.input.click()
       const file = this.input
       if (isIOS() && file) {
         file.removeAttribute("capture")

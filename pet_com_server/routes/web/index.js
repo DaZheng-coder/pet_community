@@ -46,7 +46,7 @@ module.exports = app => {
   app.post('/web/api/upload', upload.single('file'), async (req,res) => {
     console.log('接受文件')
     const file = req.file
-    file.url = `http://localhost:3000/uploads/${file.filename}`
+    file.url = `pet.zhengjunqin.top/uploads/${file.filename}`
     res.send(file.url)
   })
 

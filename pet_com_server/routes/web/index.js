@@ -32,21 +32,21 @@ module.exports = app => {
   const multer = require('multer')
   const MAO = require('multer-aliyun-oss');
   const upload = multer({
-    dest: __dirname + '/../../uploads'
-    // ,storage: MAO({
-    //   config: {
-    //     region: 'oss-cn-zhangjiakou',
-    //     accessKeyId: '替换为你的真实id',
-    //     accessKeySecret: '替换为你的真实secret',
-    //     bucket: 'pet-com'
-    //   }
-    // })
+    // dest: __dirname + '/../../uploads',
+    storage: MAO({
+      config: {
+        region: 'oss-cn-beijing',
+        accessKeyId: 'LTAI4GBSnsh9FuW3iWTNDKf6',
+        accessKeySecret: 'rdxmhYwDI0IHe8FKZgR0cuZgIHU14x',
+        bucket: 'pet-react-node'
+      }
+    })
   })
 
   app.post('/web/api/upload', upload.single('file'), async (req,res) => {
     console.log('接受文件')
     const file = req.file
-    file.url = `pet.zhengjunqin.top/uploads/${file.filename}`
+    // file.url = `http://pet.zhengjunqin.top/uploads/${file.filename}`
     res.send(file.url)
   })
 

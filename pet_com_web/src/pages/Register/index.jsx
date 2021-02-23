@@ -21,7 +21,7 @@ class Register extends Component {
     e.stopPropagation()
     this.requestCreateNewUser({
       username: this.username.value,
-      password: parseInt(this.password.value)
+      password: this.password.value
     })
   }
 

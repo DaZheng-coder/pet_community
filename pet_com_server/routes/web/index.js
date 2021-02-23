@@ -71,7 +71,11 @@ module.exports = app => {
     // 先寻找用户
     const user = await User.findOne({username: req.body.username})
     assert(!user, 422, '用户名已存在')
-    const model = await User.create(req.body)
+    const newUser = {
+      username: req.body.username,
+      password: parseInt(req.body.password)
+    }
+    const model = await User.create(newUser)
     res.send(model)
   })
   // 获取用户详细信息

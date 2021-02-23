@@ -67,15 +67,13 @@ export default class Content extends Component {
             (type === 'petClass' && <PetClass/>)
           }
         </header> */}
-        <article className="bg padding1-lr">
-          {Boolean(['topic', 'petClass'].indexOf(type)) && 
-            <div>
+          {/* {Boolean(['topic', 'petClass'].indexOf(type)) &&  */}
+            <div className="bg padding1-lr">
               {
                 dynamicList && dynamicList.map(dynamic => <DynamicItem key={dynamic._id} {...dynamic} />)
               }
             </div>
-          }
-        </article>
+          {/* } */}
       </SwiperContent>
     )
   }

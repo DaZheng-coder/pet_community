@@ -38,7 +38,7 @@ module.exports = app => {
         region: 'oss-cn-beijing',
         accessKeyId: 'LTAI4GBSnsh9FuW3iWTNDKf6',
         accessKeySecret: 'rdxmhYwDI0IHe8FKZgR0cuZgIHU14x',
-        bucket: 'pet-react-node'
+        bucket: 'pet-react-node@1239280955968994.onaliyun.com'
       }
     })
   })

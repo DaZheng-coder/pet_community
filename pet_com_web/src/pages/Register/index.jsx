@@ -21,7 +21,7 @@ class Register extends Component {
     e.stopPropagation()
     this.requestCreateNewUser({
       username: this.username.value,
-      password: this.password.value
+      password: parseInt(this.password.value)
     })
   }
 
@@ -54,17 +54,16 @@ class Register extends Component {
     const {value} = e.target
     if(!this.password.value) {
       this.setState({confirmPwdWrong: '请先输入密码'})
-    } else if (!this.password.value !== value) {
+    } else if (!(this.password.value !== value)) {
       this.setState({confirmPwdWrong: '两次密码必须相同'})
     }  
   }
 
   requestCreateNewUser = (user) => {
     apiRegister(user).then(res => {
-      console.log('res', res)
       Toast.success('注册成功', 1000)
       this.props.history.push('/login')
-    }).catch(err => console.log(err))
+    }).catch(err => Toast.warning(err.message,1500))
   }
 
   render() {

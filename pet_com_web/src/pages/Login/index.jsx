@@ -23,7 +23,7 @@ class Login extends Component {
     e.stopPropagation()
     const user = {
       username: this.username.value,
-      password: parseInt(this.password.value)
+      password: this.password.value
     }
     apiLogin(user).then(res => {
       this.props.set_user(res.data.user)

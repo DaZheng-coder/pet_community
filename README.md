@@ -1,5 +1,5 @@
 # pet_community
- demo网址： [pet.zhengjunqin.top]
+ demo网址： [宠物社区](pet.zhengjunqin.top)
 ## 项目简介
   神奇宝贝社区是我学习完react后的一个练手项目，主要为了熟悉掌握react的基本知识，选题于神奇宝贝，类似交友软件和商城。
 ## 项目功能

@@ -35,10 +35,6 @@ module.exports = app => {
     // dest: __dirname + '/../../uploads',
     storage: MAO({
       config: {
-        region: 'oss-cn-beijing',
-        accessKeyId: 'LTAI4GBSnsh9FuW3iWTNDKf6',
-        accessKeySecret: 'rdxmhYwDI0IHe8FKZgR0cuZgIHU14x',
-        bucket: 'pet-react-node'
       }
     })
   })
